@@ -3,6 +3,8 @@ package com.seonhui.app.departments;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -16,7 +18,7 @@ public class DepartmentDAO {
 	@Autowired
 	private DBConnection dbConnection;
 
-	public void getList() throws Exception {
+	public List<DepartmentDTO> getList() throws Exception {
 		// DB를 가져오려면
 		Connection con = dbConnection.getConnection();
 
@@ -30,16 +32,27 @@ public class DepartmentDAO {
 
 		// 최종 전송 및 결과 처리
 		ResultSet rs = st.executeQuery();// 미리 보낸 쿼리문을 처리하세요
+		ArrayList<DepartmentDTO> ar = new ArrayList<DepartmentDTO>();
 
 		while (rs.next()) {
+			DepartmentDTO departmentDTO = new DepartmentDTO();
 			int id = rs.getInt("DEPARTMENT_ID");
 			String name = rs.getString("DEPARTMENT_NAME");
+
 			System.out.println(id + " : " + name);
+			departmentDTO.setDepartment_id(id);
+			departmentDTO.setDepartment_name(name);
+			departmentDTO.setManager_id(rs.getLong("MANAGER_ID"));
+			departmentDTO.setLocation_id(rs.getInt("LOCATION_ID"));
+
+			ar.add(departmentDTO);
 		}
 
 		rs.close();
 		st.close();
 		con.close();
+
+		return ar;
 
 	}
 }

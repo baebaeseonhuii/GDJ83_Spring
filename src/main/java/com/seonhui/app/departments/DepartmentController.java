@@ -1,7 +1,10 @@
 package com.seonhui.app.departments;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -16,9 +19,16 @@ public class DepartmentController {
 	private DepartmentService departService;
 
 	@RequestMapping(value = "list", method = RequestMethod.GET) // 어떤 url이 왔을때 실행
-	public void getList() throws Exception {
+	public void getList(Model model) throws Exception {
 		System.out.println("department list");
-		departService.getList();
+		List<DepartmentDTO> ar = departService.getList();
+
+		// Model+View
+//		ModelAndView mv = new ModelAndView();
+//		mv.addObject("list", mv); //request.setAttribute랑 같음
+		// return mv;
+
+		model.addAttribute("list", ar);
 
 	}
 }
