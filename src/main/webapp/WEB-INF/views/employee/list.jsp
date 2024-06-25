@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,37 +13,34 @@
 	crossorigin="anonymous">
 </head>
 <body>
-
-<h1>지역 리스트</h1>
-	<div class="">
+<h1>사원 정보</h1>
+<div class="">
 	<table class="table table-striped table-hover">
 		<thead>
 			<tr>
-				<th>Location ID</th>
-				<th>Street Address</th>
-				<th>Postal Code</th>
-				<th>City</th>
-				<th>State Province</th>
-				<th>Country ID</th>
+				<th>Employee ID</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Job ID</th>
 			</tr>
 		</thead>
 
 		<tbody>
-			<c:forEach items="${list}" var="list">
+			<c:forEach items="${list}" var="dto">
 				<tr>
-					<td>${list.location_id}</td>
-					<td>${list.street_address}</td>
-					<td>${list.postal_code}</td>
-					<td>${list.city}</td>
-					<td>${list.state_province}</td>
-					<td>${list.country_id}</td>
+					<td>${dto.employee_id}</td>
+					<td>${dto.first_name}</td>
+					<td>${dto.last_name}</td>
+					<td>${dto.job_id}</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 
 	</table>
 	</div>
-	<script
+
+
+<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
 		crossorigin="anonymous"></script>
@@ -55,6 +52,5 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
 		integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
 		crossorigin="anonymous"></script>
-
 </body>
 </html>

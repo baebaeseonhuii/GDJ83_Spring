@@ -30,7 +30,6 @@ public class LocationDAO {
 		while (rs.next()) {
 			LocationDTO locationDTO = new LocationDTO();
 
-			System.out.println(rs.getString("CITY"));
 			locationDTO.setLocation_id(rs.getInt("LOCATION_ID"));
 			locationDTO.setStreet_address(rs.getString("STREET_ADDRESS"));
 			locationDTO.setPostal_code(rs.getString("POSTAL_CODE"));

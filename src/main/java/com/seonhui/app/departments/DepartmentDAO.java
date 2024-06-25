@@ -39,7 +39,6 @@ public class DepartmentDAO {
 			int id = rs.getInt("DEPARTMENT_ID");
 			String name = rs.getString("DEPARTMENT_NAME");
 
-			System.out.println(id + " : " + name);
 			departmentDTO.setDepartment_id(id);
 			departmentDTO.setDepartment_name(name);
 			departmentDTO.setManager_id(rs.getLong("MANAGER_ID"));
