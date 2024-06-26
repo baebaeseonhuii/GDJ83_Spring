@@ -29,13 +29,19 @@
 			<c:forEach items="${list}" var="dto">
 				<tr>
 					<td>${dto.department_id}</td>
-					<td>${dto.department_name}</td>
+					<td><a href="detail?department_id=${dto.department_id}">${dto.department_name}</a></td>
 					<td>${dto.manager_id}</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 
 	</table>
+	
+	<div>
+		<a href="add" class="btn btn-outline-success">부서 등록</a>
+	</div>
+	
+	
 	</div>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

@@ -31,4 +31,53 @@ public class DepartmentController {
 		model.addAttribute("list", ar);
 
 	}
+
+	@RequestMapping(value = "detail", method = RequestMethod.GET)
+	public String getDetail(Model model, int department_id) throws Exception {
+		// 클라이언트의 parameter 이름이 매개변수명이랑 같으면 됨
+		DepartmentDTO departmentDTO = departService.getDetail(department_id);
+
+		String path = "commons/message";
+
+		if (departmentDTO != null) {
+			model.addAttribute("detail", departmentDTO);
+			path = "department/detail";
+		} else {
+			model.addAttribute("result", "부서를 찾을 수 없습니다.");
+			model.addAttribute("url", "./list");
+		}
+		return path;
+
+	}
+
+	@RequestMapping(value = "add", method = RequestMethod.GET)
+	public void add() {
+
+	}
+
+	@RequestMapping(value = "add", method = RequestMethod.POST)
+	public String add(DepartmentDTO departmentDTO, Model model) throws Exception {
+
+		int result = departService.add(departmentDTO);
+		String url = "";
+		if (result > 0) {
+			url = "redirect:./list";
+		} else {
+			url = "commons/message.jsp";
+			model.addAttribute("result", "부서 등록에 실패했습니다.");
+			model.addAttribute("url", "./list");
+		}
+
+		return url;
+	}
+
+	@RequestMapping(value = "delete", method = RequestMethod.GET)
+	public void delete() {
+
+	}
+
+	@RequestMapping(value = "update", method = RequestMethod.GET)
+	public void update() {
+
+	}
 }

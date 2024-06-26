@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,35 +13,38 @@
 </head>
 <body>
 
-<h1>지역 리스트</h1>
-	<div class="">
-	<table class="table table-striped table-hover">
-		<thead>
-			<tr>
-				<th>Location ID</th>
-				<th>Street Address</th>
-				<th>City</th>
-				<th>State Province</th>
-			</tr>
-		</thead>
 
-		<tbody>
-			<c:forEach items="${list}" var="list">
-				<tr>
-					<td>${list.location_id}</td>
-					<td><a href="detail?location_id=${list.location_id}">${list.street_address}</a></td>
-					<td>${list.city}</td>
-					<td>${list.state_province}</td>
-				</tr>
-			</c:forEach>
-		</tbody>
+	<div class="container">
+		<div class="row">
+			<h1>부서 등록</h1>
+		</div>
 
-	</table>
-	<div>
-		<a href="add" class="btn btn-outline-success">지역 등록</a>
+		<div class="row">
+			<form action="./add" method="post">
+				<div class="mb-3">
+					<label for="department_name" class="form-label">부서명</label> 
+					<input type="text" class="form-control" id="department_name" name="department_name">
+				</div>
+				
+				<div class="mb-3">
+					<label for="manager_id" class="form-label">관리자 번호</label> 
+					<input type="text" class="form-control" id="manager_id" name="manager_id">
+				</div>
+				
+				<div class="mb-3">
+					<label for="location_id" class="form-label">지역 코드</label> 
+					<input type="text" class="form-control" id="location_id" name="location_id">
+				</div>
+				
+				
+				<button type="submit" class="btn btn-success">등록</button>
+			</form>
+		</div>
 	</div>
-	
-	</div>
+
+
+
+
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
@@ -55,6 +57,5 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
 		integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
 		crossorigin="anonymous"></script>
-
 </body>
 </html>

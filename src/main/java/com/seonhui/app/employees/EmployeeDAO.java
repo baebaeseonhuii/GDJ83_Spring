@@ -27,7 +27,6 @@ public class EmployeeDAO {
 
 		while (rs.next()) {
 			EmployeeDTO employeeDTO = new EmployeeDTO();
-			System.out.println(rs.getString("FIRST_NAME") + " " + rs.getString("LAST_NAME"));
 			employeeDTO.setEmployee_id(rs.getLong("EMPLOYEE_ID"));
 			employeeDTO.setFirst_name(rs.getString("FIRST_NAME"));
 			employeeDTO.setLast_name(rs.getString("LAST_NAME"));
@@ -39,6 +38,8 @@ public class EmployeeDAO {
 			employeeDTO.setCommission_pct(rs.getDouble("COMMISSION_PCT"));
 			employeeDTO.setManager_id(rs.getLong("MANAGER_ID"));
 			employeeDTO.setDepartment_id(rs.getInt("DEPARTMENT_ID"));
+
+			ar.add(employeeDTO);
 		}
 
 		rs.close();

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -13,34 +13,34 @@
 	crossorigin="anonymous">
 </head>
 <body>
-<h1>사원 정보</h1>
-<div class="">
-	<table class="table table-striped table-hover">
-		<thead>
-			<tr>
-				<th>Employee ID</th>
-				<th>First Name</th>
-				<th>Last Name</th>
-				<th>Job ID</th>
-			</tr>
-		</thead>
-
-		<tbody>
-			<c:forEach items="${list}" var="dto">
+	<h1>사원 정보</h1>
+	<div class="">
+		<table class="table table-striped table-hover">
+			<thead>
 				<tr>
-					<td>${dto.employee_id}</td>
-					<td>${dto.first_name}</td>
-					<td>${dto.last_name}</td>
-					<td>${dto.job_id}</td>
+					<th>Employee ID</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Job ID</th>
 				</tr>
-			</c:forEach>
-		</tbody>
+			</thead>
 
-	</table>
+			<tbody>
+				<c:forEach items="${list}" var="dto">
+					<tr>
+						<td>${dto.employee_id}</td>
+						<td>${dto.first_name}</td>
+						<td>${dto.last_name}</td>
+						<td>${dto.job_id}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+
+		</table>
 	</div>
 
 
-<script
+	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
 		crossorigin="anonymous"></script>

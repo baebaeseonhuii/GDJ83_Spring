@@ -20,7 +20,6 @@ public class EmployeeController {
 
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public void getList(Model model) throws Exception {
-		System.out.println("employee list");
 		List<EmployeeDTO> ar = employeeService.getList();
 		model.addAttribute("list", ar);
 	}
