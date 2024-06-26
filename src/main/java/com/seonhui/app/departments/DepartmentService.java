@@ -13,7 +13,6 @@ public class DepartmentService {
 
 	public List<DepartmentDTO> getList() throws Exception {
 		return departmentDAO.getList();
-
 	}
 
 	public DepartmentDTO getDetail(int num) throws Exception {
@@ -24,11 +23,11 @@ public class DepartmentService {
 		return departmentDAO.add(departmentDTO);
 	}
 
-	public void delete() {
-
+	public int delete(DepartmentDTO departmentDTO) throws Exception {
+		return departmentDAO.delete(departmentDTO);
 	}
 
-	public void update() {
-
+	public int update(DepartmentDTO departmentDTO) throws Exception {
+		return departmentDAO.update(departmentDTO);
 	}
 }

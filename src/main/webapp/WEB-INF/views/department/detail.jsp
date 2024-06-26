@@ -37,8 +37,8 @@
 
 	</table>
 	<div>
-		<a href="delete" class="btn btn-outline-success">부서 삭제</a>
-		<a href="update" class="btn btn-outline-success">부서 수정</a>
+		<a href="delete?department_id=${detail.department_id}" class="btn btn-outline-success">부서 삭제</a>
+		<a href="update?department_id=${detail.department_id}" class="btn btn-outline-success">부서 수정</a>
 	</div>
 	
 	<script

@@ -109,11 +109,40 @@ public class DepartmentDAO {
 
 	}
 
-	public void delete() {
+	public int delete(DepartmentDTO departmentDTO) throws Exception {
+		Connection con = dbConnection.getConnection();
+
+		String sql = "DELETE DEPARTMENTS WHERE DEPARTMENT_ID = ?";
+
+		PreparedStatement st = con.prepareStatement(sql);
+
+		st.setInt(1, departmentDTO.getDepartment_id());
+
+		int result = st.executeUpdate();
+
+		st.close();
+		con.close();
+
+		return result;
 
 	}
 
-	public void update() {
+	public int update(DepartmentDTO departmentDTO) throws Exception {
+		int result = 0;
 
+		Connection con = dbConnection.getConnection();
+		String sql = "UPDATE DEPARTMENTS SET DEPARTMENT_NAME=?, MANAGER_ID=?, LOCATION_ID=? WHERE DEPARTMENT_ID=?";
+		PreparedStatement st = con.prepareStatement(sql);
+
+		st.setString(1, departmentDTO.getDepartment_name());
+		st.setLong(2, departmentDTO.getManager_id());
+		st.setInt(3, departmentDTO.getLocation_id());
+		st.setInt(4, departmentDTO.getDepartment_id());
+
+		result = st.executeUpdate();
+		st.close();
+		con.close();
+
+		return result;
 	}
 }

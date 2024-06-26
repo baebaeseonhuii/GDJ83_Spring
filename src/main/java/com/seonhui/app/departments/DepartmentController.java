@@ -63,7 +63,7 @@ public class DepartmentController {
 		if (result > 0) {
 			url = "redirect:./list";
 		} else {
-			url = "commons/message.jsp";
+			url = "commons/message";
 			model.addAttribute("result", "부서 등록에 실패했습니다.");
 			model.addAttribute("url", "./list");
 		}
@@ -72,12 +72,51 @@ public class DepartmentController {
 	}
 
 	@RequestMapping(value = "delete", method = RequestMethod.GET)
-	public void delete() {
+	public String delete(DepartmentDTO departmentDTO, Model model) throws Exception {
+		int result = departService.delete(departmentDTO);
+		String url = "commons/message";
+		if (result > 0) {
+			url = "redirect:list";
+		} else {
+			model.addAttribute("result", "부서 삭제에 실패했습니다.");
+			model.addAttribute("url", "list");
+		}
+
+		return url;
 
 	}
 
 	@RequestMapping(value = "update", method = RequestMethod.GET)
-	public void update() {
+	public String update(int department_id, Model model) throws Exception {
+		DepartmentDTO departmentDTO = departService.getDetail(department_id);
+		String url = "commons/message";
+
+		if (departmentDTO != null) {
+			model.addAttribute("detail", departmentDTO);
+			url = "department/update";
+		} else {
+			model.addAttribute("result", "부서 수정에 실패했습니다.");
+			model.addAttribute("url", "list");
+		}
+
+		return url;
+	}
+
+	@RequestMapping(value = "update", method = RequestMethod.POST)
+	public String update(DepartmentDTO departmentDTO, Model model) throws Exception {
+		int result = departService.update(departmentDTO);
+
+		String url = "";
+		if (result > 0) {
+			url = "redirect:./list";
+		} else {
+			url = "commons/message";
+			model.addAttribute("result", "부서 등록에 실패했습니다.");
+			model.addAttribute("url", "./list");
+		}
+
+		return url;
 
 	}
+
 }
