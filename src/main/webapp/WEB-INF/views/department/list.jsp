@@ -15,6 +15,16 @@
 </head>
 <body>
 	<h1>부서 리스트</h1>
+	
+	<div class="row">
+		<c:forEach items="${info}" var="m">
+			<h3>${m.id}</h3>
+			<h3>${m.sum}</h3>
+			<h3>${m.avg}</h3>
+		</c:forEach>
+	
+	</div>
+	
 	<div class="">
 	<table class="table table-striped table-hover">
 		<thead>
