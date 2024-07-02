@@ -39,7 +39,7 @@
 
 				</table>
 				<div>
-					<a href="add" class="btn btn-outline-success">부서 등록</a>
+					<a href="add" class="btn btn-outline-success">상품 등록</a>
 				</div>
 
 			</div>
