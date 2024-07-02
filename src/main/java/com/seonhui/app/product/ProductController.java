@@ -36,6 +36,61 @@ public class ProductController {
 
 		}
 		return path;
+	}
+
+	@RequestMapping(value = "add", method = RequestMethod.GET)
+	public void add() {
 
 	}
+
+	@RequestMapping(value = "add", method = RequestMethod.POST)
+	public String add(Model model, ProductDTO productDTO) throws Exception {
+		int result = productService.add(productDTO);
+		String path = "commons/message";
+		if (result > 0) {
+			path = "redirect:./list";
+		} else {
+			model.addAttribute("result", "상품을 찾을 수 없습니다.");
+			model.addAttribute("url", "./list");
+		}
+
+		return path;
+	}
+
+	@RequestMapping(value = "delete", method = RequestMethod.POST)
+	public void delete() throws Exception {
+
+	}
+
+	@RequestMapping(value = "update", method = RequestMethod.GET)
+	public String update(String p_code, Model model) throws Exception {
+		ProductDTO productDTO = productService.getDetail(p_code);
+		String path = "commons/message";
+
+		if (productDTO != null) {
+			model.addAttribute("detail", productDTO);
+			path = "product/update";
+
+		} else {
+			model.addAttribute("result", "상품 수정에 실패했습니다.");
+			model.addAttribute("url", "list");
+		}
+
+		return path;
+	}
+
+	@RequestMapping(value = "update", method = RequestMethod.POST)
+	public String update(Model model, ProductDTO productDTO) throws Exception {
+		int result = productService.update(productDTO);
+		String path = "commons/message";
+
+		if (result > 0) {
+			path = "redirect:./list";
+		} else {
+			model.addAttribute("result", "상품 등록에 실패했습니다.");
+			model.addAttribute("url", "list");
+		}
+		return path;
+	}
+
 }

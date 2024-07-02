@@ -37,6 +37,13 @@
 
 
 				</table>
+
+				<div>
+					<a href="delete?p_code=${detail.p_code}"
+						class="btn btn-outline-success">부서 삭제</a> <a
+						href="update?p_code=${detail.p_code}"
+						class="btn btn-outline-success">부서 수정</a>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -16,6 +16,7 @@
 				<table class="table table-striped table-hover">
 					<thead>
 						<tr>
+							<th>번호</th>
 							<th>상품 코드</th>
 							<th>상품 이름</th>
 							<th>이자</th>
@@ -26,6 +27,7 @@
 					<c:forEach items="${list}" var="dto">
 						<tbody>
 							<tr>
+								<td>${dto.indexOfLists}</td>
 								<td>${dto.p_code}</td>
 								<td><a href="./detail?p_code=${dto.p_code}">${dto.p_name}</a></td>
 								<td>${dto.interest}</td>
@@ -36,6 +38,9 @@
 
 
 				</table>
+				<div>
+					<a href="add" class="btn btn-outline-success">부서 등록</a>
+				</div>
 
 			</div>
 		</div>

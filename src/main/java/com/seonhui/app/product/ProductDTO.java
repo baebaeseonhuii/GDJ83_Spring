@@ -5,6 +5,7 @@ public class ProductDTO {
 	private String p_name;
 	private double interest;
 	private String script;
+	private int indexOfLists;
 
 	public String getP_code() {
 		return p_code;
@@ -36,6 +37,14 @@ public class ProductDTO {
 
 	public void setScript(String script) {
 		this.script = script;
+	}
+
+	public int getIndexOfLists() {
+		return indexOfLists;
+	}
+
+	public void setIndexOfLists(int indexOfLists) {
+		this.indexOfLists = indexOfLists;
 	}
 
 }

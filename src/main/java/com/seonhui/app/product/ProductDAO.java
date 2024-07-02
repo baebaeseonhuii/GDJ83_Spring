@@ -30,11 +30,13 @@ public class ProductDAO {
 			String name = rs.getString("P_NAME");
 			double interest = rs.getDouble("INTEREST");
 			String script = rs.getString("SCRIPT");
+			int indexOfLists = rs.getInt("INDEX_OF_LISTS");
 
 			productDTO.setP_code(code);
 			productDTO.setP_name(name);
 			productDTO.setInterest(interest);
 			productDTO.setScript(script);
+			productDTO.setIndexOfLists(indexOfLists);
 
 			ar.add(productDTO);
 
@@ -62,11 +64,13 @@ public class ProductDAO {
 			String name = rs.getString("P_NAME");
 			double interest = rs.getDouble("INTEREST");
 			String script = rs.getString("SCRIPT");
+			int indexOfLists = rs.getInt("INDEX_OF_LISTS");
 
 			productDTO.setP_code(pCode);
 			productDTO.setP_name(name);
 			productDTO.setInterest(interest);
 			productDTO.setScript(script);
+			productDTO.setIndexOfLists(indexOfLists);
 
 		}
 
@@ -75,6 +79,43 @@ public class ProductDAO {
 		con.close();
 
 		return productDTO;
+
+	}
+
+	public int add(ProductDTO productDTO) throws Exception {
+		Connection con = dbConnection.getConnection();
+		String sql = "INSERT INTO PRODUCTS (P_CODE, P_NAME, INTEREST, SCRIPT, INDEX_OF_LISTS) VALUES (?, ?, ?, ?, PRODUCTS_SEQ.NEXTVAL)";
+		PreparedStatement st = con.prepareStatement(sql);
+		st.setString(1, productDTO.getP_code());
+		st.setString(2, productDTO.getP_name());
+		st.setDouble(3, productDTO.getInterest());
+		st.setString(4, productDTO.getScript());
+
+		int result = st.executeUpdate();
+
+		st.close();
+		con.close();
+
+		return result;
+
+	}
+
+	public int update(ProductDTO productDTO) throws Exception {
+		int result = 0;
+		Connection con = dbConnection.getConnection();
+		String sql = "UPDATE PRODUCTS SET P_CODE=?, P_NAME=?, INTEREST=?, SCRIPT=? WHERE INDEX_OF_LISTS=?";
+		PreparedStatement st = con.prepareStatement(sql);
+		st.setString(1, productDTO.getP_code());
+		st.setString(2, productDTO.getP_name());
+		st.setDouble(3, productDTO.getInterest());
+		st.setString(4, productDTO.getScript());
+		st.setInt(5, productDTO.getIndexOfLists());
+
+		result = st.executeUpdate();
+		st.close();
+		con.close();
+
+		return result;
 
 	}
 }
