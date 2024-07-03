@@ -1,34 +1,50 @@
 package com.seonhui.app.robot;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
-
-@Component // new Robot()
+//@Component // new Robot()
 public class Robot {
 
-	@Autowired // setRightArm
-	@Qualifier("ra")
-	private Arm ra;
+	private String company;
 
-	@Qualifier("la")
-	@Autowired
-	private Arm la;
-
-	public Arm getRa() {
-		return ra;
+	public String getCompany() {
+		return company;
 	}
 
-	public void setRa(Arm ra) {
-		this.ra = ra;
+	public void setCompany(String company) {
+		this.company = company;
 	}
 
-	public Arm getLa() {
-		return la;
+	private int age;
+
+	public int getAge() {
+		return age;
 	}
 
-	public void setLa(Arm la) {
-		this.la = la;
+	public void setAge(int age) {
+		this.age = age;
 	}
+
+	// @Autowired // setRightArm
+	// @Qualifier("ra")
+	private Arm rightArm;
+
+	public Arm getRightArm() {
+		return rightArm;
+	}
+
+	public void setRightArm(Arm rightArm) {
+		this.rightArm = rightArm;
+	}
+
+	public Arm getLeftArm() {
+		return leftArm;
+	}
+
+	public void setLeftArm(Arm leftArm) {
+		this.leftArm = leftArm;
+	}
+
+	// @Qualifier("la")
+	// @Autowired
+	private Arm leftArm;
 
 }
