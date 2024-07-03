@@ -27,7 +27,7 @@
 					<c:forEach items="${list}" var="dto">
 						<tbody>
 							<tr>
-								<td>${dto.indexOfLists}</td>
+								<td>${dto.index_Of_Lists}</td>
 								<td>${dto.p_code}</td>
 								<td><a href="./detail?p_code=${dto.p_code}">${dto.p_name}</a></td>
 								<td>${dto.interest}</td>

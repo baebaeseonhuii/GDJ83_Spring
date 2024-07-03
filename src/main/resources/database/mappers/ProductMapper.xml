@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <!-- namespace는 꼭 들어가야될 속성, 다른 매퍼랑 구분하기 위해 씀 -->
+  <mapper namespace="com.seonhui.app.product.ProductDAO">
+  	<select id="getDetail" resultType="com.seonhui.app.product.ProductDTO" parameterType="com.seonhui.app.product.ProductDTO">
+  		SELECT * FROM PRODUCTS WHERE P_CODE = #{p_code}
+  	</select>
+  	
+  	<select id="getList" resultType="com.seonhui.app.product.ProductDTO">
+  		SELECT * FROM PRODUCTS ORDER BY INDEX_OF_LISTS ASC
+  	</select>
+  	
+  	<insert id="add" parameterType="com.seonhui.app.product.ProductDTO">
+  		INSERT INTO PRODUCTS (P_CODE, P_NAME, INTEREST, SCRIPT, INDEX_OF_LISTS) VALUES (#{p_code}, #{p_code}, #{interest}, #{script}, PRODUCTS_SEQ.NEXTVAL)
+  	</insert>
+  	
+  	<update id="update">
+  		UPDATE PRODUCTS SET P_CODE=?, P_NAME=?, INTEREST=?, SCRIPT=? WHERE INDEX_OF_LISTS=?
+  	</update>
+  	
+  	
+
+  </mapper>

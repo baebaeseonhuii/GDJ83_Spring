@@ -24,9 +24,9 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
-	public String getDetail(Model model, String p_code) throws Exception {
+	public String getDetail(Model model, ProductDTO productDTO) throws Exception {
 		System.out.println("detail");
-		ProductDTO productDTO = productService.getDetail(p_code);
+		productDTO = productService.getDetail(productDTO);
 		String path = "commons/message";
 		if (productDTO != null) {
 			model.addAttribute("detail", productDTO);
@@ -64,8 +64,8 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "update", method = RequestMethod.GET)
-	public String update(String p_code, Model model) throws Exception {
-		ProductDTO productDTO = productService.getDetail(p_code);
+	public String update(ProductDTO productDTO, Model model) throws Exception {
+		productDTO = productService.getDetail(productDTO);
 		String path = "commons/message";
 
 		if (productDTO != null) {
@@ -80,18 +80,18 @@ public class ProductController {
 		return path;
 	}
 
-	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public String update(Model model, ProductDTO productDTO) throws Exception {
-		int result = productService.update(productDTO);
-		String path = "commons/message";
-
-		if (result > 0) {
-			path = "redirect:./list";
-		} else {
-			model.addAttribute("result", "상품 등록에 실패했습니다.");
-			model.addAttribute("url", "list");
-		}
-		return path;
-	}
+//	@RequestMapping(value = "update", method = RequestMethod.POST)
+//	public String update(Model model, ProductDTO productDTO) throws Exception {
+//		int result = productService.update(productDTO);
+//		String path = "commons/message";
+//
+//		if (result > 0) {
+//			path = "redirect:./list";
+//		} else {
+//			model.addAttribute("result", "상품 등록에 실패했습니다.");
+//			model.addAttribute("url", "list");
+//		}
+//		return path;
+//	}
 
 }
