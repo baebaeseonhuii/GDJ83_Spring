@@ -25,7 +25,6 @@ public class ProductController {
 
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
 	public String getDetail(Model model, ProductDTO productDTO) throws Exception {
-		System.out.println("detail");
 		productDTO = productService.getDetail(productDTO);
 		String path = "commons/message";
 		if (productDTO != null) {
@@ -40,8 +39,9 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "add", method = RequestMethod.GET)
-	public void add() {
+	public String add(ProductDTO productDTO, Model model) throws Exception {
 
+		return "product/add";
 	}
 
 	@RequestMapping(value = "add", method = RequestMethod.POST)
@@ -59,8 +59,16 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "delete", method = RequestMethod.POST)
-	public void delete() throws Exception {
-
+	public String delete(Model model, ProductDTO productDTO) throws Exception {
+		int result = productService.delete(productDTO);
+		String path = "commons/message";
+		if (result > 0) {
+			path = "redirect:./list";
+		} else {
+			model.addAttribute("result", "상품을 지우지 못했습니다.");
+			model.addAttribute("url", "./list");
+		}
+		return path;
 	}
 
 	@RequestMapping(value = "update", method = RequestMethod.GET)
@@ -80,18 +88,18 @@ public class ProductController {
 		return path;
 	}
 
-//	@RequestMapping(value = "update", method = RequestMethod.POST)
-//	public String update(Model model, ProductDTO productDTO) throws Exception {
-//		int result = productService.update(productDTO);
-//		String path = "commons/message";
-//
-//		if (result > 0) {
-//			path = "redirect:./list";
-//		} else {
-//			model.addAttribute("result", "상품 등록에 실패했습니다.");
-//			model.addAttribute("url", "list");
-//		}
-//		return path;
-//	}
+	@RequestMapping(value = "update", method = RequestMethod.POST)
+	public String update(Model model, ProductDTO productDTO) throws Exception {
+		int result = productService.update(productDTO);
+		String path = "commons/message";
+
+		if (result > 0) {
+			path = "redirect:./list";
+		} else {
+			model.addAttribute("result", "상품 등록에 실패했습니다.");
+			model.addAttribute("url", "list");
+		}
+		return path;
+	}
 
 }

@@ -38,6 +38,7 @@ build/
 
 ### My Custom ###
 DBConnection.java
+database.properties
 
 ### Java ###
 # Compiled class file

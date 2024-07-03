@@ -14,12 +14,16 @@
   	</select>
   	
   	<insert id="add" parameterType="com.seonhui.app.product.ProductDTO">
-  		INSERT INTO PRODUCTS (P_CODE, P_NAME, INTEREST, SCRIPT, INDEX_OF_LISTS) VALUES (#{p_code}, #{p_code}, #{interest}, #{script}, PRODUCTS_SEQ.NEXTVAL)
+  		INSERT INTO PRODUCTS (P_CODE, P_NAME, INTEREST, SCRIPT, INDEX_OF_LISTS) VALUES (#{p_code}, #{p_name}, #{interest}, #{script}, PRODUCTS_SEQ.NEXTVAL)
   	</insert>
   	
-  	<update id="update">
-  		UPDATE PRODUCTS SET P_CODE=?, P_NAME=?, INTEREST=?, SCRIPT=? WHERE INDEX_OF_LISTS=?
+  	<update id="update" parameterType="com.seonhui.app.product.ProductDTO">
+  		UPDATE PRODUCTS SET P_CODE=#{p_code}, P_NAME=#{p_name}, INTEREST=#{interest}, SCRIPT=#{script} WHERE INDEX_OF_LISTS=#{index_Of_Lists}
   	</update>
+  	
+  	<delete id="delete" parameterType="com.seonhui.app.product.ProductDTO">
+  		DELETE FROM PRODUCTS WHERE INDEX_OF_LISTS=#{index_Of_Lists}
+  	</delete>
   	
   	
 

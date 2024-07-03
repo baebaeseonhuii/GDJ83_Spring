@@ -16,8 +16,8 @@
 
 		<div class="row">
 			<form action="./update" method="post">
-				<input type="hidden" name="indexOfLists"
-					value="${detail.indexOfLists}">
+				<input type="hidden" name="index_Of_Lists"
+					value="${detail.index_Of_Lists}">
 
 				<div class="mb-3">
 					<label for="p_code" class="form-label">상품 코드</label> <input
@@ -43,8 +43,13 @@
 				</div>
 
 
-				<button type="submit" class="btn btn-success">등록</button>
-				<button type="submit" class="btn btn-success">삭제</button>
+				<button type="submit" class="btn btn-success">확인</button>
+				
+			</form>
+			
+			<form action="./delete" method="post">
+			<input type="hidden" name="index_Of_Lists" value="${detail.index_Of_Lists}">
+			<button type="submit" class="btn btn-success mt-3">삭제</button>
 			</form>
 		</div>
 	</div>

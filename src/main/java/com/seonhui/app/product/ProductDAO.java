@@ -27,26 +27,17 @@ public class ProductDAO {
 	}
 
 	public int add(ProductDTO productDTO) throws Exception {
-		return sqlSession.insert(NAMESPACE + "add", productDTO);
+		return sqlSession.insert(NAMESPACE + "add", productDTO); // namespace에 productDTO를 파라미터로 보냄
 
 	}
+
 //
-//	public int update(ProductDTO productDTO) throws Exception {
-//		int result = 0;
-//		Connection con = dbConnection.getConnection();
-//		String sql = "UPDATE PRODUCTS SET P_CODE=?, P_NAME=?, INTEREST=?, SCRIPT=? WHERE INDEX_OF_LISTS=?";
-//		PreparedStatement st = con.prepareStatement(sql);
-//		st.setString(1, productDTO.getP_code());
-//		st.setString(2, productDTO.getP_name());
-//		st.setDouble(3, productDTO.getInterest());
-//		st.setString(4, productDTO.getScript());
-//		st.setInt(5, productDTO.getIndexOfLists());
-//
-//		result = st.executeUpdate();
-//		st.close();
-//		con.close();
-//
-//		return result;
-//
-//	}
+	public int update(ProductDTO productDTO) throws Exception {
+		return sqlSession.update(NAMESPACE + "update", productDTO);
+
+	}
+
+	public int delete(ProductDTO productDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE + "delete", productDTO);
+	}
 }

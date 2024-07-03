@@ -23,7 +23,12 @@ public class ProductService {
 		return productDAO.add(productDTO);
 	}
 
-//	public int update(ProductDTO productDTO) throws Exception {
-//		return productDAO.update(productDTO);
-//	}
+	public int update(ProductDTO productDTO) throws Exception {
+		return productDAO.update(productDTO);
+	}
+
+	public int delete(ProductDTO productDTO) throws Exception {
+		return productDAO.delete(productDTO);
+	}
+
 }
