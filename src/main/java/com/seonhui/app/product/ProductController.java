@@ -39,7 +39,7 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "add", method = RequestMethod.GET)
-	public String add(ProductDTO productDTO, Model model) throws Exception {
+	public String add() throws Exception {
 
 		return "product/add";
 	}

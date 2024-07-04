@@ -5,23 +5,23 @@
   
   <!-- namespace는 꼭 들어가야될 속성, 다른 매퍼랑 구분하기 위해 씀 -->
   <mapper namespace="com.seonhui.app.product.ProductDAO">
-  	<select id="getDetail" resultType="com.seonhui.app.product.ProductDTO" parameterType="com.seonhui.app.product.ProductDTO">
+  	<select id="getDetail" resultType="ProductDTO" parameterType="ProductDTO">
   		SELECT * FROM PRODUCTS WHERE P_CODE = #{p_code}
   	</select>
   	
-  	<select id="getList" resultType="com.seonhui.app.product.ProductDTO">
+  	<select id="getList" resultType="ProductDTO">
   		SELECT * FROM PRODUCTS ORDER BY INDEX_OF_LISTS ASC
   	</select>
   	
-  	<insert id="add" parameterType="com.seonhui.app.product.ProductDTO">
+  	<insert id="add" parameterType="ProductDTO">
   		INSERT INTO PRODUCTS (P_CODE, P_NAME, INTEREST, SCRIPT, INDEX_OF_LISTS) VALUES (#{p_code}, #{p_name}, #{interest}, #{script}, PRODUCTS_SEQ.NEXTVAL)
   	</insert>
   	
-  	<update id="update" parameterType="com.seonhui.app.product.ProductDTO">
+  	<update id="update" parameterType="ProductDTO">
   		UPDATE PRODUCTS SET P_CODE=#{p_code}, P_NAME=#{p_name}, INTEREST=#{interest}, SCRIPT=#{script} WHERE INDEX_OF_LISTS=#{index_Of_Lists}
   	</update>
   	
-  	<delete id="delete" parameterType="com.seonhui.app.product.ProductDTO">
+  	<delete id="delete" parameterType="ProductDTO">
   		DELETE FROM PRODUCTS WHERE INDEX_OF_LISTS=#{index_Of_Lists}
   	</delete>
   	
