@@ -10,7 +10,6 @@ public class MemberService {
 	private MemberDAO memberDAO;
 
 	public int join(MemberDTO memberDTO) throws Exception {
-
 		return memberDAO.join(memberDTO);
 	}
 
@@ -29,7 +28,11 @@ public class MemberService {
 
 	}
 
-	public void logout() {
+	public int update(MemberDTO memberDTO) throws Exception {
+		return memberDAO.update(memberDTO);
+	}
 
+	public int delete(MemberDTO memberDTO) throws Exception {
+		return memberDAO.delete(memberDTO);
 	}
 }

@@ -6,6 +6,7 @@
   	<typeAliases>
   		<typeAlias type="com.seonhui.app.product.ProductDTO" alias="ProductDTO"/>
   		<typeAlias type="com.seonhui.app.members.MemberDTO" alias="MemberDTO"/>
+  		<typeAlias type="com.seonhui.app.accounts.AccountDTO" alias="AccountDTO"/>
   	</typeAliases>
   	
   

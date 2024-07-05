@@ -13,17 +13,19 @@ public class MemberDAO {
 	private final String NAMESPACE = "com.seonhui.app.members.MemberDAO.";
 
 	public int join(MemberDTO memberDTO) throws Exception {
-
 		return sqlSession.insert(NAMESPACE + "join", memberDTO);
 	}
 
 	public MemberDTO login(MemberDTO memberDTO) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + "login", memberDTO);
-
 	}
 
-	public void logout() {
+	public int update(MemberDTO memberDTO) throws Exception {
+		return sqlSession.update(NAMESPACE + "update", memberDTO);
+	}
 
+	public int delete(MemberDTO memberDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE + "delete", memberDTO);
 	}
 
 }

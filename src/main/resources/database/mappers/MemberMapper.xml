@@ -12,4 +12,14 @@
 	<select id="login" parameterType="MemberDTO" resultType="MemberDTO">
 		SELECT * FROM USERS WHERE ID=#{id}
 	</select>
+	
+	<update id="update" parameterType="MemberDTO">
+		UPDATE USERS SET ID=#{id}, PHONE=#{phone}, NAME=#{name}, SS_NUM=#{ss_num}, EMAIL=#{email} WHERE ID=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="MemberDTO">
+		DELETE FROM USERS WHERE ID = #{id}
+	</delete>
+	
+	
 </mapper>
