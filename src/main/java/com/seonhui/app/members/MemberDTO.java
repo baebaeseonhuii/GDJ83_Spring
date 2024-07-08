@@ -1,5 +1,9 @@
 package com.seonhui.app.members;
 
+import java.util.List;
+
+import com.seonhui.app.accounts.AccountDTO;
+
 public class MemberDTO {
 	private String id;
 	private String phone;
@@ -7,6 +11,7 @@ public class MemberDTO {
 	private String name;
 	private String ss_num;
 	private String email;
+	private List<AccountDTO> dtos; // member는 account를 가지고 있다(사용자는 계좌를 여러 개 가지고 있다)
 
 	public String getId() {
 		return id;
@@ -54,5 +59,13 @@ public class MemberDTO {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public List<AccountDTO> getDtos() {
+		return dtos;
+	}
+
+	public void setDtos(List<AccountDTO> dtos) {
+		this.dtos = dtos;
 	}
 }
