@@ -10,16 +10,22 @@
 	</insert>
 	
 	<select id="login" parameterType="MemberDTO" resultMap="loginResult">
-		SELECT U.*, A.* 
+		SELECT ID, PW, NAME
+		FROM USERS
+		WHERE ID=#{id}
+	</select>
+	
+	<select id="detail" parameterType="MemberDTO" resultMap="loginResult">
+		SELECT U.*, A.*
 		FROM USERS U
 			LEFT JOIN
 			ACCOUNTS A
-			ON U.ID=A.ID
-		WHERE U.ID=#{id}
+			ON U.ID = A.ID
+		WHERE U.ID = #{id}
 	</select>
 	
 	<resultMap type="MemberDTO" id="loginResult">
-	<!-- primary key 용도 -->
+	<!--  primary key 용도 -->
 	<!-- colume="컬럼명" property="setter이름" -->
 		<id column="ID" property="id"/>
 		<!-- pk 외 나머지 용도 -->
@@ -28,7 +34,7 @@
 		<result column="NAME" property="name"/>
 		<result column="SS_NUM" property="ss_num"/>
 		<result column="EMAIL" property="email"/>
-		<!-- 1:N , 멤버:계좌 -->
+		<!-- 1:N , 멤버:계좌-->
 		<collection property="dtos" javaType="java.util.List" ofType="AccountDTO">
 			<id column="AC_NUM" property="ac_num"/>
 			<result column="ID" property="id"/>
@@ -36,7 +42,7 @@
 			<result column="ACCOUNT_BALANCE" property="account_balance"/>
 			<result column="ACCOUNT_DATE" property="account_date"/>
 		</collection>
-	</resultMap>
+	</resultMap> 
 	
 	<update id="update" parameterType="MemberDTO">
 		UPDATE USERS SET ID=#{id}, PHONE=#{phone}, NAME=#{name}, SS_NUM=#{ss_num}, EMAIL=#{email} WHERE ID=#{id}

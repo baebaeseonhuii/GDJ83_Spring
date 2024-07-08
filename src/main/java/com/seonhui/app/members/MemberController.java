@@ -86,16 +86,17 @@ public class MemberController {
 
 	@RequestMapping(value = "mypage", method = RequestMethod.GET)
 	public void mypage(Model model, HttpSession session) throws Exception {
-		// MemberDTO dto = (MemberDTO) session.getAttribute("member");
-
-		// dto = memberService.login(dto);
-		// model.addAttribute("member", dto);
+		MemberDTO dto = (MemberDTO) session.getAttribute("member");
+		dto = memberService.detail(dto);
+		model.addAttribute("member", dto);
 
 	}
 
 	@RequestMapping(value = "update", method = RequestMethod.GET)
-	public String update() throws Exception {
-		return "member/update";
+	public void update(Model model, HttpSession session) throws Exception {
+		MemberDTO dto = (MemberDTO) session.getAttribute("member");
+		dto = memberService.detail(dto);
+		model.addAttribute("member", dto);
 	}
 
 	@RequestMapping(value = "update", method = RequestMethod.POST)

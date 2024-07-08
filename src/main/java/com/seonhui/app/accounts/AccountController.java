@@ -27,4 +27,11 @@ public class AccountController {
 		model.addAttribute("url", "/");
 		return path;
 	}
+
+	@RequestMapping(value = "detail", method = RequestMethod.GET)
+	public void detail(Model model, AccountDTO accountDTO) throws Exception {
+		accountDTO = accountService.detail(accountDTO);
+
+		model.addAttribute("account", accountDTO);
+	}
 }

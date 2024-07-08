@@ -2,13 +2,35 @@ package com.seonhui.app.accounts;
 
 import java.sql.Date;
 
+import com.seonhui.app.members.MemberDTO;
+import com.seonhui.app.product.ProductDTO;
+
 public class AccountDTO {
 
 	private String ac_num;
 	private String id;
+
+	public MemberDTO getMemberDTO() {
+		return memberDTO;
+	}
+
+	public void setMemberDTO(MemberDTO memberDTO) {
+		this.memberDTO = memberDTO;
+	}
+
+	public ProductDTO getProductDTO() {
+		return productDTO;
+	}
+
+	public void setProductDTO(ProductDTO productDTO) {
+		this.productDTO = productDTO;
+	}
+
 	private String p_code;
 	private Long account_balance;
 	private Date account_date;
+	private MemberDTO memberDTO;
+	private ProductDTO productDTO;
 
 	public String getAc_num() {
 		return ac_num;

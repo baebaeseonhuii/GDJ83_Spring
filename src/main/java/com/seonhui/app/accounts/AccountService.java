@@ -16,4 +16,8 @@ public class AccountService {
 		accountDTO.setAc_num(String.valueOf(calendar.getTimeInMillis()));
 		return accountDAO.add(accountDTO);
 	}
+
+	public AccountDTO detail(AccountDTO accountDTO) throws Exception {
+		return accountDAO.detail(accountDTO);
+	}
 }

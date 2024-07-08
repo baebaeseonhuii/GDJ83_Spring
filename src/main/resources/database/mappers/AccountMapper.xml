@@ -4,11 +4,33 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.seonhui.app.accounts.AccountDAO">
-  <insert id="add" parameterType="AccountDTO">
+  	<insert id="add" parameterType="AccountDTO">
 		INSERT INTO ACCOUNTS (AC_NUM, ID, P_CODE, ACCOUNT_BALANCE, ACCOUNT_DATE)
 		VALUES (#{ac_num}, #{id} , #{p_code}, 0, SYSDATE)
-</insert>
-<select id="list" parameterType="MemberDTO" resultType="AccountDTO">
-	SELECT AC_NUM, ACCOUNT_BALANCE FROM ACCOUNTS WHERE ID=#{id}
-</select>
+  	</insert>
+
+	<select id="detail" parameterType="AccountDTO" resultMap="detailResult">
+		SELECT A.*, P.*
+			FROM ACCOUNTS A
+			INNER JOIN 
+			PRODUCTS P
+			ON A.P_CODE = P.P_CODE
+		WHERE A.AC_NUM =#{ac_num}
+	</select>
+	
+	<resultMap type="AccountDTO" id="detailResult">
+		<id column="AC_NUM" property="ac_num"/>
+		<result column="ID" property="id"/>
+		<result column="P_CODE" property="p_code"/>
+		<result column="ACCOUNT_BALANCE" property="account_balance"/>
+		<result column="ACCOUNT_DATE" property="account_date"/>
+		<!-- 1:1의 관계에서는 association -->
+		<association property="productDTO" javaType="ProductDTO">
+			<result column="P_NAME" property="p_name"/>
+			<result column="INTEREST" property="interest"/>
+			<result column="SCRIPT" property="script"/>
+		</association>
+	
+	</resultMap>
+
   </mapper>

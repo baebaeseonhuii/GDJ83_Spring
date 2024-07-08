@@ -47,9 +47,6 @@
 				<form action="./delete" method="post">
 					<button type="submit" class="btn btn-success">탈퇴</button>
 				</div>
-				
-				
-			
 		</div>
 	</div>
 	
@@ -62,6 +59,8 @@
 				
 				<div class="mb-3">
 				<div class="col-md-6">
+					<a class="btn btn-success" href="../account/detail?ac_num=${ac.ac_num}">상품 정보 확인</a>
+					<br>
 					<label for="ac_num" class="form-label">계좌번호</label> 
 					<input type="text" class="form-control" value="${ac.ac_num}" id="ac_num" name="ac_num" readonly>
 				</div>
