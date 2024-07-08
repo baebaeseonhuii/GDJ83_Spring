@@ -38,7 +38,7 @@
 
 				</table>
 				<div>
-					<a href="../account/add?p_code=${detail.p_code}" class="btn btn-outline-success">회원계좌생성</a>
+					<a href="../account/add?p_code=${detail.p_code}" class="btn btn-outline-success">상품 가입</a>
 				</div>
 				<div>
 					<a href="update?p_code=${detail.p_code}" class="btn btn-outline-success">상품 수정</a>

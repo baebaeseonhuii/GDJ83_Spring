@@ -4,9 +4,11 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.seonhui.app.accounts.AccountDAO">
-  <insert id="add" parameterType="MemberDTO">
+  <insert id="add" parameterType="AccountDTO">
 		INSERT INTO ACCOUNTS (AC_NUM, ID, P_CODE, ACCOUNT_BALANCE, ACCOUNT_DATE)
-		SELECT #{ac_num}, u.ID , p.P_CODE, 0, SYSDATE 
-		FROM USERS u , PRODUCTS p WHERE u.ID=#{id} AND p.P_CODE=#{p_code}
+		VALUES (#{ac_num}, #{id} , #{p_code}, 0, SYSDATE)
 </insert>
+<select id="list" parameterType="MemberDTO" resultType="AccountDTO">
+	SELECT AC_NUM, ACCOUNT_BALANCE FROM ACCOUNTS WHERE ID=#{id}
+</select>
   </mapper>

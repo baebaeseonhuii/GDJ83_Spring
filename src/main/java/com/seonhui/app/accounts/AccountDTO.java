@@ -1,16 +1,13 @@
 package com.seonhui.app.accounts;
 
 import java.sql.Date;
-import java.util.Calendar;
 
 public class AccountDTO {
-	Calendar ca = Calendar.getInstance();
-	long l = ca.getTimeInMillis();
 
-	private String ac_num = String.valueOf(l);
+	private String ac_num;
 	private String id;
 	private String p_code;
-	private int account_balance;
+	private Long account_balance;
 	private Date account_date;
 
 	public String getAc_num() {
@@ -37,11 +34,11 @@ public class AccountDTO {
 		this.p_code = p_code;
 	}
 
-	public int getAccount_balance() {
+	public Long getAccount_balance() {
 		return account_balance;
 	}
 
-	public void setAccount_balance(int account_balance) {
+	public void setAccount_balance(Long account_balance) {
 		this.account_balance = account_balance;
 	}
 

@@ -1,5 +1,7 @@
 package com.seonhui.app.members;
 
+import java.util.Map;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -48,7 +50,7 @@ public class MemberController {
 	@RequestMapping(value = "login", method = RequestMethod.POST)
 	public String login(MemberDTO memberDTO, Model model, String remember, HttpServletResponse response,
 			HttpSession session) throws Exception {
-
+		// 로그인할때 회원정보&계좌정보 같이 세션에 담기
 		if (remember != null) {
 			Cookie cookie = new Cookie("remember", memberDTO.getId());
 			cookie.setMaxAge(60 * 30);
@@ -59,10 +61,11 @@ public class MemberController {
 			response.addCookie(cookie);
 		}
 
-		memberDTO = memberService.login(memberDTO);
+		// memberDTO = memberService.login(memberDTO);
+		Map<String, Object> map = memberService.login(memberDTO);
 		String path = "commons/message";
 		if (memberDTO != null) {
-			session.setAttribute("member", memberDTO);
+			session.setAttribute("member", map);
 			model.addAttribute("result", "로그인 성공");
 			model.addAttribute("url", "/");
 		} else {
@@ -85,9 +88,10 @@ public class MemberController {
 
 	@RequestMapping(value = "mypage", method = RequestMethod.GET)
 	public void mypage(Model model, HttpSession session) throws Exception {
-		MemberDTO dto = (MemberDTO) session.getAttribute("member");
-		dto = memberService.login(dto);
-		model.addAttribute("member", dto);
+		// MemberDTO dto = (MemberDTO) session.getAttribute("member");
+
+		// dto = memberService.login(dto);
+		// model.addAttribute("member", dto);
 
 	}
 

@@ -1,5 +1,7 @@
 package com.seonhui.app.accounts;
 
+import java.util.Calendar;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +12,8 @@ public class AccountService {
 	private AccountDAO accountDAO;
 
 	public int add(AccountDTO accountDTO) throws Exception {
+		Calendar calendar = Calendar.getInstance();
+		accountDTO.setAc_num(String.valueOf(calendar.getTimeInMillis()));
 		return accountDAO.add(accountDTO);
 	}
 }

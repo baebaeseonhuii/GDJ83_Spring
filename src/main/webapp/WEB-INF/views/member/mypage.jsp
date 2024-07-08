@@ -20,23 +20,23 @@
 				<div class="mb-3">
 				<div class="col-md-6">
 					<label for="id" class="form-label">아이디</label> 
-					<input type="text" class="form-control" value="${sessionScope.member.id}" id="id" name="id" readonly>
+					<input type="text" class="form-control" value="${member.member.id}" id="id" name="id" readonly>
 				</div>
 				<div class="col-md-6">
 					<label for="phone" class="form-label">전화번호</label> 
-					<input type="text" class="form-control" value="${sessionScope.member.phone}" id="phone" name="phone" readonly>
+					<input type="text" class="form-control" value="${member.member.phone}" id="phone" name="phone" readonly>
 				</div>
 				<div class="col-md-6">
 					<label for="name" class="form-label">이름</label> 
-					<input type="text" class="form-control" value="${sessionScope.member.name}" id="name" name="name" readonly>
+					<input type="text" class="form-control" value="${member.member.name}" id="name" name="name" readonly>
 				</div>
 				<div class="col-md-6">
 					<label for="ss_num" class="form-label">주민등록번호</label> 
-					<input type="text" class="form-control" value="${sessionScope.member.ss_num}" id="ss_num" name="ss_num" readonly>
+					<input type="text" class="form-control" value="${member.member.ss_num}" id="ss_num" name="ss_num" readonly>
 				</div>
 				<div class="col-md-6">
 					<label for="email" class="form-label">이메일</label> 
-					<input type="text" class="form-control" value="${sessionScope.member.email}" id="email" name="email" readonly>
+					<input type="text" class="form-control" value="${member.member.email}" id="email" name="email" readonly>
 				</div>
 				</div>
 				<div class="mb-3">
@@ -48,10 +48,34 @@
 					<button type="submit" class="btn btn-success">탈퇴</button>
 				</div>
 				
-				<a href="../" class="btn btn-success">돌아가기</a>
+				
 			
 		</div>
 	</div>
+	
+	<div class="container">
+		<div class="row mb-5">
+			<h1>내가 가입한 상품</h1>
+		</div>
+		<div class="row">
+			<c:forEach items="${member.account}" var="ac">
+				
+				<div class="mb-3">
+				<div class="col-md-6">
+					<label for="ac_num" class="form-label">계좌번호</label> 
+					<input type="text" class="form-control" value="${ac.ac_num}" id="ac_num" name="ac_num" readonly>
+				</div>
+				<div class="col-md-6">
+					<label for="account_balance" class="form-label">잔액</label> 
+					<input type="text" class="form-control" value="${ac.account_balance}" id="account_balance" name="account_balance" readonly>
+				</div>
+				</div>
+			</c:forEach>
+		<a href="../" class="btn btn-success">돌아가기</a>
+		</div>
+		</div>
+	
+	
 <c:import url="/WEB-INF/views/sample/bootfooter.jsp"></c:import>
 </body>
 </html>
