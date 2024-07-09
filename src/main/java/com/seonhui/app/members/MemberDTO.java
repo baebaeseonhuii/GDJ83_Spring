@@ -12,6 +12,7 @@ public class MemberDTO {
 	private String ss_num;
 	private String email;
 	private List<AccountDTO> dtos; // member는 account를 가지고 있다(사용자는 계좌를 여러 개 가지고 있다)
+	// DTO는 테이블과 같다
 
 	public String getId() {
 		return id;

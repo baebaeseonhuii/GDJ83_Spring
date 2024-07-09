@@ -4,11 +4,45 @@ import java.sql.Date;
 
 import com.seonhui.app.members.MemberDTO;
 import com.seonhui.app.product.ProductDTO;
+import com.seonhui.app.records.RecordDTO;
 
 public class AccountDTO {
 
 	private String ac_num;
 	private String id;
+	private String p_code;
+	private Long account_balance;
+	private Date account_date;
+	private MemberDTO memberDTO;
+	private ProductDTO productDTO;
+	private RecordDTO recordDTO;
+	private String recipient_account;
+
+	public RecordDTO getRecordDTO() {
+		return recordDTO;
+	}
+
+	public void setRecordDTO(RecordDTO recordDTO) {
+		this.recordDTO = recordDTO;
+	}
+
+	public String getRecipient_account() {
+		return recipient_account;
+	}
+
+	public void setRecipient_account(String recipient_account) {
+		this.recipient_account = recipient_account;
+	}
+
+	private double money;
+
+	public double getMoney() {
+		return money;
+	}
+
+	public void setMoney(double money) {
+		this.money = money;
+	}
 
 	public MemberDTO getMemberDTO() {
 		return memberDTO;
@@ -25,12 +59,6 @@ public class AccountDTO {
 	public void setProductDTO(ProductDTO productDTO) {
 		this.productDTO = productDTO;
 	}
-
-	private String p_code;
-	private Long account_balance;
-	private Date account_date;
-	private MemberDTO memberDTO;
-	private ProductDTO productDTO;
 
 	public String getAc_num() {
 		return ac_num;

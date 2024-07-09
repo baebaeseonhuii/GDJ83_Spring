@@ -20,4 +20,12 @@ public class AccountService {
 	public AccountDTO detail(AccountDTO accountDTO) throws Exception {
 		return accountDAO.detail(accountDTO);
 	}
+
+	public int transfer(AccountDTO accountDTO) throws Exception {
+		return accountDAO.transfer(accountDTO);
+	}
+
+	public int transferInsert(AccountDTO accountDTO) throws Exception {
+		return accountDAO.transferInsert(accountDTO);
+	}
 }

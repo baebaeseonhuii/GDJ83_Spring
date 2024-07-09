@@ -16,8 +16,8 @@ public class AccountDAOTest extends DefaultTest {
 	public void detailTest() throws Exception {
 		AccountDTO accountDTO = new AccountDTO();
 		accountDTO.setAc_num("1720399341967");
-		accountDTO = accountDAO.detail(accountDTO);
-		assertNotNull(accountDTO);
+		int a = accountDAO.transfer(accountDTO);
+		assertNotNull(a);
 	}
 
 }

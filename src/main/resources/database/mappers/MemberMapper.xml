@@ -6,7 +6,8 @@
   
 <mapper namespace="com.seonhui.app.members.MemberDAO">
 	<insert id="join" parameterType="MemberDTO">
-		INSERT INTO USERS (ID, PHONE, PW, NAME, SS_NUM, EMAIL) VALUES (#{id}, #{phone}, #{pw}, #{name}, #{ss_num}, #{email})
+		INSERT INTO USERS (ID, PHONE, PW, NAME, SS_NUM, EMAIL) 
+		VALUES (#{id}, #{phone}, #{pw}, #{name}, #{ss_num}, #{email})
 	</insert>
 	
 	<select id="login" parameterType="MemberDTO" resultMap="loginResult">

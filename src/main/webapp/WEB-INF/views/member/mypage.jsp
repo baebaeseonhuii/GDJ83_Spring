@@ -59,14 +59,14 @@
 				
 				<div class="mb-3">
 				<div class="col-md-6">
-					<a class="btn btn-success" href="../account/detail?ac_num=${ac.ac_num}">상품 정보 확인</a>
-					<br>
 					<label for="ac_num" class="form-label">계좌번호</label> 
 					<input type="text" class="form-control" value="${ac.ac_num}" id="ac_num" name="ac_num" readonly>
 				</div>
 				<div class="col-md-6">
 					<label for="account_balance" class="form-label">잔액</label> 
 					<input type="text" class="form-control" value="${ac.account_balance}" id="account_balance" name="account_balance" readonly>
+					<br>
+					<a class="btn btn-success" href="../account/detail?ac_num=${ac.ac_num}">내 계좌 정보 확인</a>
 					<hr>
 				</div>
 				</div>
