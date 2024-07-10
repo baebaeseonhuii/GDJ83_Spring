@@ -9,14 +9,14 @@ public class RecordDTO {
 	private Date timestamp;
 	private double balance;
 	private String type_of_transaction;
-	private String recipient_account;
+	private String account_u;
 
-	public String getRecipient_account() {
-		return recipient_account;
+	public String getAccount_u() {
+		return account_u;
 	}
 
-	public void setRecipient_account(String recipient_account) {
-		this.recipient_account = recipient_account;
+	public void setAccount_u(String account_u) {
+		this.account_u = account_u;
 	}
 
 	public String getTransaction_code() {

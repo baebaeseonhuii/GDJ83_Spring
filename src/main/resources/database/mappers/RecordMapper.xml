@@ -4,9 +4,53 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <!-- namespace는 꼭 들어가야될 속성 -->
-  <mapper namespace="com.seonhui.app.product.RecordDAO">
-  	<select id="history" parameterType="RecordDTO" resultType="RecordDTO">
-  		SELECT * FROM RECORDS 
-  	</select>
+  <mapper namespace="com.seonhui.app.records.RecordDAO">
+  		<insert id="add" parameterType="RecordDTO">
+  		<!-- TYPE_OF_TRANSACTION가 입금이면 + 출금이면 - -->
+  			INSERT INTO RECORDS 
+  				(TRANSACTION_CODE, MONEY, "TIMESTAMP", BALANCE, TYPE_OF_TRANSACTION, AC_NUM, ACCOUNT_U)
+  			VALUES
+  				(
+  				RECORDS_SEQ.NEXTVAL, #{money}, SYSDATE, 
+  				
+  				<choose>
+  					<when test="type_of_transaction == '입금'">
+  						(SELECT ACCOUNT_BALANCE FROM ACCOUNTS WHERE AC_NUM = #{account_u})+#{money},
+  						#{type_of_transaction},
+  						#{account_u},
+  						#{ac_num}
+  							
+  					
+  					</when>
+  					<otherwise>
+  						(SELECT ACCOUNT_BALANCE FROM ACCOUNTS WHERE AC_NUM = #{ac_num})-#{money},
+  						#{type_of_transaction},
+  						#{ac_num},
+  						#{account_u}
+  						
+  					</otherwise>
+  				</choose>
+  				
+  				)
+  		</insert>
+  		
+  		<update id="update" parameterType="RecordDTO">
+  			<!-- TYPE_OF_TRANSACTION가 입금이면 + 출금이면 - -->
+  			UPDATE ACCOUNTS SET 
+  			<if test="type_of_transaction == '입금'">
+  				ACCOUNT_BALANCE = ACCOUNT_BALANCE+#{money}
+  				WHERE AC_NUM = #{account_u}
+  			</if>
+  			
+  			<if test="type_of_transaction == '출금'">
+  				ACCOUNT_BALANCE = ACCOUNT_BALANCE-#{money}
+  				WHERE AC_NUM = #{ac_num}
+  			</if>
+  			
+  		</update>
+  		
+  		<select id="list" parameterType="RecordDTO" resultType="RecordDTO">
+  			SELECT * FROM RECORDS WHERE AC_NUM = #{ac_num} ORDER BY "TIMESTAMP" DESC
+  		</select>
   
   </mapper>

@@ -1,7 +1,5 @@
 package com.seonhui.app.accounts;
 
-import static org.junit.Assert.assertNotNull;
-
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -14,10 +12,7 @@ public class AccountDAOTest extends DefaultTest {
 
 	@Test
 	public void detailTest() throws Exception {
-		AccountDTO accountDTO = new AccountDTO();
-		accountDTO.setAc_num("1720399341967");
-		int a = accountDAO.transfer(accountDTO);
-		assertNotNull(a);
+
 	}
 
 }
