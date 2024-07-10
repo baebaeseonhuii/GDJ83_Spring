@@ -4,7 +4,6 @@ import java.sql.Date;
 
 import com.seonhui.app.members.MemberDTO;
 import com.seonhui.app.product.ProductDTO;
-import com.seonhui.app.records.RecordDTO;
 
 public class AccountDTO {
 
@@ -15,24 +14,24 @@ public class AccountDTO {
 	private Date account_date;
 	private MemberDTO memberDTO;
 	private ProductDTO productDTO;
-	private RecordDTO recordDTO;
-	private String recipient_account;
+//	private RecordDTO recordDTO;
+//	private String recipient_account;
 
-	public RecordDTO getRecordDTO() {
-		return recordDTO;
-	}
-
-	public void setRecordDTO(RecordDTO recordDTO) {
-		this.recordDTO = recordDTO;
-	}
-
-	public String getRecipient_account() {
-		return recipient_account;
-	}
-
-	public void setRecipient_account(String recipient_account) {
-		this.recipient_account = recipient_account;
-	}
+//	public RecordDTO getRecordDTO() {
+//		return recordDTO;
+//	}
+//
+//	public void setRecordDTO(RecordDTO recordDTO) {
+//		this.recordDTO = recordDTO;
+//	}
+//
+//	public String getRecipient_account() {
+//		return recipient_account;
+//	}
+//
+//	public void setRecipient_account(String recipient_account) {
+//		this.recipient_account = recipient_account;
+//	}
 
 	private double money;
 

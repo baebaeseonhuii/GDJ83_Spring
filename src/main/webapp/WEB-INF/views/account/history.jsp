@@ -12,7 +12,7 @@
 	
 	<div class="container">
 		<div class="row mb-5">
-			<h1>내가 가입한 상품의 정보</h1>
+			<h1>거래 내역</h1>
 		</div>
 		<div class="row">
 				<div class="mb-3">

@@ -17,15 +17,14 @@
 
 		<div class="row">
 			<form action="./transfer" method="post">
-				<input type="hidden" id = "ac_num" name = "ac_num" value = "${account.ac_num}">
-				<input type="hidden" id = "account_balance" name = "account_balance" value = "${account.account_balance}">
+				<input type="hidden" id = "ac_num" name = "ac_num" value = "${param.ac_num}">
 				<div class="mb-3">
 				<div class="col-md-6">
-					<label for="recipient_account" class="form-label">입금할 계좌번호</label> 
-					<input type="text" class="form-control" id="recipient_account" name="recipient_account">
+					<label for="account_u" class="form-label">입금할 계좌번호</label> 
+					<input type="text" class="form-control" id="account_u" name="account_u">
 				</div>
 				<div class="col-md-6">
-					<label for="money" class="form-label">보낼 금액</label> 
+					<label for="money" class="form-label">이체 금액</label> 
 					<input type="text" class="form-control" id="money" name="money">
 				</div>
 				</div>

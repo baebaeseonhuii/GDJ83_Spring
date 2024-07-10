@@ -33,14 +33,5 @@
 	
 	</resultMap>
 	
-	
-	<update id="transfer" parameterType="AccountDTO">
-		UPDATE ACCOUNTS SET ACCOUNT_BALANCE = ACCOUNT_BALANCE - #{money} WHERE AC_NUM = #{ac_num}
-	</update>
-	
-	<insert id="transferInsert" parameterType="AccountDTO">
-  		INSERT INTO RECORDS (TRANSACTION_CODE, AC_NUM, MONEY, "TIMESTAMP", BALANCE, TYPE_OF_TRANSACTION, RECIPIENT_ACCOUNT)
-		VALUES (RECORDS_SEQ.NEXTVAL, #{ac_num}, #{money}*(-1), SYSDATE, #{account_balance}, '출금', #{recipient_account})
-  	</insert>
 
   </mapper>
