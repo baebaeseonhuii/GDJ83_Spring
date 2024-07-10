@@ -18,6 +18,10 @@
 	<div class="container-fluid mt-5">
 		<div class="row justify-content-center">
 			<div class="col-md-6">
+				<div>
+					<a href="list?ac_num=${param.ac_num}}&order=DESC">과거순으로</a>
+				</div>
+			
 				<table class="table table-striped table-hover">
 					<thead>
 						<tr>
@@ -26,7 +30,6 @@
 							<th>거래액</th>
 							<th>거래 종류</th>
 							<th>잔액</th>
-
 						</tr>
 					</thead>
 
@@ -35,8 +38,12 @@
 							<tr>
 								<td>${dto.timestamp}</td>
 								<td>${dto.account_u}</td>
-								<td>${dto.money}</td>
-								<td>${dto.type_of_transaction}</td>
+								<td class="${dto.type_of_transaction == '입금'?'text-primary':'text-danger'}">
+									${dto.money}
+								</td>
+								<td class="${dto.type_of_transaction == '입금'?'text-primary':'text-danger'}">
+									${dto.type_of_transaction}
+								</td>
 								<td>${dto.balance}</td>
 
 							</tr>
@@ -45,17 +52,16 @@
 
 
 				</table>
-			</div>
+					<a href="../member/mypage" class="btn btn-success">돌아가기</a>
+				</div>
 		</div>
 	</div>
 
 				
 				
 		
-		<a href="../member/mypage" class="btn btn-success">돌아가기</a>
 		</div>
-		</div>
-		</div>
+		
 	
 	
 <c:import url="/WEB-INF/views/sample/bootfooter.jsp"></c:import>

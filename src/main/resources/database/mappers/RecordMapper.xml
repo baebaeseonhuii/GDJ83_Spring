@@ -50,7 +50,17 @@
   		</update>
   		
   		<select id="list" parameterType="RecordDTO" resultType="RecordDTO">
-  			SELECT * FROM RECORDS WHERE AC_NUM = #{ac_num} ORDER BY "TIMESTAMP" DESC
+  			SELECT * FROM RECORDS WHERE AC_NUM = #{ac_num} ORDER BY "TIMESTAMP" 
+  			<choose>
+  				<when test="order == 'DESC'">
+  					DESC
+  				</when>
+  				
+  				<otherwise>
+  					ASC
+  				</otherwise>
+  			</choose>
+  			
   		</select>
   
   </mapper>

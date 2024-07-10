@@ -6,7 +6,6 @@ import com.seonhui.app.members.MemberDTO;
 import com.seonhui.app.product.ProductDTO;
 
 public class AccountDTO {
-
 	private String ac_num;
 	private String id;
 	private String p_code;
@@ -14,14 +13,13 @@ public class AccountDTO {
 	private Date account_date;
 	private MemberDTO memberDTO;
 	private ProductDTO productDTO;
+	private Long money;
 
-	private double money;
-
-	public double getMoney() {
+	public Long getMoney() {
 		return money;
 	}
 
-	public void setMoney(double money) {
+	public void setMoney(Long money) {
 		this.money = money;
 	}
 

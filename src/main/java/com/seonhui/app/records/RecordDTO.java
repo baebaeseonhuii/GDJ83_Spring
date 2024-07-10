@@ -5,11 +5,20 @@ import java.sql.Date;
 public class RecordDTO {
 	private String transaction_code;
 	private String ac_num;
-	private double money;
+	private Long money;
 	private Date timestamp;
-	private double balance;
+	private Long balance;
 	private String type_of_transaction;
 	private String account_u;
+	private String order;
+
+	public String getOrder() {
+		return order;
+	}
+
+	public void setOrder(String order) {
+		this.order = order;
+	}
 
 	public String getAccount_u() {
 		return account_u;
@@ -35,11 +44,11 @@ public class RecordDTO {
 		this.ac_num = ac_num;
 	}
 
-	public double getMoney() {
+	public Long getMoney() {
 		return money;
 	}
 
-	public void setMoney(double money) {
+	public void setMoney(Long money) {
 		this.money = money;
 	}
 
@@ -55,7 +64,7 @@ public class RecordDTO {
 		return balance;
 	}
 
-	public void setBalance(double balance) {
+	public void setBalance(Long balance) {
 		this.balance = balance;
 	}
 
