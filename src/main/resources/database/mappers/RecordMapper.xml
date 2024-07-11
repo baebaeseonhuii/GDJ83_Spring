@@ -49,10 +49,23 @@
   			
   		</update>
   		
-  		<select id="list" parameterType="RecordDTO" resultType="RecordDTO">
-  			SELECT * FROM RECORDS WHERE AC_NUM = #{ac_num} ORDER BY "TIMESTAMP" 
+  		<select id="list" parameterType="ListOption" resultType="RecordDTO">
+  			SELECT * FROM RECORDS WHERE AC_NUM = #{ac_num} 
   			<choose>
-  				<when test="order == 'DESC'">
+  				<when test="depositOrWithdraw == 1">
+  					AND TYPE_OF_TRANSACTION = '입금'
+  				</when>
+  				<when test="depositOrWithdraw == 0">
+  					AND TYPE_OF_TRANSACTION = '출금'
+  				</when>
+  				<otherwise>
+  				
+  				</otherwise>
+  			</choose>
+  			
+  			ORDER BY "TIMESTAMP" 
+  			<choose>
+  				<when test="order == 1">
   					DESC
   				</when>
   				

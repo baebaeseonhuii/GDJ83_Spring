@@ -5,12 +5,27 @@
   
   <!-- namespace는 꼭 들어가야될 속성, 다른 매퍼랑 구분하기 위해 씀 -->
   <mapper namespace="com.seonhui.app.product.ProductDAO">
-  	<select id="getDetail" resultType="ProductDTO" parameterType="ProductDTO">
+  	<select id="getDetail" resultType="ProductDTO" parameterType="Pager">
   		SELECT * FROM PRODUCTS WHERE P_CODE = #{p_code}
   	</select>
   	
-  	<select id="getList" resultType="ProductDTO">
-  		SELECT * FROM PRODUCTS ORDER BY INDEX_OF_LISTS ASC
+  	<select id="getList" resultType="ProductDTO" parameterType="Pager">
+  		<![CDATA[
+  		SELECT * FROM 
+			(
+				SELECT ROWNUM R, P.* FROM 
+				(
+					SELECT * 
+					FROM PRODUCTS
+			 		ORDER BY INDEX_OF_LISTS DESC
+			 	) P
+			 )
+		WHERE R BETWEEN #{startRow} AND #{lastRow}
+		]]>
+  	</select>
+  	
+  	<select id="getTotalCount" resultType="java.lang.Long">
+  		SELECT COUNT(ROWNUM) FROM PRODUCTS
   	</select>
   	
   	<insert id="add" parameterType="ProductDTO">
@@ -24,6 +39,8 @@
   	<delete id="delete" parameterType="ProductDTO">
   		DELETE FROM PRODUCTS WHERE INDEX_OF_LISTS=#{index_Of_Lists}
   	</delete>
+  	
+  	
   	
   	
 

@@ -16,10 +16,18 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 
+	@Autowired
+	private ProductDAO productDAO;
+
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public void getList(Model model) throws Exception {
-		List<ProductDTO> ar = productService.getList();
+	public void getList(Long page, Model model) throws Exception {
+		List<ProductDTO> ar = productService.getList(page);
+
+		Long totalCount = productDAO.getTotalCount();
+		long perPage = 10L;
+		long totalPage = totalCount / perPage;
 		model.addAttribute("list", ar);
+		model.addAttribute("totalPage", totalPage);
 
 	}
 

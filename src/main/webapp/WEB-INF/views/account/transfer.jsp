@@ -13,6 +13,7 @@
 <div class="container">
 		<div class="row mb-5">
 			<h1>이체</h1>
+			<h1>예시 계좌번호: 1720419680702</h1>
 		</div>
 
 		<div class="row">

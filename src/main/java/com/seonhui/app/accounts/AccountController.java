@@ -57,8 +57,8 @@ public class AccountController {
 	}
 
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public void list(Model model, RecordDTO recordDTO) throws Exception {
-		List<RecordDTO> ar = recordService.list(recordDTO);
+	public void list(ListOption listOption, Model model) throws Exception {
+		List<RecordDTO> ar = recordService.list(listOption);
 		model.addAttribute("list", ar);
 	}
 

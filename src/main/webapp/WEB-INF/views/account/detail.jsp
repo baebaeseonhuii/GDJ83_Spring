@@ -58,7 +58,7 @@
 				</div>
 				
 		<a href="./transfer?ac_num=${account.ac_num}" class="btn btn-success">이체</a>
-		<a href="./list?ac_num=${account.ac_num}&order=DESC" class="btn btn-success">거래내역조회</a>
+		<a href="./list?ac_num=${account.ac_num}" class="btn btn-success">거래내역조회</a>
 		<a href="../member/mypage" class="btn btn-success">돌아가기</a>
 		</div>
 		</div>

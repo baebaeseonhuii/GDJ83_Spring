@@ -38,10 +38,34 @@
 
 
 				</table>
+				<nav aria-label="Page navigation example">
+  					<ul class="pagination justify-content-center">
+    					<li class="page-item">
+      						<a class="page-link" href="#" aria-label="Previous">
+        						<span aria-hidden="true">&laquo;</span>
+      						</a>
+    					</li>
+    						<li class="page-item"><a class="page-link" href="./list?page=1">1</a></li>
+    						<li class="page-item"><a class="page-link" href="./list?page=2">2</a></li>
+    						<li class="page-item"><a class="page-link" href="./list?page=3">3</a></li>
+    						<li class="page-item"><a class="page-link" href="./list?page=4">4</a></li>
+    						<li class="page-item"><a class="page-link" href="./list?page=5">5</a></li>
+    						<li class="page-item"><a class="page-link" href="./list?page=6">6</a></li>
+    						<li class="page-item"><a class="page-link" href="./list?page=7">7</a></li>
+    						<li class="page-item"><a class="page-link" href="./list?page=8">8</a></li>
+    						<li class="page-item"><a class="page-link" href="./list?page=9">9</a></li>
+    						<li class="page-item"><a class="page-link" href="./list?page=${totalPage}">${totalPage}</a></li>
+    						<li class="page-item">
+      						<a class="page-link" href="#" aria-label="Next">
+        						<span aria-hidden="true">&raquo;</span>
+      						</a>
+    					</li>
+ 					 </ul>
+				</nav>
 				<div>
 					<a href="add" class="btn btn-outline-success">상품 등록</a>
 				</div>
-
+				<a href="/" class="btn btn-success">돌아가기</a>
 			</div>
 		</div>
 	</div>

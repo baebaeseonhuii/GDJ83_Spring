@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.seonhui.app.accounts.AccountDAO;
 import com.seonhui.app.accounts.AccountDTO;
+import com.seonhui.app.accounts.ListOption;
 
 @Service
 public class RecordService {
@@ -46,8 +47,8 @@ public class RecordService {
 
 	}
 
-	public List<RecordDTO> list(RecordDTO recordDTO) throws Exception {
+	public List<RecordDTO> list(ListOption listOption) throws Exception {
 
-		return recordDAO.list(recordDTO);
+		return recordDAO.list(listOption);
 	}
 }

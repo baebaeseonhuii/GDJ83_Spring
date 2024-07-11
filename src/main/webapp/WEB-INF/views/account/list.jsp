@@ -18,8 +18,26 @@
 	<div class="container-fluid mt-5">
 		<div class="row justify-content-center">
 			<div class="col-md-6">
-				<div>
-					<a href="list?ac_num=${param.ac_num}}&order=DESC">과거순으로</a>
+			<div>
+				<div class="dropdown d-inline">
+  					<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    					시간순
+  					</button>
+  					<ul class="dropdown-menu">
+    					<li><a class="btn btn-success dropdown-item" href="list?ac_num=${param.ac_num}">과거 거래순으로</a></li>
+    					<li><a class="btn btn-success dropdown-item" href="list?ac_num=${param.ac_num}&order=1">최근 거래순으로</a></li>
+  					</ul>
+				</div>
+				<div class="dropdown d-inline">
+  					<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    					입출금순
+  					</button>
+  					<ul class="dropdown-menu">
+    					<li><a class="btn btn-success dropdown-item" href="list?ac_num=${param.ac_num}&depositOrWithdraw=1">입금</a></li>
+    					<li><a class="btn btn-success dropdown-item" href="list?ac_num=${param.ac_num}&depositOrWithdraw=0">출금</a></li>
+    					<li><a class="btn btn-success dropdown-item" href="list?ac_num=${param.ac_num}">입출금</a></li>
+  					</ul>
+				</div>
 				</div>
 			
 				<table class="table table-striped table-hover">
