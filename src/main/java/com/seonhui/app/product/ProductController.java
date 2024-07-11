@@ -1,6 +1,6 @@
 package com.seonhui.app.product;
 
-import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,18 +16,10 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 
-	@Autowired
-	private ProductDAO productDAO;
-
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public void getList(Long page, Model model) throws Exception {
-		List<ProductDTO> ar = productService.getList(page);
-
-		Long totalCount = productDAO.getTotalCount();
-		long perPage = 10L;
-		long totalPage = totalCount / perPage;
-		model.addAttribute("list", ar);
-		model.addAttribute("totalPage", totalPage);
+		Map<String, Object> map = productService.getList(page);
+		model.addAttribute("map", map);
 
 	}
 
