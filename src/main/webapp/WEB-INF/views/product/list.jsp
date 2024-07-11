@@ -24,7 +24,7 @@
 						</tr>
 					</thead>
 
-					<c:forEach items="${list}" var="dto">
+					<c:forEach items="${map.list}" var="dto">
 						<tbody>
 							<tr>
 								<td>${dto.index_Of_Lists}</td>
@@ -40,23 +40,19 @@
 				</table>
 				<nav aria-label="Page navigation example">
   					<ul class="pagination justify-content-center">
-    					<li class="page-item">
-      						<a class="page-link" href="#" aria-label="Previous">
+  					
+    					<li class="page-item ${map.pre? '' : 'disabled'}">
+      						<a class="page-link" href="./list?page=${map.startNum-1}" aria-label="Previous">
         						<span aria-hidden="true">&laquo;</span>
       						</a>
     					</li>
-    						<li class="page-item"><a class="page-link" href="./list?page=1">1</a></li>
-    						<li class="page-item"><a class="page-link" href="./list?page=2">2</a></li>
-    						<li class="page-item"><a class="page-link" href="./list?page=3">3</a></li>
-    						<li class="page-item"><a class="page-link" href="./list?page=4">4</a></li>
-    						<li class="page-item"><a class="page-link" href="./list?page=5">5</a></li>
-    						<li class="page-item"><a class="page-link" href="./list?page=6">6</a></li>
-    						<li class="page-item"><a class="page-link" href="./list?page=7">7</a></li>
-    						<li class="page-item"><a class="page-link" href="./list?page=8">8</a></li>
-    						<li class="page-item"><a class="page-link" href="./list?page=9">9</a></li>
-    						<li class="page-item"><a class="page-link" href="./list?page=${totalPage}">${totalPage}</a></li>
-    						<li class="page-item">
-      						<a class="page-link" href="#" aria-label="Next">
+    				
+    					<c:forEach begin="${map.startNum}" end="${map.lastNum}" step="1" var="i">
+    						<li class="page-item"><a class="page-link" href="./list?page=${i}">${i}</a></li>
+    					</c:forEach>
+    						
+    					<li class="page-item ${map.next? '' : 'disabled'}">
+      						<a class="page-link" href="./list?page=${map.lastNum+1}" aria-label="Next">
         						<span aria-hidden="true">&raquo;</span>
       						</a>
     					</li>

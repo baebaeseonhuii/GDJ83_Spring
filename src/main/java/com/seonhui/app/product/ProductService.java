@@ -16,12 +16,12 @@ public class ProductService {
 	@Autowired
 	private ProductDAO productDAO;
 
-	public List<ProductDTO> getList(Long page) throws Exception {
+	public Map<String, Object> getList(Long page) throws Exception {
 		// page = 1 2 3 4
 		// 첫번째 숫자 = 1 11 21 31
 		// 두번째 숫자 = 10 20 30 40
 
-		if (page == null) {
+		if (page == null || page < 1) {
 			page = 1L;
 		}
 		long perPage = 10L;
@@ -42,13 +42,64 @@ public class ProductService {
 		Long totalCount = productDAO.getTotalCount();
 		pager.setTotalCount(totalCount);
 
+		// 1. 총 개수를 이용해서 총 페이지수 구하기
 		long totalPage = totalCount / perPage;
 		if (totalCount % perPage != 0) {
 			totalPage++;
 		}
-		System.out.println(totalPage);
 
-		return productDAO.getList(pager);
+		long perBlock = 5L;// 한페이지에 보여질 페이지번호의 개수
+		long totalBlock = 0; // 총블럭의 수
+
+		// page 1 2 3 4 5 6 7 8 9 10 11
+		// start 1 1 1 1 1 6 6 6 6 6 11
+		// last 5 5 5 5 5 10 10 10 10 10 15
+		// 2. 총 페이지수로 총 블록수 구하기
+		totalBlock = totalPage / perBlock;
+		if (totalPage % perBlock != 0) {
+			totalBlock++;
+		}
+
+		// 3. 현재 페이지 번호로 현재 블록 번호를 구하기
+
+		// page 1 2 3 4 5 6 7 8 9 10 11
+		// 블록번호 1 1 1 1 1 2 2 2 2 2 3
+		long curBlock = 0;
+
+		curBlock = page / perBlock;
+		if (page % perBlock != 0) {
+			curBlock++;
+		}
+
+		// 4. 현재 블록 번호로 시작번호와 끝번호를 구하기
+
+		// curBlock 1 2 3
+		// startNum 1 6 11
+		// lastNum 5 10 15
+		long startNum = (curBlock - 1) * perBlock + 1;
+		long lastNum = curBlock * perBlock;
+
+		// 5. 이전 블록과 다음 블록 유무 판단
+		boolean pre = true;
+		if (curBlock == 1) {
+			pre = false;
+		}
+		boolean next = true;
+
+		if (curBlock == totalBlock) {
+			next = false;
+			lastNum = totalPage;
+		}
+
+		Map<String, Object> map2 = new HashMap<String, Object>();
+		map2.put("list", productDAO.getList(pager));
+		map2.put("totalPage", totalPage);
+		map2.put("startNum", startNum);
+		map2.put("lastNum", lastNum);
+		map2.put("pre", pre);
+		map2.put("next", next);
+
+		return map2;
 	}
 
 	public ProductDTO getDetail(ProductDTO productDTO) throws Exception {
