@@ -1,9 +1,29 @@
 package com.seonhui.app.util;
 
 public class Pager {
+	// 컬럼종류
+	private String kind;
+	// 검색어
+	private String search;
 	private Long startRow;
 	private Long lastRow;
 	private Long totalCount;
+
+	public String getKind() {
+		return kind;
+	}
+
+	public void setKind(String kind) {
+		this.kind = kind;
+	}
+
+	public String getSearch() {
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
+	}
 
 	public Long getTotalCount() {
 		return totalCount;

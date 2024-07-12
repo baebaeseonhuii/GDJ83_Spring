@@ -16,13 +16,17 @@ public class ProductService {
 	@Autowired
 	private ProductDAO productDAO;
 
-	public Map<String, Object> getList(Long page) throws Exception {
+	public Map<String, Object> getList(Long page, String kind, String search) throws Exception {
 		// page = 1 2 3 4
 		// 첫번째 숫자 = 1 11 21 31
 		// 두번째 숫자 = 10 20 30 40
 
 		if (page == null || page < 1) {
 			page = 1L;
+		}
+
+		if (search == null) {
+			search = "";
 		}
 
 		long perPage = 10L;
@@ -39,8 +43,10 @@ public class ProductService {
 		Pager pager = new Pager();
 		pager.setStartRow(startRow);
 		pager.setLastRow(lastRow);
+		pager.setKind(kind);
+		pager.setSearch(search);
 
-		Long totalCount = productDAO.getTotalCount();
+		Long totalCount = productDAO.getTotalCount(pager);
 		pager.setTotalCount(totalCount);
 
 		// 1.총 개수로 총 페이지 수 구하기
@@ -73,10 +79,10 @@ public class ProductService {
 		}
 
 		boolean next = true;
-		if (curBlock >= totalBlock) {
+		if (curBlock == totalBlock) {
 			next = false;
 			lastNum = totalPage;
-			page = totalPage;
+
 		}
 
 		Map<String, Object> map2 = new HashMap<String, Object>();
@@ -86,6 +92,8 @@ public class ProductService {
 		map2.put("lastNum", lastNum);
 		map2.put("pre", pre);
 		map2.put("next", next);
+		map2.put("kind", kind);
+		map2.put("search", search);
 
 		return map2;
 	}

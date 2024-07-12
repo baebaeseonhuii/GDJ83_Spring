@@ -13,6 +13,29 @@
 	<div class="container-fluid mt-5">
 		<div class="row justify-content-center">
 			<div class="col-md-6">
+				<!-- 검색입력폼 -->
+				<form  action="./list" method="get" class="row row-cols-lg-auto g-3 align-items-center">
+					<div class="col-12">
+						<label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
+						<select name="kind" class="form-select" id="inlineFormSelectPref">
+							<option value="k1">상품이름</option>
+							<option value="k2">상품내용</option>
+						</select>
+					</div>
+					
+					<div class="col-12">
+						<label class="visually-hidden" for="inlineFormInputGroupUsername">Username</label>
+						<div class="input-group">
+							
+							<input type="text" name="search" class="form-control"
+								id="inlineFormInputGroupUsername" placeholder="검색어를 입력하세요">
+						</div>
+					</div>
+					<div class="col-12">
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</div>
+				</form>
+
 				<table class="table table-striped table-hover">
 					<thead>
 						<tr>
@@ -39,21 +62,23 @@
 
 				</table>
 				<nav aria-label="Page navigation example">
-  					<ul class="pagination justify-content-center">
-    					<li class="page-item">
-      						<a class="page-link ${map.pre? '' : 'disabled'}" href="./list?page=${map.startNum-1}" aria-label="Previous">
-        						<span aria-hidden="true">&laquo;</span>
-      						</a>
-    					</li>
-    					<c:forEach begin="${map.startNum}" end="${map.lastNum}" step="1" var="i">
-    						<li class="page-item"><a class="page-link" href="./list?page=${i}">${i}</a></li>
-    					</c:forEach>
-    						<li class="page-item">
-      						<a class="page-link ${map.next? '' : 'disabled'}" href="./list?page=${map.lastNum+1}" aria-label="Next">
-        						<span aria-hidden="true">&raquo;</span>
-      						</a>
-    					</li>
- 					 </ul>
+					<ul class="pagination justify-content-center">
+						<li class="page-item"><a
+							class="page-link ${map.pre? '' : 'disabled'}"
+							href="./list?page=${map.startNum-1}&kind=${map.kind}&search=${map.search}" aria-label="Previous"> <span
+								aria-hidden="true">&laquo;</span>
+						</a></li>
+						<c:forEach begin="${map.startNum}" end="${map.lastNum}" step="1"
+							var="i">
+							<li class="page-item"><a class="page-link"
+								href="./list?page=${i}&kind=${map.kind}&search=${map.search}">${i}</a></li>
+						</c:forEach>
+						<li class="page-item"><a
+							class="page-link ${map.next? '' : 'disabled'}"
+							href="./list?page=${map.lastNum+1}&kind=${map.kind}&search=${map.search}" aria-label="Next"> <span
+								aria-hidden="true">&raquo;</span>
+						</a></li>
+					</ul>
 				</nav>
 				<div>
 					<a href="add" class="btn btn-outline-success">상품 등록</a>

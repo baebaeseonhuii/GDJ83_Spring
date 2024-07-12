@@ -17,12 +17,12 @@ public class ProductDAO {
 
 	private final String NAMESPACE = "com.seonhui.app.product.ProductDAO.";
 
-	public Long getTotalCount() throws Exception {
-		return sqlSession.selectOne(NAMESPACE + "getTotalCount");
+	public Long getTotalCount(Pager pager) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "getTotalCount", pager);
 	}
 
-	public List<ProductDTO> getList(Pager page) throws Exception {
-		return sqlSession.selectList(NAMESPACE + "getList", page);
+	public List<ProductDTO> getList(Pager pager) throws Exception {
+		return sqlSession.selectList(NAMESPACE + "getList", pager);
 
 	}
 

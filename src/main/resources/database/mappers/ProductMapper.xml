@@ -10,22 +10,51 @@
   	</select>
   	
   	<select id="getList" resultType="ProductDTO" parameterType="Pager">
-  		<![CDATA[
   		SELECT * FROM 
 			(
 				SELECT ROWNUM R, P.* FROM 
 				(
 					SELECT * 
 					FROM PRODUCTS
+					<where>
+						INDEX_OF_LISTS > 0
+						
+						<choose>
+							<when test="kind == 'k2'">
+								AND SCRIPT LIKE '%'||#{search}||'%'
+							</when>
+							
+							<otherwise>
+								AND P_NAME LIKE '%'||#{search}||'%'
+							</otherwise>
+							
+						</choose>
+						
+					</where> 
 			 		ORDER BY INDEX_OF_LISTS DESC
 			 	) P
 			 )
 		WHERE R BETWEEN #{startRow} AND #{lastRow}
-		]]>
+  		<![CDATA[]]>
   	</select>
   	
-  	<select id="getTotalCount" resultType="java.lang.Long">
+  	<select id="getTotalCount" resultType="java.lang.Long" parameterType="Pager">
   		SELECT COUNT(ROWNUM) FROM PRODUCTS
+  		<where>
+			INDEX_OF_LISTS > 0
+						
+			<choose>
+				<when test="kind == 'k2'">
+					AND SCRIPT LIKE '%'||#{search}||'%'
+				</when>
+				
+				<otherwise>
+					AND P_NAME LIKE '%'||#{search}||'%'
+				</otherwise>
+							
+			</choose>
+						
+		</where> 
   	</select>
   	
   	<insert id="add" parameterType="ProductDTO">
