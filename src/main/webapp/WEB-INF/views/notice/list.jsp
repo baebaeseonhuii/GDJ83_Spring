@@ -10,17 +10,46 @@
 <c:import url="/WEB-INF/views/sample/header.jsp"></c:import>
 </head>
 <body>
-	<h1>금융 상품 목록</h1>
+
+	<h1>공지사항</h1>
 	<div class="container-fluid mt-5">
 		<div class="row justify-content-center">
 			<div class="col-md-6">
+
+				<table class="table table-striped table-hover">
+					<thead>
+						<tr>
+							<th>번호</th>
+							<th>제목</th>
+							<th>작성자</th>
+							<th>작성일</th>
+							<th>조회수</th>
+						</tr>
+					</thead>
+
+					<c:forEach items="${list}" var="dto">
+						<tbody>
+							<tr>
+								<td>${dto.boardNum}</td>
+								<td><a href="./detail?boardTitle=${dto.boardTitle}">${dto.boardTitle}</a></td>
+								<td>${dto.boardWriter}</td>
+								<td>${dto.createDate}</td>
+								<td>${dto.boardHit}</td>
+
+							</tr>
+						</tbody>
+					</c:forEach>
+
+
+				</table>
 				<!-- 검색입력폼 -->
 				<form  action="./list" method="get" class="row row-cols-lg-auto g-3 align-items-center">
 					<div class="col-12">
 						<label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
 						<select name="kind" class="form-select" id="inlineFormSelectPref">
-							<option value="k1">상품이름</option>
-							<option value="k2">상품내용</option>
+							<option value="k1">작성자</option>
+							<option value="k2">제목</option>
+							<option value="k2">내용</option>
 						</select>
 					</div>
 					
@@ -36,32 +65,6 @@
 						<button type="submit" class="btn btn-primary">Submit</button>
 					</div>
 				</form>
-
-				<table class="table table-striped table-hover">
-					<thead>
-						<tr>
-							<th>번호</th>
-							<th>상품 코드</th>
-							<th>상품 이름</th>
-							<th>이자</th>
-
-						</tr>
-					</thead>
-
-					<c:forEach items="${map.list}" var="dto">
-						<tbody>
-							<tr>
-								<td>${dto.index_Of_Lists}</td>
-								<td>${dto.p_code}</td>
-								<td><a href="./detail?p_code=${dto.p_code}">${dto.p_name}</a></td>
-								<td>${dto.interest}</td>
-
-							</tr>
-						</tbody>
-					</c:forEach>
-
-
-				</table>
 				<nav aria-label="Page navigation example">
 					<ul class="pagination justify-content-center">
 						<li class="page-item"><a
