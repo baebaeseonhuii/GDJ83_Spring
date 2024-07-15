@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="/WEB-INF/views/sample/bootheader.jsp"></c:import>
+<c:import url="/WEB-INF/views/sample/header.jsp"></c:import>
 </head>
 <body>
 <div class="container">
@@ -32,7 +33,7 @@
 						</tr>
 						<tr>
 							<th>내용</th>
-							<td colspan="2"><textarea rows="" cols=""></textarea></td>	
+							<td colspan="2"><textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea></td>	
 						</tr>
 					</tbody>
 				</table>
