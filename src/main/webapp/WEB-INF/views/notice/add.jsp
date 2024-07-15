@@ -11,35 +11,39 @@
 <body>
 <div class="container">
 		<div class="row">
-			<h1>상품 등록</h1>
+			<h1>새글 등록</h1>
 		</div>
-
+		<div class="container-fluid mt-5">
 		<div class="row">
 			<form action="./add" method="post">
 				<div class="mb-3">
-					<label for="p_code" class="form-label">상품 코드</label> 
-					<input type="text" class="form-control" id="p_code" name="p_code">
-				</div>
-				
-				<div class="mb-3">
-					<label for="p_name" class="form-label">상품 이름</label> 
-					<input type="text" class="form-control" id="p_name" name="p_name">
-				</div>
-				
-				<div class="mb-3">
-					<label for="interest" class="form-label">이자</label> 
-					<input type="text" class="form-control" id="interest" name="interest">
-				</div>
-				<div class="mb-3">
-					<label for="script" class="form-label">상품 설명</label> 
-					<input type="text" class="form-control" id="script" name="script">
-				</div>
-				
-				
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th><label for="p_code" class="form-label">제목</label> </th>
+							<th colspan="2"><input type="text" class="form-control" id="p_code" name="p_code"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th>작성자</th>
+							<td><input type="text" class="form-control" id="p_code" name="p_code"></td>
+							<td>등록일: 현재시각</td>
+						</tr>
+						<tr>
+							<th>내용</th>
+							<td colspan="2"><textarea rows="" cols=""></textarea></td>	
+						</tr>
+					</tbody>
+				</table>
 				<button type="submit" class="btn btn-success">등록</button>
+			</div>
 			</form>
 		</div>
 	</div>
+</div>
+				
+			
 	<c:import url="/WEB-INF/views/sample/bootfooter.jsp"></c:import>
 </body>
 </html>

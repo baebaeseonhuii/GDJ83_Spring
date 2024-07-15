@@ -15,7 +15,9 @@
 	<div class="container-fluid mt-5">
 		<div class="row justify-content-center">
 			<div class="col-md-6">
-
+			<div>
+				<a href="add" class="btn btn-outline-success">새 글 작성</a>
+			</div>
 				<table class="table table-striped table-hover">
 					<thead>
 						<tr>
@@ -31,7 +33,7 @@
 						<tbody>
 							<tr>
 								<td>${dto.boardNum}</td>
-								<td><a href="./detail?boardTitle=${dto.boardTitle}">${dto.boardTitle}</a></td>
+								<td><a href="./detail?boardNum=${dto.boardNum}">${dto.boardNum}</a></td>
 								<td>${dto.boardWriter}</td>
 								<td>${dto.createDate}</td>
 								<td>${dto.boardHit}</td>
@@ -84,9 +86,7 @@
 						</a></li>
 					</ul>
 				</nav>
-				<div>
-					<a href="add" class="btn btn-outline-success">상품 등록</a>
-				</div>
+				
 				<a href="/" class="btn btn-success">돌아가기</a>
 			</div>
 		</div>

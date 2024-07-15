@@ -16,4 +16,20 @@ public class NoticeDAO {
 	public List<NoticeDTO> getList() throws Exception {
 		return sqlSession.selectList(NAMESPACE + "getList");
 	}
+
+	public NoticeDTO getDetail(NoticeDTO noticeDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "getDetail", noticeDTO);
+	}
+
+	public int add(NoticeDTO noticeDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE + "add", noticeDTO);
+	}
+
+	public int update(NoticeDTO noticeDTO) throws Exception {
+		return sqlSession.update(NAMESPACE + "update", noticeDTO);
+	}
+
+	public int delete(NoticeDTO noticeDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE + "delete", noticeDTO);
+	}
 }

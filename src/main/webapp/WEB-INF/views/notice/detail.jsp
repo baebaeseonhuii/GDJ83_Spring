@@ -7,41 +7,60 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="/WEB-INF/views/sample/bootheader.jsp"></c:import>
+<c:import url="/WEB-INF/views/sample/header.jsp"></c:import>
 </head>
 <body>
-	<h1>상품 상세 페이지</h1>
+	<h1>공지사항 내용</h1>
 	<div class="container-fluid mt-5">
 		<div class="row justify-content-center">
 			<div class="col-md-9">
-				<table class="table table-striped table-hover">
+				<table class="table table-striped">
 					<thead>
 						<tr>
-							<th>상품 코드</th>
-							<th>상품 이름</th>
-							<th>이자</th>
-							<th>상품 설명</th>
-
+							<th># ${detail.boardNum}</th>
+							<th>제목</th>
+							<th>${detail.boardTitle}</th>
 						</tr>
 					</thead>
-
 					<tbody>
 						<tr>
-							<td>${detail.p_code}</td>
-							<td>${detail.p_name}</td>
-							<td>${detail.interest}</td>
-							<td>${detail.script}</td>
-
+							<th>작성자</th>
+							<td>${detail.boardWriter}</td>
+							<td>등록일: ${detail.createDate}</td>
+						</tr>
+						<tr>
+							<th>내용</th>
+							<td colspan="2">${detail.boardContents}</td>	
 						</tr>
 					</tbody>
-
-
-
 				</table>
 				<div>
-					<a href="../account/add?p_code=${detail.p_code}" class="btn btn-outline-success">상품 가입</a>
+				<nav aria-label="Page navigation example">
+				  <ul class="pagination">
+				    <li class="page-item">
+				      <a class="page-link" href="#" aria-label="Previous">
+				        <span aria-hidden="true">&laquo;이전글</span>
+				      </a>
+				    </li>
+				    <li class="page-item">
+				      <a class="page-link" href="#" aria-label="Next">
+				        <span aria-hidden="true">다음글&raquo;</span>
+				      </a>
+				    </li>
+				    <li class="page-item justify-content-end">
+				      <a href="update?boardNum=${detail.boardNum}" class="btn btn-outline-success">게시글 수정</a>
+				    </li>
+				    <li class="page-item justify-content-end">
+				      <a href="delete?boardNum=${detail.boardNum}" class="btn btn-outline-success">게시글 삭제</a>
+				    </li>
+				  </ul>
+				</nav>
+				<div>
+					
 				</div>
 				<div>
-					<a href="update?p_code=${detail.p_code}" class="btn btn-outline-success">상품 수정</a>
+					
+				</div>
 				</div>
 			</div>
 		</div>

@@ -9,4 +9,29 @@
   		SELECT * FROM NOTICE
   	</select>
   	
+  	<select id="getDetail" resultType="NoticeDTO" parameterType="Pager">
+  		SELECT * FROM NOTICE WHERE "BoardNum" = #{boardNum}
+  	</select>
+  	
+  	<insert id="add" parameterType="NoticeDTO">
+  		INSERT INTO NOTICE 
+  		(BoardNum, BoardWriter, CreateDate, BoardTitle, BoardContents, BoardCategory, UpdateDate, BoardHit) 
+  		VALUES 
+  		(#{boardNum}, #{boardWriter}, SYSDATE, #{boardTitle}, #{boardContents}, NULL, NULL, 0)
+  	</insert>
+  	
+  	<update id="update" parameterType="NoticeDTO">
+  		UPDATE NOTICE 
+  		SET "BoardTitle" = #{boardTitle}, 
+  			"BoardContents" = #{boardContents}, 
+  			"UpdateDate" = SYSDATE 
+		WHERE "BoardNum" = #{boardNum}
+  	</update>
+  	
+  	<delete id="delete" parameterType="NoticeDTO">
+  		DELETE FROM NOTICE WHERE "BoardNum" = #{boardNum}
+  	</delete>
+  	
+  	
+  	
   </mapper>

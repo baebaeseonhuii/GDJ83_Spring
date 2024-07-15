@@ -16,4 +16,20 @@ public class NoticeService {
 		return ar;
 
 	}
+
+	public NoticeDTO getDetail(NoticeDTO noticeDTO) throws Exception {
+		return noticeDAO.getDetail(noticeDTO);
+	}
+
+	public int add(NoticeDTO noticeDTO) throws Exception {
+		return noticeDAO.add(noticeDTO);
+	}
+
+	public int update(NoticeDTO noticeDTO) throws Exception {
+		return noticeDAO.update(noticeDTO);
+	}
+
+	public int delete(NoticeDTO noticeDTO) throws Exception {
+		return noticeDAO.delete(noticeDTO);
+	}
 }
