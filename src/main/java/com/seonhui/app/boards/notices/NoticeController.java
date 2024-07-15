@@ -1,4 +1,4 @@
-package com.seonhui.app.notice;
+package com.seonhui.app.boards.notices;
 
 import java.util.List;
 
@@ -67,7 +67,7 @@ public class NoticeController {
 
 		if (noticeDTO != null) {
 			model.addAttribute("detail", noticeDTO);
-			path = "product/update";
+			path = "notice/update";
 
 		} else {
 			model.addAttribute("result", "게시물 수정에 실패했습니다.");

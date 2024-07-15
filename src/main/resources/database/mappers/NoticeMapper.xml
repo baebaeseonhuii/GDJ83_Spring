@@ -4,9 +4,9 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <!-- namespace는 꼭 들어가야될 속성 -->
-  <mapper namespace="com.seonhui.app.notice.NoticeDAO">
+  <mapper namespace="com.seonhui.app.boards.notices.NoticeDAO">
   	<select id="getList" resultType="NoticeDTO">
-  		SELECT * FROM NOTICE
+  		SELECT * FROM NOTICE ORDER BY "BoardNum" ASC
   	</select>
   	
   	<select id="getDetail" resultType="NoticeDTO" parameterType="Pager">
@@ -15,7 +15,7 @@
   	
   	<insert id="add" parameterType="NoticeDTO">
   		INSERT INTO NOTICE 
-  		(BoardNum, BoardWriter, CreateDate, BoardTitle, BoardContents, BoardCategory, UpdateDate, BoardHit) 
+  		("BoardNum", "BoardWriter", "CreateDate", "BoardTitle", "BoardContents", "BoardCategory", "UpdateDate", "BoardHit") 
   		VALUES 
   		(BOARD_SEQ.NEXTVAL, #{boardWriter}, SYSDATE, #{boardTitle}, #{boardContents}, NULL, NULL, 0)
   	</insert>

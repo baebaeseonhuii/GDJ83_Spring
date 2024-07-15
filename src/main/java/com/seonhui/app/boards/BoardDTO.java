@@ -1,9 +1,8 @@
-package com.seonhui.app.notice;
+package com.seonhui.app.boards;
 
 import java.sql.Date;
 
-public class NoticeDTO {
-
+public class BoardDTO {
 	private Long boardNum;
 	private String boardWriter;
 	private Date createDate;

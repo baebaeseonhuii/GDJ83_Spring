@@ -1,4 +1,4 @@
-package com.seonhui.app.notice;
+package com.seonhui.app.boards.notices;
 
 import java.util.List;
 

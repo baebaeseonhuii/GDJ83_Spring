@@ -33,7 +33,7 @@
 						<tbody>
 							<tr>
 								<td>${dto.boardNum}</td>
-								<td><a href="./detail?boardNum=${dto.boardNum}">${dto.boardNum}</a></td>
+								<td><a href="./detail?boardNum=${dto.boardNum}">${dto.boardTitle}</a></td>
 								<td>${dto.boardWriter}</td>
 								<td>${dto.createDate}</td>
 								<td>${dto.boardHit}</td>
