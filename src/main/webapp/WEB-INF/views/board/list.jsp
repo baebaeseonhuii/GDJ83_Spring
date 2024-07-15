@@ -15,10 +15,10 @@
 	<div class="container-fluid mt-5">
 		<div class="row justify-content-center">
 			<div class="col-md-6">
-			<div>
-				<a href="add" class="btn btn-outline-success">새 글 작성</a>
-				<div class="justify-content-end">
-				<div class="dropdown d-inline ">
+			
+				<div>
+					<a href="add" class="btn btn-outline-success">새 글 작성</a>
+				<div class="dropdown d-inline align-items-end">
   					<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
     					정렬
   					</button>
@@ -28,7 +28,9 @@
   					</ul>
 				</div>
 				</div>
-			</div>
+				
+				
+			
 				<table class="table table-striped table-hover">
 					<thead>
 						<tr>

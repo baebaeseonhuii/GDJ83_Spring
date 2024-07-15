@@ -12,7 +12,7 @@ import com.seonhui.app.boards.BoardDTO;
 import com.seonhui.app.util.Pager;
 
 @Controller
-@RequestMapping("/board/*")
+@RequestMapping("/notice/*")
 public class NoticeController {
 
 	@Autowired
