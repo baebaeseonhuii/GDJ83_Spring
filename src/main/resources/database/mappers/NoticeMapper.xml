@@ -17,7 +17,7 @@
   		INSERT INTO NOTICE 
   		(BoardNum, BoardWriter, CreateDate, BoardTitle, BoardContents, BoardCategory, UpdateDate, BoardHit) 
   		VALUES 
-  		(#{boardNum}, #{boardWriter}, SYSDATE, #{boardTitle}, #{boardContents}, NULL, NULL, 0)
+  		(BOARD_SEQ.NEXTVAL, #{boardWriter}, SYSDATE, #{boardTitle}, #{boardContents}, NULL, NULL, 0)
   	</insert>
   	
   	<update id="update" parameterType="NoticeDTO">

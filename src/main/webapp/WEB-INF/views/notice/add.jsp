@@ -22,18 +22,18 @@
 					<thead>
 						<tr>
 							<th><label for="p_code" class="form-label">제목</label> </th>
-							<th colspan="2"><input type="text" class="form-control" id="p_code" name="p_code"></th>
+							<th colspan="2"><input type="text" class="form-control" id="boardTitle" name="boardTitle"></th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
 							<th>작성자</th>
-							<td><input type="text" class="form-control" id="p_code" name="p_code"></td>
+							<td><input type="text" class="form-control" id="boardWriter" name="boardWriter"></td>
 							<td>등록일: 현재시각</td>
 						</tr>
 						<tr>
 							<th>내용</th>
-							<td colspan="2"><textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea></td>	
+							<td colspan="2"><textarea class="form-control" id="boardContents" name="boardContents" rows="3"></textarea></td>	
 						</tr>
 					</tbody>
 				</table>
