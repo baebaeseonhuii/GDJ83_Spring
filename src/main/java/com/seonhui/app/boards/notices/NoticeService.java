@@ -3,33 +3,51 @@ package com.seonhui.app.boards.notices;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.seonhui.app.boards.BoardDAO;
+import com.seonhui.app.boards.BoardDTO;
+import com.seonhui.app.boards.BoardService;
+import com.seonhui.app.util.Pager;
+
 @Service
-public class NoticeService {
+public class NoticeService implements BoardService {
 
 	@Autowired
-	private NoticeDAO noticeDAO;
+	@Qualifier("noticeDAO")
+	private BoardDAO boardDAO;
 
-	public List<NoticeDTO> getList() throws Exception {
-		List<NoticeDTO> ar = noticeDAO.getList();
-		return ar;
+	@Override
+	public List<BoardDTO> getList(Pager pager) throws Exception {
+
+		pager.makeRow();
+
+		long totalCount = boardDAO.getTotalCount(pager);
+
+		pager.makeNum(totalCount);
+
+		return boardDAO.getList(pager);
 
 	}
 
-	public NoticeDTO getDetail(NoticeDTO noticeDTO) throws Exception {
-		return noticeDAO.getDetail(noticeDTO);
+	@Override
+	public BoardDTO getDetail(BoardDTO boardDTO) throws Exception {
+		return boardDAO.getDetail(boardDTO);
 	}
 
-	public int add(NoticeDTO noticeDTO) throws Exception {
-		return noticeDAO.add(noticeDTO);
+	@Override
+	public int add(BoardDTO boardDTO) throws Exception {
+		return boardDAO.add(boardDTO);
 	}
 
-	public int update(NoticeDTO noticeDTO) throws Exception {
-		return noticeDAO.update(noticeDTO);
+	@Override
+	public int update(BoardDTO boardDTO) throws Exception {
+		return boardDAO.update(boardDTO);
 	}
 
-	public int delete(NoticeDTO noticeDTO) throws Exception {
-		return noticeDAO.delete(noticeDTO);
+	@Override
+	public int delete(BoardDTO boardDTO) throws Exception {
+		return boardDAO.delete(boardDTO);
 	}
 }

@@ -21,7 +21,7 @@
 				<table class="table table-striped">
 					<thead>
 						<tr>
-							<th><label for="p_code" class="form-label">제목</label> </th>
+							<th><label for="boardTitle" class="form-label">제목</label> </th>
 							<th colspan="2"><input type="text" class="form-control" id="boardTitle" name="boardTitle"></th>
 						</tr>
 					</thead>

@@ -17,6 +17,17 @@
 			<div class="col-md-6">
 			<div>
 				<a href="add" class="btn btn-outline-success">새 글 작성</a>
+				<div class="justify-content-end">
+				<div class="dropdown d-inline ">
+  					<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    					정렬
+  					</button>
+  					<ul class="dropdown-menu">
+    					<li><a class="btn btn-success dropdown-item" href="list?order=1">최신순으로</a></li>
+    					<li><a class="btn btn-success dropdown-item" href="list?order=2">조회수순으로</a></li>
+  					</ul>
+				</div>
+				</div>
 			</div>
 				<table class="table table-striped table-hover">
 					<thead>
@@ -47,11 +58,11 @@
 				<!-- 검색입력폼 -->
 				<form  action="./list" method="get" class="row row-cols-lg-auto g-3 align-items-center">
 					<div class="col-12">
-						<label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
-						<select name="kind" class="form-select" id="inlineFormSelectPref">
+						<label class="visually-hidden" for="kind">Preference</label>
+						<select name="kind" class="form-select" id="kind">
 							<option value="k1">작성자</option>
 							<option value="k2">제목</option>
-							<option value="k2">내용</option>
+							<option value="k3">내용</option>
 						</select>
 					</div>
 					
@@ -60,7 +71,7 @@
 						<div class="input-group">
 							
 							<input type="text" name="search" class="form-control"
-								id="inlineFormInputGroupUsername" placeholder="검색어를 입력하세요">
+								id="search" placeholder="검색어를 입력하세요">
 						</div>
 					</div>
 					<div class="col-12">
@@ -70,18 +81,18 @@
 				<nav aria-label="Page navigation example">
 					<ul class="pagination justify-content-center">
 						<li class="page-item"><a
-							class="page-link ${map.pre? '' : 'disabled'}"
-							href="./list?page=${map.startNum-1}&kind=${map.kind}&search=${map.search}" aria-label="Previous"> <span
+							class="page-link ${pager.pre? '' : 'disabled'}"
+							href="./list?page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}" aria-label="Previous"> <span
 								aria-hidden="true">&laquo;</span>
 						</a></li>
-						<c:forEach begin="${map.startNum}" end="${map.lastNum}" step="1"
+						<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" step="1"
 							var="i">
 							<li class="page-item"><a class="page-link"
-								href="./list?page=${i}&kind=${map.kind}&search=${map.search}">${i}</a></li>
+								href="./list?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
 						</c:forEach>
 						<li class="page-item"><a
-							class="page-link ${map.next? '' : 'disabled'}"
-							href="./list?page=${map.lastNum+1}&kind=${map.kind}&search=${map.search}" aria-label="Next"> <span
+							class="page-link ${pager.next? '' : 'disabled'}"
+							href="./list?page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}" aria-label="Next"> <span
 								aria-hidden="true">&raquo;</span>
 						</a></li>
 					</ul>

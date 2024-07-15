@@ -8,34 +8,39 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.seonhui.app.boards.BoardDTO;
+import com.seonhui.app.util.Pager;
+
 @Controller
-@RequestMapping("/notice/*")
+@RequestMapping("/board/*")
 public class NoticeController {
 
 	@Autowired
 	private NoticeService noticeService;
 
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public void getList(Model model) throws Exception {
-		List<NoticeDTO> ar = noticeService.getList();
+	public String getList(Model model, Pager pager) throws Exception {
+		List<BoardDTO> ar = noticeService.getList(pager);
+		model.addAttribute("pager", pager);
 		model.addAttribute("list", ar);
+		return "board/list";
 	}
 
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
-	public String getDetail(Model model, NoticeDTO noticeDTO) throws Exception {
-		noticeDTO = noticeService.getDetail(noticeDTO);
-		model.addAttribute("detail", noticeDTO);
-		return "notice/detail";
+	public String getDetail(Model model, BoardDTO boardDTO) throws Exception {
+		boardDTO = noticeService.getDetail(boardDTO);
+		model.addAttribute("detail", boardDTO);
+		return "board/detail";
 	}
 
 	@RequestMapping(value = "add", method = RequestMethod.GET)
 	public String add() throws Exception {
-		return "notice/add";
+		return "board/add";
 	}
 
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public String add(Model model, NoticeDTO noticeDTO) throws Exception {
-		int result = noticeService.add(noticeDTO);
+	public String add(Model model, BoardDTO boardDTO) throws Exception {
+		int result = noticeService.add(boardDTO);
 		String path = "commons/message";
 		if (result > 0) {
 			path = "redirect:./list";
@@ -48,8 +53,8 @@ public class NoticeController {
 	}
 
 	@RequestMapping(value = "delete", method = RequestMethod.GET)
-	public String delete(Model model, NoticeDTO noticeDTO) throws Exception {
-		int result = noticeService.delete(noticeDTO);
+	public String delete(Model model, BoardDTO boardDTO) throws Exception {
+		int result = noticeService.delete(boardDTO);
 		String path = "commons/message";
 		if (result > 0) {
 			path = "redirect:./list";
@@ -61,13 +66,13 @@ public class NoticeController {
 	}
 
 	@RequestMapping(value = "update", method = RequestMethod.GET)
-	public String update(NoticeDTO noticeDTO, Model model) throws Exception {
-		noticeDTO = noticeService.getDetail(noticeDTO);
+	public String update(BoardDTO boardDTO, Model model) throws Exception {
+		boardDTO = noticeService.getDetail(boardDTO);
 		String path = "commons/message";
 
-		if (noticeDTO != null) {
-			model.addAttribute("detail", noticeDTO);
-			path = "notice/update";
+		if (boardDTO != null) {
+			model.addAttribute("detail", boardDTO);
+			path = "board/update";
 
 		} else {
 			model.addAttribute("result", "게시물 수정에 실패했습니다.");
@@ -78,8 +83,8 @@ public class NoticeController {
 	}
 
 	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public String update(Model model, NoticeDTO noticeDTO) throws Exception {
-		int result = noticeService.update(noticeDTO);
+	public String update(Model model, BoardDTO boardDTO) throws Exception {
+		int result = noticeService.update(boardDTO);
 		String path = "commons/message";
 
 		if (result > 0) {

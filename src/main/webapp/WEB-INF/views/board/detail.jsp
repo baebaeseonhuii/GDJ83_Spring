@@ -38,12 +38,12 @@
 				<nav aria-label="Page navigation example">
 				  <ul class="pagination">
 				    <li class="page-item">
-				      <a class="page-link" href="#" aria-label="Previous">
+				      <a class="page-link" href="./detail?boardNum=${dto.boardNum-1}" aria-label="Previous">
 				        <span aria-hidden="true">&laquo;이전글</span>
 				      </a>
 				    </li>
 				    <li class="page-item">
-				      <a class="page-link" href="#" aria-label="Next">
+				      <a class="page-link" href="./detail?boardNum=${dto.boardNum+1}" aria-label="Next">
 				        <span aria-hidden="true">다음글&raquo;</span>
 				      </a>
 				    </li>

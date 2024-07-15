@@ -5,8 +5,70 @@
   
   <!-- namespace는 꼭 들어가야될 속성 -->
   <mapper namespace="com.seonhui.app.boards.notices.NoticeDAO">
-  	<select id="getList" resultType="NoticeDTO">
-  		SELECT * FROM NOTICE ORDER BY "BoardNum" ASC
+  	<select id="getList" resultType="NoticeDTO" parameterType="Pager">
+  		SELECT * FROM 
+			(
+				SELECT ROWNUM R, N.* FROM 
+				(
+					SELECT * 
+					FROM NOTICE
+					<where>
+						"BoardNum" > 0
+						
+						<choose>
+							<when test="kind == 'k3'">
+								AND "BoardContents" LIKE '%'||#{search}||'%'
+							</when>
+							
+							<when test="kind == 'k2'">
+								AND "BoardTitle" LIKE '%'||#{search}||'%'
+							</when>
+							
+							<otherwise>
+								AND "BoardWriter" LIKE '%'||#{search}||'%'
+							</otherwise>
+							
+						</choose>
+						
+					</where> 
+			 		<choose>
+							<when test="order == 1">
+						 		ORDER BY "CreateDate" 
+								DESC
+							</when>
+							
+							<otherwise>
+								ORDER BY "BoardHit" 
+								DESC
+							</otherwise>
+							
+					</choose>
+			 	) N
+			 )
+		WHERE R BETWEEN #{startRow} AND #{lastRow}
+  	</select>
+  	
+  	<select id="getTotalCount" resultType="java.lang.Long" parameterType="Pager">
+  		SELECT COUNT(ROWNUM) FROM NOTICE
+  		<where>
+			"BoardNum" > 0
+						
+			<choose>
+				<when test="kind == 'k3'">
+					AND "BoardContents" LIKE '%'||#{search}||'%'
+				</when>
+				
+				<when test="kind == 'k2'">
+					AND "BoardTitle" LIKE '%'||#{search}||'%'
+				</when>
+				
+				<otherwise>
+					AND "BoardWriter" LIKE '%'||#{search}||'%'
+				</otherwise>
+							
+			</choose>
+						
+		</where> 
   	</select>
   	
   	<select id="getDetail" resultType="NoticeDTO" parameterType="Pager">

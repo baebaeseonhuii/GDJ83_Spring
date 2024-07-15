@@ -38,7 +38,7 @@
     					<li><a class="btn btn-success dropdown-item" href="list?ac_num=${param.ac_num}">입출금</a></li>
   					</ul>
 				</div>
-				</div>
+			</div>
 			
 				<table class="table table-striped table-hover">
 					<thead>

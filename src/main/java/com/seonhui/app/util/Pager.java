@@ -15,6 +15,16 @@ public class Pager {
 	private boolean next;
 	private long perPage = 10L;
 
+	private Integer order;
+
+	public Integer getOrder() {
+		return order;
+	}
+
+	public void setOrder(Integer order) {
+		this.order = order;
+	}
+
 	// rownum 처리하는 메서드
 	public void makeRow() throws Exception {
 		this.startRow = (this.getPage() - 1) * perPage + 1;
