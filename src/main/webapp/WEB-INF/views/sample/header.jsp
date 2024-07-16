@@ -7,8 +7,8 @@
 <nav class="navbar bg-dark border-bottom border-body"
 	data-bs-theme="dark">
 	<ul class="nav justify-content-center">
-		<li class="nav-item btn btn-outline-secondary me-5"><a class="nav-link text-white" href="/product/list">금융 상품 목록</a></li>
-		<li class="nav-item btn btn-outline-secondary me-5"><a class="nav-link text-white" href="/notice/list">공지사항</a></li>
+		<li class="nav-item btn btn-outline-secondary"><a class="nav-link text-white" href="/product/list">금융 상품 목록</a></li>
+		<li class="nav-item btn btn-outline-secondary"><a class="nav-link text-white" href="/notice/list">공지사항</a></li>
 		<li class="nav-item btn btn-outline-secondary me-5"><a class="nav-link text-white" href="/qna/list">QnA</a></li>
 		
 		<c:choose>

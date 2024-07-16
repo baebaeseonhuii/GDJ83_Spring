@@ -10,31 +10,45 @@
 <c:import url="/WEB-INF/views/sample/header.jsp"></c:import>
 </head>
 <body>
-	<h1>공지사항 내용</h1>
 	<div class="container-fluid mt-5">
 		<div class="row justify-content-center">
 			<div class="col-md-9">
+				<h1>${board} 내용</h1>
 				<table class="table table-striped">
 					<thead>
 						<tr>
-							<th># ${detail.boardNum}</th>
-							<th>제목</th>
+							<th style="width:10%"># ${detail.boardNum}</th>
+							<th style="width:10%">제목</th>
 							<th>${detail.boardTitle}</th>
+							<td>등록일: ${detail.createDate} | 수정일: ${detail.updateDate}</td>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
 							<th>작성자</th>
-							<td>${detail.boardWriter}</td>
-							<td>등록일: ${detail.createDate}</td>
+							<td colspan="3">${detail.boardWriter}</td>
 						</tr>
 						<tr>
 							<th>내용</th>
-							<td colspan="2">${detail.boardContents}</td>	
+							<td colspan="3">${detail.boardContents}</td>	
 						</tr>
 					</tbody>
 				</table>
 				<div>
+				
+				<div>
+					<c:if test="${board ne 'Notice'}">
+					      <a href="./reply?boardNum=${detail.boardNum}" class="btn btn-outline-success mb-3">답글</a>
+					</c:if>
+					<c:if test="${member.id eq detail.boardWriter}">
+					      <a href="./update?boardNum=${detail.boardNum}" class="btn btn-outline-success mb-3">게시글 수정</a>
+					
+					      <a href="./delete?boardNum=${detail.boardNum}" class="btn btn-outline-success mb-3">게시글 삭제</a>
+					</c:if>
+				</div>
+				
+				    
+				    
 				<nav aria-label="Page navigation example">
 				  <ul class="pagination">
 				    <li class="page-item">
@@ -46,12 +60,6 @@
 				      <a class="page-link" href="./detail?boardNum=${dto.boardNum+1}" aria-label="Next">
 				        <span aria-hidden="true">다음글&raquo;</span>
 				      </a>
-				    </li>
-				    <li class="page-item justify-content-end">
-				      <a href="update?boardNum=${detail.boardNum}" class="btn btn-outline-success">게시글 수정</a>
-				    </li>
-				    <li class="page-item justify-content-end">
-				      <a href="delete?boardNum=${detail.boardNum}" class="btn btn-outline-success">게시글 삭제</a>
 				    </li>
 				  </ul>
 				</nav>

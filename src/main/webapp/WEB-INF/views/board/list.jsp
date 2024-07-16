@@ -11,11 +11,10 @@
 </head>
 <body>
 
-	<h1>공지사항</h1>
 	<div class="container-fluid mt-5">
 		<div class="row justify-content-center">
 			<div class="col-md-6">
-			
+				<h1>${board}</h1>
 				<div>
 					<a href="add" class="btn btn-outline-success">새 글 작성</a>
 				<div class="dropdown d-inline align-items-end">
@@ -45,12 +44,30 @@
 					<c:forEach items="${list}" var="dto">
 						<tbody>
 							<tr>
-								<td>${dto.boardNum}</td>
-								<td><a href="./detail?boardNum=${dto.boardNum}">${dto.boardTitle}</a></td>
+								<td>
+								<c:if test="${dto.del eq 0}">
+									${dto.boardNum}								
+								</c:if>
+								</td>
+								<td>
+								<c:choose>
+									<c:when test="${dto.del eq 0}">
+										<a href="./detail?boardNum=${dto.boardNum}">
+											<c:catch>
+												<c:forEach begin="1" end="${dto.depth}">☞ </c:forEach>									
+											</c:catch>
+											${dto.boardTitle}									
+										</a>
+									</c:when>
+									
+									<c:otherwise>
+										삭제된 글입니다.
+									</c:otherwise>
+								</c:choose>
+								</td>
 								<td>${dto.boardWriter}</td>
 								<td>${dto.createDate}</td>
 								<td>${dto.boardHit}</td>
-
 							</tr>
 						</tbody>
 					</c:forEach>
@@ -58,13 +75,13 @@
 
 				</table>
 				<!-- 검색입력폼 -->
-				<form  action="./list" method="get" class="row row-cols-lg-auto g-3 align-items-center">
+				<form  action="./list" method="get" class="row row-cols-lg-auto g-3 align-items-center mb-3">
 					<div class="col-12">
 						<label class="visually-hidden" for="kind">Preference</label>
 						<select name="kind" class="form-select" id="kind">
-							<option value="k1">작성자</option>
-							<option value="k2">제목</option>
-							<option value="k3">내용</option>
+							<option value="writer">작성자</option>
+							<option value="title">제목</option>
+							<option value="contents">내용</option>
 						</select>
 					</div>
 					

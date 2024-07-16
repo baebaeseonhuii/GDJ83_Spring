@@ -12,28 +12,29 @@
 <body>
 <div class="container">
 		<div class="row">
-			<h1>새글 등록</h1>
+			<h1>${board} 작성</h1>
 		</div>
 		<div class="container-fluid mt-5">
 		<div class="row">
-			<form action="./add" method="post">
+			<form method="post">
+				<input type="hidden" value="${detail.boardNum}" name="boardNum">
 				<div class="mb-3">
 				<table class="table table-striped">
 					<thead>
 						<tr>
 							<th><label for="boardTitle" class="form-label">제목</label> </th>
-							<th colspan="2"><input type="text" class="form-control" id="boardTitle" name="boardTitle"></th>
+							<th colspan="2"><input type="text" class="form-control" id="boardTitle" name="boardTitle" value="${detail.boardTitle}"></th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
 							<th>작성자</th>
-							<td><input type="text" class="form-control" id="boardWriter" name="boardWriter"></td>
+							<td><input type="text" class="form-control" readonly value="${member.id}" id="boardWriter" name="boardWriter"></td>
 							<td>등록일: 현재시각</td>
 						</tr>
 						<tr>
 							<th>내용</th>
-							<td colspan="2"><textarea class="form-control" id="boardContents" name="boardContents" rows="3"></textarea></td>	
+							<td colspan="2"><textarea class="form-control" id="boardContents" name="boardContents" rows="3">${detail.boardContents}</textarea></td>	
 						</tr>
 					</tbody>
 				</table>

@@ -10,17 +10,16 @@
 			(
 				SELECT ROWNUM R, N.* FROM 
 				(
-					SELECT * 
-					FROM NOTICE
+					SELECT * FROM NOTICE
 					<where>
 						"BoardNum" > 0
 						
 						<choose>
-							<when test="kind == 'k3'">
+							<when test="kind == 'contents'">
 								AND "BoardContents" LIKE '%'||#{search}||'%'
 							</when>
 							
-							<when test="kind == 'k2'">
+							<when test="kind == 'title'">
 								AND "BoardTitle" LIKE '%'||#{search}||'%'
 							</when>
 							
@@ -54,11 +53,11 @@
 			"BoardNum" > 0
 						
 			<choose>
-				<when test="kind == 'k3'">
+				<when test="kind == 'contents'">
 					AND "BoardContents" LIKE '%'||#{search}||'%'
 				</when>
 				
-				<when test="kind == 'k2'">
+				<when test="kind == 'title'">
 					AND "BoardTitle" LIKE '%'||#{search}||'%'
 				</when>
 				

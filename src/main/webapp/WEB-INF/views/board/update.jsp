@@ -12,7 +12,7 @@
 <body>
 	<div class="container">
 		<div class="row">
-			<h1>공지사항 수정</h1>
+			<h1>${board} 수정</h1>
 		</div>
 
 		<div class="row">
@@ -36,7 +36,7 @@
 						</tr>
 						<tr>
 							<th>내용</th>
-							<td colspan="2"><textarea class="form-control" id="boardContents" name="boardContents" rows="3" placeholder="${detail.boardContents}"></textarea></td>	
+							<td colspan="2"><textarea class="form-control" id="boardContents" name="boardContents" rows="3">${detail.boardContents}</textarea></td>	
 						</tr>
 					</tbody>
 				</table>

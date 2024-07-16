@@ -4,6 +4,87 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <!-- namespace는 꼭 들어가야될 속성 -->
-  <mapper namespace="com.seonhui.app.boards.qnas.QnaDTO">
+  <mapper namespace="com.seonhui.app.boards.qnas.QnaDAO">
+  	<sql id="searchSql">
+  		<where>
+  			BoardNum > 0
+  				<choose>
+  					<when test="kind == 'title'">
+		  					AND BoardContents 
+	  				</when>
+			  				
+	  				<when test="kind == 'contents'">
+	  					AND BoardTitle 
+	  				</when>
+			  				
+	  				<otherwise>
+	  					AND BoardWriter
+	  				</otherwise>
+	  			</choose>
+	  		LIKE '%'||#{search}||'%'
+	  	</where>
+  	</sql>
   
+  	<select id="getTotalCount" parameterType="Pager" resultType="Long">
+  		SELECT COUNT(BoardNum) FROM QnA
+  		<include refid="searchSql"></include>
+  	</select>
+  
+  	<select id="getList" parameterType="Pager" resultType="QnaDTO">
+  		SELECT * FROM 
+  		(
+  			SELECT ROWNUM R, Q.* FROM
+  			(
+  				SELECT * FROM QnA
+  					<include refid="searchSql"></include>		 		
+  				ORDER BY REF DESC, STEP ASC 
+  			) Q 
+  		)
+  		WHERE R BETWEEN #{startRow} AND #{lastRow}
+  	</select>
+  	
+  	<insert id="add" parameterType="QnaDTO">
+  		INSERT INTO QnA 
+  		(
+	  		BoardNum, BoardWriter, CreateDate, BoardTitle, BoardContents, 
+	  		BoardCategory, UpdateDate, BoardHit, REF, STEP, DEPTH
+  		) 
+  		VALUES 
+  		(
+  			BOARD_SEQ.NEXTVAL, #{boardWriter}, SYSDATE, #{boardTitle}, #{boardContents},
+  			'Q', SYSDATE, 0, BOARD_SEQ.CURRVAL, 0, 0
+  		)
+  	</insert>
+  	
+  	<insert id="reply" parameterType="QnaDTO">
+  		INSERT INTO QnA 
+  		(
+	  		BoardNum, BoardWriter, CreateDate, BoardTitle, BoardContents, 
+	  		BoardCategory, UpdateDate, BoardHit, REF, STEP, DEPTH
+  		) 
+  		VALUES 
+  		(
+  			BOARD_SEQ.NEXTVAL, #{boardWriter}, SYSDATE, #{boardTitle}, #{boardContents},
+  			'Q', SYSDATE, 0, #{ref}, #{step}, #{depth} 
+  		)
+  	</insert>
+  	
+  	<update id="replyUpdate" parameterType="QnaDTO">
+  		UPDATE QnA SET STEP=STEP+1 WHERE REF=#{ref} AND STEP>#{step}
+  	</update>
+  	
+  	<select id="getDetail" parameterType="QnaDTO" resultType="QnaDTO">
+  		SELECT * FROM QnA WHERE BoardNum = #{boardNum}
+  	</select>
+  	
+  	<update id="update" parameterType="QnaDTO">
+  		UPDATE QnA SET BoardTitle = #{boardTitle}, BoardContents=#{boardContents}, UpdateDate=SYSDATE
+  		WHERE BoardNum = #{boardNum}
+  	</update>
+  	
+  	<delete id="delete" parameterType="QnaDTO">
+  		UPDATE QnA SET DEL=1 WHERE BoardNum = #{boardNum}
+  	</delete>
+  	
+  	
   </mapper>
