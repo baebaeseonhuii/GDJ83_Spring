@@ -22,7 +22,8 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(HttpServletRequest request) {
-		System.out.println("master");
+		System.out.println("Study_Conflict");
+
 		// 내장객체 꺼내기
 		// 하위 -> 상위 O (request에서 session은 가능)
 		// 상위 -> 하위 X (세션에서 리퀘스트 못꺼냄)

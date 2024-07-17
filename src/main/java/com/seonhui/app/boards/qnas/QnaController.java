@@ -23,7 +23,6 @@ public class QnaController {
 
 	@Autowired
 	private QnaService qnaService;
-	private int master;
 
 	@ModelAttribute("board")
 	public String getBoard() throws Exception {
