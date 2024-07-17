@@ -20,6 +20,7 @@ import com.seonhui.app.util.Pager;
 @Controller
 @RequestMapping("/qna/*")
 public class QnaController {
+	private String conflict;
 
 	@Autowired
 	private QnaService qnaService;
