@@ -36,7 +36,9 @@ build/
 # Created by https://www.toptal.com/developers/gitignore/api/windows,macos,java,maven
 # Edit at https://www.toptal.com/developers/gitignore?templates=windows,macos,java,maven
 
-### My Custom ###
+# MyCustom
+database.properties
+DBConnection.java
 
 ### Java ###
 # Compiled class file
