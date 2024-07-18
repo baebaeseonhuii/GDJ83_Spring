@@ -1,75 +1,65 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<c:import url="/WEB-INF/views/sample/bootheader.jsp"></c:import>
-<c:import url="/WEB-INF/views/sample/header.jsp"></c:import>
-</head>
-<body>
-	<div class="container-fluid mt-5">
-		<div class="row justify-content-center">
-			<div class="col-md-9">
-				<h1>${board} 내용</h1>
-				<table class="table table-striped">
-					<thead>
-						<tr>
-							<th style="width:10%"># ${detail.boardNum}</th>
-							<th style="width:10%">제목</th>
-							<th>${detail.boardTitle}</th>
-							<td>등록일: ${detail.createDate} | 수정일: ${detail.updateDate}</td>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<th>작성자</th>
-							<td colspan="3">${detail.boardWriter}</td>
-						</tr>
-						<tr>
-							<th>내용</th>
-							<td colspan="3">${detail.boardContents}</td>	
-						</tr>
-					</tbody>
-				</table>
-				<div>
-				
-				<div>
-					<c:if test="${board ne 'Notice'}">
-					      <a href="./reply?boardNum=${detail.boardNum}" class="btn btn-outline-success mb-3">답글</a>
-					</c:if>
-					<c:if test="${member.id eq detail.boardWriter}">
-					      <a href="./update?boardNum=${detail.boardNum}" class="btn btn-outline-success mb-3">게시글 수정</a>
-					
-					      <a href="./delete?boardNum=${detail.boardNum}" class="btn btn-outline-success mb-3">게시글 삭제</a>
-					</c:if>
-				</div>
-				
-				    
-				    
-				<nav aria-label="Page navigation example">
-				  <ul class="pagination">
-				    <li class="page-item">
-				      <a class="page-link" href="./detail?boardNum=${dto.boardNum-1}" aria-label="Previous">
-				        <span aria-hidden="true">&laquo;이전글</span>
-				      </a>
-				    </li>
-				    <li class="page-item">
-				      <a class="page-link" href="./detail?boardNum=${dto.boardNum+1}" aria-label="Next">
-				        <span aria-hidden="true">다음글&raquo;</span>
-				      </a>
-				    </li>
-				  </ul>
-				</nav>
-				
-				
-				</div>
-			</div>
-		</div>
-	</div>
+    <head>
+        <c:import url="../template/header.jsp"></c:import>
+        <title>Pineapple</title>
+    </head>
+    <body>
+        <div class="d-flex" id="wrapper">
+            <!-- Sidebar-->
+            <c:import url="../template/sidebar.jsp"></c:import>
+            
+            <!-- Page content wrapper-->
+            <div id="page-content-wrapper">
+            
+                <!-- Top navigation-->
+                <c:import url="../template/topbar.jsp"></c:import>
+                
+                <!-- Page content-->
+                <div class="container-fluid col-6 justify-contents-center">
+                    <h1 class="mt-4">공지사항</h1>
 
-	<c:import url="/WEB-INF/views/sample/bootfooter.jsp"></c:import>
-</body>
+                    <table class="table mt-4">
+                    <thead>
+                      <tr>
+                        <th scope="col">글번호</th>
+                        <th scope="col">제목</th>
+                        <th scope="col">작성자</th>
+                        <th scope="col">작성일</th>
+                        <th scope="col">조회수</th>
+                      </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                        <tr>
+                          <td>${detail.boardNum}</td>
+                          <th scope="row">${detail.boardTitle}</th>
+                          <td>${detail.boardWriter}</td>
+                          <td>${detail.createDate}</td>
+                          <td>${detail.boardHit}</td>
+                        </tr>
+                        <tr>
+                          <td colspan="5">
+                            ${detail.boardContents}
+                          </td>
+                        </tr>
+                    </tbody>
+                  </table>
+                  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <input type="button" class="btn btn-secondary" value="목록" onclick="history.back();" />
+                    <c:if test="${member.id eq detail.boardWriter}">
+                      <a class="btn btn-secondary" href="./update?boardNum=${detail.boardNum}" role="button">수정</a>
+                      <a class="btn btn-secondary" href="./delete?boardNum=${detail.boardNum}" role="button">삭제</a>
+                    </c:if>
+                    <c:if test="${board eq 'QnA' and member ne null}">
+                      <a class="btn btn-secondary" href="./add?boardNum=${detail.boardNum}" role="button">답글</a>
+                    </c:if>
+                  </div>
+                </div>
+            </div>
+        </div>
+      <c:import url="../template/footer.jsp"></c:import>
+    </body>
 </html>

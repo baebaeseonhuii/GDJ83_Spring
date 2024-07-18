@@ -1,58 +1,49 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<c:import url="/WEB-INF/views/sample/bootheader.jsp"></c:import>
+<c:import url="../template/header.jsp"></c:import>
+<title>Pineapple</title>
 </head>
 <body>
-	<div class="container">
-		<div class="row mb-5">
-			<h1>회원수정</h1>
-		</div>
-		<form action="./update" method="post">
-			<div class="row">
+  <div class="d-flex" id="wrapper">
+    <!-- Sidebar-->
+    <c:import url="../template/sidebar.jsp"></c:import>
 
-				<div class="mb-3">
-					<div class="col-md-6">
-						<label for="id" class="form-label">아이디</label> <input type="text"
-							class="form-control" value="${member.id}" id="id"
-							name="id">
-					</div>
-					<div class="col-md-6">
-						<label for="phone" class="form-label">전화번호</label> <input
-							type="text" class="form-control"
-							value="${member.phone}" id="phone" name="phone">
-					</div>
-					<div class="col-md-6">
-						<label for="name" class="form-label">이름</label> <input type="text"
-							class="form-control" value="${member.name}"
-							id="name" name="name">
-					</div>
-					<div class="col-md-6">
-						<label for="ss_num" class="form-label">주민등록번호</label> <input
-							type="text" class="form-control"
-							value="${member.ss_num}" id="ss_num" name="ss_num">
-					</div>
-					<div class="col-md-6">
-						<label for="email" class="form-label">이메일</label> <input
-							type="text" class="form-control"
-							value="${member.email}" id="email" name="email">
-					</div>
-				</div>
-				<div class="mb-3">
-					<button type="submit" class="btn btn-success">완료</button>
-				</div>
-		</form>
+    <!-- Page content wrapper-->
+    <div id="page-content-wrapper">
 
+      <!-- Top navigation-->
+      <c:import url="../template/topbar.jsp"></c:import>
 
-		<a href="../" class="btn btn-success">돌아가기</a>
-
-	</div>
-	</div>
-	<c:import url="/WEB-INF/views/sample/bootfooter.jsp"></c:import>
+      <!-- Page content-->
+      <div class="container-fluid col-6 justify-contents-center">
+        <form method="post" action="update">
+          <table class="table mt-4">
+            <tbody class="table-group-divider">
+              <tr>
+                <td>ID(수정불가)</td>
+                <th><input type="text" value="${member.id}" readonly name="id"></th>
+                <td>이름</td>
+                <td><input type="text" value="${member.name}" name="name"></td>
+              </tr>
+              <tr>
+                <td>email</td>
+                <td><input type="text" value="${member.email}" name="email"></td>
+                <td>전화번호</td>
+                <td><input type="text" value="${member.phone}" name="phone"></td>
+              </tr>
+            </tbody>
+          </table>
+          <input type="hidden" value="${member.ss_num}" name="ss_num">
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button class="btn btn-secondary me-md-2" type="submit">수정</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <c:import url="../template/footer.jsp"></c:import>
 </body>
 </html>
