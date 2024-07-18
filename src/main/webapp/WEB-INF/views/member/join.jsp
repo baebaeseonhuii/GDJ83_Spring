@@ -26,7 +26,13 @@
                 <td>ID</td>
                 <th><input type="text" name="id"></th>
                 <td>PW</td>
-                <th><input type="password" name="pw"><div id="pw_error"></div></th>
+                <th><input type="password" name="pw"></th>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td>PW Check</td>
+                <th><input type="password"><div id="pwChk"></div></th>
               </tr>
               <tr>
                 <td>이름</td>

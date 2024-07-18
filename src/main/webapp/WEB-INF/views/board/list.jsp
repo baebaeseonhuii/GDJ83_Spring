@@ -67,15 +67,22 @@
             <c:forEach items="${list}" var="dto">
               <tr>
                 <td>${dto.boardNum}</td>
-                <th scope="row">                    
-                   <a href="./detail?boardNum=${dto.boardNum}"
-                   class="list-group-item list-group-item-action list-group-item-light" 
-                   style="text-decoration: none; color:black;">
-                     <c:if test="${board == 'QnA'}">
-                      <c:forEach begin="1" end="${dto.depth}">--</c:forEach>
-                     </c:if>
-                     ${dto.boardTitle}
-                   </a>
+                <th scope="row">
+                  <c:choose>
+                    <c:when test="${dto.del ne 1}">
+                     <a href="./detail?boardNum=${dto.boardNum}"
+                     class="list-group-item list-group-item-action list-group-item-light" 
+                     style="text-decoration: none; color:black;">
+                       <c:if test="${board == 'QnA'}">
+                        <c:forEach begin="1" end="${dto.depth}">--</c:forEach>
+                       </c:if>
+                       ${dto.boardTitle}
+                     </a>
+                   </c:when>
+                   <c:otherwise>
+                    삭제된 게시글입니다
+                   </c:otherwise>
+                  </c:choose>               
                 </th>
                 <td>${dto.boardWriter}</td>
                 <td>${dto.createDate}</td>
