@@ -1,55 +1,55 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<c:import url="/WEB-INF/views/sample/bootheader.jsp"></c:import>
+<c:import url="../template/header.jsp"></c:import>
+<title>Pineapple</title>
 </head>
 <body>
+  <div class="d-flex" id="wrapper">
+    <!-- Sidebar-->
+    <c:import url="../template/sidebar.jsp"></c:import>
 
-<div class="container">
-		<div class="row mb-5">
-			<h1>회원가입</h1>
-		</div>
+    <!-- Page content wrapper-->
+    <div id="page-content-wrapper">
 
-		<div class="row">
-			<form action="./join" method="post">
-				<div class="mb-3">
-				<div class="col-md-6">
-					<label for="id" class="form-label">아이디</label> 
-					<input type="text" class="form-control" id="id" name="id">
-				</div>
-				<div class="col-md-6">
-					<label for="pw" class="form-label">비밀번호</label> 
-					<input type="password" class="form-control" id="pw" name="pw">
-				</div>
-				<div class="col-md-6">
-					<label for="phone" class="form-label">전화번호</label> 
-					<input type="text" class="form-control" id="phone" name="phone">
-				</div>
-				<div class="col-md-6">
-					<label for="name" class="form-label">이름</label> 
-					<input type="text" class="form-control" id="name" name="name">
-				</div>
-				<div class="col-md-6">
-					<label for="ss_num" class="form-label">주민등록번호</label> 
-					<input type="text" class="form-control" id="ss_num" name="ss_num">
-				</div>
-				<div class="col-md-6">
-					<label for="email" class="form-label">이메일</label> 
-					<input type="text" class="form-control" id="email" name="email">
-				</div>
-				</div>
-				<button type="submit" class="btn btn-success">가입하기</button>
-			</form>
-		</div>
-	</div>
-<c:import url="/WEB-INF/views/sample/bootfooter.jsp"></c:import>
-<script type="text/javascript">
+      <!-- Top navigation-->
+      <c:import url="../template/topbar.jsp"></c:import>
 
-</script>
+      <!-- Page content-->
+      <div class="container-fluid col-6 justify-contents-center">
+        <form method="post" action="join">
+          <table class="table mt-5">
+            <tbody class="table-group-divider">
+              <tr>
+                <td>ID</td>
+                <th><input type="text" name="id"></th>
+                <td>PW</td>
+                <th><input type="password" name="pw"></th>
+              </tr>
+              <tr>
+                <td>이름</td>
+                <td><input type="text" name="name"></td>
+                <td>전화번호</td>
+                <td><input type="text" name="phone"></td>
+              </tr>
+              <tr>
+                <td>email</td>
+                <td><input type="email" name="email"></td>
+                <td>주민번호</td>
+                <td><input type="text" name="ss_num"></td>
+              </tr>
+              
+            </tbody>
+          </table>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button class="btn btn-secondary me-md-2" type="submit">가입</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <c:import url="../template/footer.jsp"></c:import>
 </body>
 </html>

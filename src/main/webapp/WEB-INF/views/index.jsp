@@ -1,57 +1,40 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<c:import url="/WEB-INF/views/sample/bootheader.jsp"></c:import>
-
+<c:import url="./template/header.jsp"></c:import>
+<title>Pineapple</title>
+<link rel="stylesheet" href="/resources/css/snake.css">
 </head>
 <body>
-	<c:import url="/WEB-INF/views/sample/header.jsp"></c:import>
-	
-	<div class="container-fluid mt-5">
-		<div class="row justify-content-center">
-		
-			<c:if test="${not empty member }">
-				<div>
-					<h3>${member.name}님 환영합니다</h3>
-				</div>
-			</c:if>	
-			
-			<div id="carouselExampleAutoplaying" class="carousel slide col-md-6"
-				data-bs-ride="carousel">
-				<div class="carousel-inner">
-					<div class="carousel-item active">
-						<img src="./resources/images/index/pineapple1.jpg" class="d-block w-100" alt="...">
-					</div>
-					<div class="carousel-item">
-						<img src="./resources/images/index/pineapple2.jpg" class="d-block w-100" alt="...">
-					</div>
-					<div class="carousel-item">
-						<img src="./resources/images/index/pineapple3.jpg" class="d-block w-100" alt="...">
-					</div>
-				</div>
-				<button class="carousel-control-prev" type="button"
-					data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-					<span class="visually-hidden">Previous</span>
-				</button>
-				<button class="carousel-control-next" type="button"
-					data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-					<span class="carousel-control-next-icon" aria-hidden="true"></span>
-					<span class="visually-hidden">Next</span>
-				</button>
-			</div>
+  <div class="d-flex" id="wrapper">
+    <!-- Sidebar-->
+    <c:import url="./template/sidebar.jsp"></c:import>
 
-		</div>
+    <!-- Page content wrapper-->
+    <div id="page-content-wrapper">
 
+      <!-- Top navigation-->
+      <c:import url="./template/topbar.jsp"></c:import>
 
-	</div>
-
-
-	<c:import url="/WEB-INF/views/sample/bootfooter.jsp"></c:import>
+      <!-- Page content-->
+      <div class="container-fluid col-6 justify-contents-center">        
+      <div class="game-container mt-5">
+          <h3>스네이크 게임</h3>
+          <canvas id="game-board" width="100%" height="100%"></canvas>
+          <div class="buttons">
+            <button id="start-btn">시작</button>
+            <button id="stop-btn">정지</button>
+          </div>
+          <p class="score">
+            점수: <span id="score">0</span>
+          </p>
+        </div>
+        <script src="/resources/js/snake.js"></script>
+      </div>
+    </div>
+  </div>
+  <c:import url="./template/footer.jsp"></c:import>
 </body>
 </html>
