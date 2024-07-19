@@ -19,7 +19,7 @@
 
       <!-- Page content-->
       <div class="container-fluid col-6 justify-contents-center">
-        <form method="post" action="join">
+        <form method="post" action="join" id="join">
           <table class="table mt-5">
             <tbody class="table-group-divider">
               <tr>
@@ -27,6 +27,12 @@
                 <th><input type="text" name="id"></th>
                 <td>PW</td>
                 <th><input type="password" name="pw"></th>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td>PW Check</td>
+                <th><input type="password"><div id="pwChk"></div></th>
               </tr>
               <tr>
                 <td>이름</td>
@@ -43,13 +49,18 @@
               
             </tbody>
           </table>
-          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <button class="btn btn-secondary me-md-2" type="submit">가입</button>
+          <button class="btn btn-secondary me-md-2" type="button" id="fileBtn">사진파일추가</button>
+          <div id="fileDiv">
           </div>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button class="btn btn-secondary me-md-2 mt-2" type="button" id="sm">가입</button>
+        </div>
         </form>
       </div>
     </div>
   </div>
   <c:import url="../template/footer.jsp"></c:import>
+  <script type="text/javascript" src=" ../resources/js/member/memberJoinCheck.js"></script>
+  <script type="text/javascript" src=" ../resources/js/commons/files.js"></script>
 </body>
 </html>

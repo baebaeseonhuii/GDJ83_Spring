@@ -20,7 +20,7 @@
                 
                 <!-- Page content-->
                 <div class="container-fluid col-6 justify-contents-center">
-                    <form action="add" method="post">
+                    <form method="post">
                     <input type="hidden" style="border-width:0;" name="boardWriter" value="${member.id}">
                     <table class="table mt-4">
 

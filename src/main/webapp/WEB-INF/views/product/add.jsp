@@ -43,7 +43,10 @@
                         </tr>
                     </tbody>
                   </table>
-                  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                  <button class="btn btn-secondary me-md-2" id="fileBtn" type="button">파일추가</button>
+                  <div id="fileDiv">
+                  </div>
+                  <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-2">
                     <button class="btn btn-secondary me-md-2" type="submit">등록</button>
                   </div>
                 </div>
@@ -51,5 +54,9 @@
             </div>
         </div>
       <c:import url="../template/footer.jsp"></c:import>
+      <script src="/resources/js/commons/files.js"></script>
+      <script>
+        setMax(5);
+      </script>
     </body>
 </html>
