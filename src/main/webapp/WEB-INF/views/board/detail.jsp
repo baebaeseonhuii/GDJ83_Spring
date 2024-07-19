@@ -54,7 +54,7 @@
                       <a class="btn btn-secondary" href="./delete?boardNum=${detail.boardNum}" role="button">삭제</a>
                     </c:if>
                     <c:if test="${board eq 'QnA' and member ne null}">
-                      <a class="btn btn-secondary" href="./add?boardNum=${detail.boardNum}" role="button">답글</a>
+                      <a class="btn btn-secondary" href="./reply?boardNum=${detail.boardNum}" role="button">답글</a>
                     </c:if>
                   </div>
                 </div>
