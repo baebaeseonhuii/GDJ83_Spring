@@ -12,6 +12,10 @@ public class MemberDAO {
 
 	private final String NAMESPACE = "com.seonhui.app.members.MemberDAO.";
 
+	public int addFile(MemberFileDTO memberFileDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE + "addFile", memberFileDTO);
+	}
+
 	public int join(MemberDTO memberDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE + "join", memberDTO);
 	}

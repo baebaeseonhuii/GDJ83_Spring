@@ -19,7 +19,7 @@
 
       <!-- Page content-->
       <div class="container-fluid col-6 justify-contents-center">
-        <form method="post" action="join" id="join">
+        <form method="post" action="join" id="join" enctype="multipart/form-data"> <!-- "enctype" 속성: 파일 넘길 때 파일을 쪼개서 넘긴다는 뜻, 텍스트만 보낼 땐 생략 -->
           <table class="table mt-5">
             <tbody class="table-group-divider">
               <tr>
@@ -60,7 +60,9 @@
     </div>
   </div>
   <c:import url="../template/footer.jsp"></c:import>
+
   <script type="text/javascript" src=" ../resources/js/member/memberJoinCheck.js"></script>
+
   <script type="text/javascript" src=" ../resources/js/commons/files.js"></script>
 </body>
 </html>

@@ -23,6 +23,15 @@
           <a class="btn btn-secondary" href="./update?id=${member.id}" role="button">수정</a>
           <a class="btn btn-danger" href="./delete?id=${member.id}" role="button">탈퇴</a>
         </div>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-center mt-5">
+          	<c:if test="${member.memberFileDTO ne null}">
+          	<img class="border border-success" style="width:30%; border-radius:50%" alt="" src="/resources/upload/members/${member.memberFileDTO.fileName}">          	
+          	</c:if>
+          	
+          	<c:if test="${member.memberFileDTO eq null}">
+          	<img class="border border-success" style="width:30%; border-radius:50%" alt="" src="https://cdn.pixabay.com/photo/2020/04/27/13/12/some-money-with-wallet-5099758_1280.jpg">
+          	</c:if>
+          </div>
         <table class="table mt-4">
           <tbody class="table-group-divider">
             <tr>

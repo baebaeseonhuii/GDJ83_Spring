@@ -5,6 +5,12 @@
   
   
 <mapper namespace="com.seonhui.app.members.MemberDAO">
+
+	<insert id="addFile" parameterType="MemberFileDTO">
+		INSERT INTO MEMBERFILES (FileNum, USERNAME, FileName, OriName)
+		VALUES (FILE_SEQ.NEXTVAL, #{userName}, #{fileName}, #{oriName})
+	</insert>
+	
 	<insert id="join" parameterType="MemberDTO">
 		INSERT INTO USERS (ID, PHONE, PW, NAME, SS_NUM, EMAIL) 
 		VALUES (#{id}, #{phone}, #{pw}, #{name}, #{ss_num}, #{email})
@@ -17,11 +23,15 @@
 	</select>
 	
 	<select id="detail" parameterType="MemberDTO" resultMap="loginResult">
-		SELECT U.*, A.*
-		FROM USERS U
+		SELECT U.*, A.*, M.*
+			FROM USERS U
 			LEFT JOIN
 			ACCOUNTS A
 			ON U.ID = A.ID
+			
+			LEFT JOIN 
+			MEMBERFILES M
+			ON U.ID = M.USERNAME
 		WHERE U.ID = #{id}
 	</select>
 	
@@ -35,6 +45,13 @@
 		<result column="NAME" property="name"/>
 		<result column="SS_NUM" property="ss_num"/>
 		<result column="EMAIL" property="email"/>
+		<!-- 1:1 , 멤버: 멤버파일 -->
+		<association property="memberFileDTO" javaType="MemberFileDTO">
+			<id column="FILENUM" property="fileNum"/>
+			<result column="FILENAME" property="fileName"/>
+			<result column="ORINAME" property="oriName"/>
+		</association>
+		
 		<!-- 1:N , 멤버:계좌-->
 		<collection property="dtos" javaType="java.util.List" ofType="AccountDTO">
 			<id column="AC_NUM" property="ac_num"/>

@@ -11,6 +11,16 @@ public class MemberDTO {
 	private String name;
 	private String ss_num;
 	private String email;
+	private MemberFileDTO memberFileDTO;
+
+	public MemberFileDTO getMemberFileDTO() {
+		return memberFileDTO;
+	}
+
+	public void setMemberFileDTO(MemberFileDTO memberFileDTO) {
+		this.memberFileDTO = memberFileDTO;
+	}
+
 	private List<AccountDTO> dtos; // member는 account를 가지고 있다(사용자는 계좌를 여러 개 가지고 있다)
 	// DTO는 테이블과 같다
 

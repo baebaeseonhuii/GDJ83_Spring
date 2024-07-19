@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/member/*")
@@ -24,11 +25,19 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "join", method = RequestMethod.POST)
-	public String join(MemberDTO memberDTO, Model model) throws Exception {
-		int result = memberService.join(memberDTO);
+	public String join(MemberDTO memberDTO, Model model, MultipartFile files, HttpSession session) throws Exception {
+		int result = memberService.join(memberDTO, files, session);
 		String path = "commons/message";
 		model.addAttribute("result", "회원가입 성공");
 		model.addAttribute("url", "/");
+//		System.out.println(files.getName()); // parameter 이름
+//		System.out.println(files.getOriginalFilename()); // 파일 이름
+//		System.out.println(files.getSize());
+
+//		System.out.println(session.getServletContext());
+		// resources/upload/members/파일들
+		// resources/upload/products/파일들
+		// resources/upload/boards/파일들
 		return path;
 	}
 
