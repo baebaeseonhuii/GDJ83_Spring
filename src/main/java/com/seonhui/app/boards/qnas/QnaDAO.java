@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.seonhui.app.boards.BoardDAO;
 import com.seonhui.app.boards.BoardDTO;
+import com.seonhui.app.boards.BoardFileDTO;
 import com.seonhui.app.util.Pager;
 
 @Repository
@@ -25,6 +26,16 @@ public class QnaDAO implements BoardDAO {
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
 		return sqlSession.selectList(NAMESPACE + "getList", pager);
+	}
+
+	@Override
+	public Long getNum() throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "getNum");
+	}
+
+	@Override
+	public int addFile(BoardFileDTO boardFileDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE + "addFile", boardFileDTO);
 	}
 
 	@Override

@@ -2,9 +2,14 @@ package com.seonhui.app.product;
 
 import java.util.List;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.seonhui.app.files.FileManager;
 import com.seonhui.app.util.Pager;
 
 @Service
@@ -12,6 +17,9 @@ public class ProductService {
 
 	@Autowired
 	private ProductDAO productDAO;
+
+	@Autowired
+	private FileManager fileManager;
 
 	public List<ProductDTO> getList(Pager pager) throws Exception {
 		// page = 1 2 3 4
@@ -32,8 +40,41 @@ public class ProductService {
 		return productDAO.getDetail(productDTO);
 	}
 
-	public int add(ProductDTO productDTO) throws Exception {
-		return productDAO.add(productDTO);
+	public int add(ProductDTO productDTO, HttpSession session, MultipartFile[] files) throws Exception {
+		Long num = productDAO.getNum();
+		productDTO.setIndex_Of_Lists(num);
+
+		int result = productDAO.add(productDTO);
+
+		if (files == null) {
+			return result;
+		}
+
+		// 1. 저장할 폴더 지정
+		ServletContext servletContext = session.getServletContext();
+		String path = servletContext.getRealPath("resources/upload/products");
+		System.out.println(path);
+
+		// 2. 저장할 파일 생성
+		for (MultipartFile f : files) {
+			if (f.isEmpty()) {
+				continue;
+			}
+			String fileName = fileManager.fileSave(path, f);
+
+			// 3. HDD에 파일 저장
+
+			// 4. 파일정보를 DB에 저장
+			// 파일명, 원파일명, 상품아이디, 파일번호
+			ProductFileDTO productFileDTO = new ProductFileDTO();
+			productFileDTO.setFileName(fileName);
+			productFileDTO.setOriName(f.getOriginalFilename());
+			productFileDTO.setP_code(num);
+			result = productDAO.addFile(productFileDTO);
+		}
+
+		return result;
+
 	}
 
 	public int update(ProductDTO productDTO) throws Exception {

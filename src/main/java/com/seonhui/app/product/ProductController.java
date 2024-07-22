@@ -2,11 +2,14 @@ package com.seonhui.app.product;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.seonhui.app.util.Pager;
 
@@ -49,8 +52,8 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public String add(Model model, ProductDTO productDTO) throws Exception {
-		int result = productService.add(productDTO);
+	public String add(Model model, ProductDTO productDTO, HttpSession session, MultipartFile[] files) throws Exception {
+		int result = productService.add(productDTO, session, files);
 		String path = "commons/message";
 		if (result > 0) {
 			path = "redirect:./list";
@@ -62,7 +65,7 @@ public class ProductController {
 		return path;
 	}
 
-	@RequestMapping(value = "delete", method = RequestMethod.POST)
+	@RequestMapping(value = "delete", method = RequestMethod.GET)
 	public String delete(Model model, ProductDTO productDTO) throws Exception {
 		int result = productService.delete(productDTO);
 		String path = "commons/message";

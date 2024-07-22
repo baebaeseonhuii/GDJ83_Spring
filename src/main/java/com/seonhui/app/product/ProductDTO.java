@@ -1,11 +1,22 @@
 package com.seonhui.app.product;
 
+import java.util.List;
+
 public class ProductDTO {
 	private String p_code;
 	private String p_name;
 	private double interest;
 	private String script;
-	private int index_Of_Lists;
+	private Long index_Of_Lists;
+	private List<ProductFileDTO> productFileDTO;
+
+	public List<ProductFileDTO> getProductFileDTO() {
+		return productFileDTO;
+	}
+
+	public void setProductFileDTO(List<ProductFileDTO> productFileDTO) {
+		this.productFileDTO = productFileDTO;
+	}
 
 	public String getP_code() {
 		return p_code;
@@ -39,11 +50,11 @@ public class ProductDTO {
 		this.script = script;
 	}
 
-	public int getIndex_Of_Lists() {
+	public Long getIndex_Of_Lists() {
 		return index_Of_Lists;
 	}
 
-	public void setIndex_Of_Lists(int index_Of_Lists) {
+	public void setIndex_Of_Lists(Long index_Of_Lists) {
 		this.index_Of_Lists = index_Of_Lists;
 	}
 

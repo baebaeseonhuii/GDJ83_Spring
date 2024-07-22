@@ -19,24 +19,24 @@
                 <c:import url="../template/topbar.jsp"></c:import>
                 
                 <!-- Page content-->
-                <form action="add" method="post">
+                <form action="add" method="post" enctype="multipart/form-data">
                 <div class="container-fluid col-6 justify-contents-center">
                   <table class="table mt-4">
                     <thead>
                       <tr>
-                        <th scope="col">상품코드(SN)</th>
+                        
                         <th scope="col">상품명</th>
                         <th scope="col">이자율</th>
                       </tr>
                     </thead>
                     <tbody class="table-group-divider">
                         <tr>
-                          <td ><input type="text" name="p_code" value=""></td>
+                          
                           <th scope="row"><input type="text" name="p_name" value=""></th>
                           <td><input type="text" name="interest" value=""></td>
                         </tr>
                         <tr>
-                          <td colspan="3">
+                          <td colspan="2">
                             <p>세부정보</p>
                             <textarea name="script" style="width:100%;"></textarea>
                           </td>

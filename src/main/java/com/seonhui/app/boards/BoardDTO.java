@@ -1,6 +1,7 @@
 package com.seonhui.app.boards;
 
 import java.sql.Date;
+import java.util.List;
 
 public class BoardDTO {
 	private Long boardNum;
@@ -12,6 +13,7 @@ public class BoardDTO {
 	private Date updateDate;
 	private Long boardHit;
 	private Integer del;
+	private List<BoardFileDTO> boardFileDTO;
 
 	public Integer getDel() {
 		if (this.del == null) {
@@ -86,5 +88,13 @@ public class BoardDTO {
 
 	public void setBoardHit(Long boardHit) {
 		this.boardHit = boardHit;
+	}
+
+	public List<BoardFileDTO> getBoardFileDTO() {
+		return boardFileDTO;
+	}
+
+	public void setBoardFileDTO(List<BoardFileDTO> boardFileDTO) {
+		this.boardFileDTO = boardFileDTO;
 	}
 }

@@ -32,8 +32,17 @@ public class ProductDAO {
 
 	}
 
+	public Long getNum() throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "getNum");
+	}
+
 	public int add(ProductDTO productDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE + "add", productDTO); // namespace에 productDTO를 파라미터로 보냄
+
+	}
+
+	public int addFile(ProductFileDTO productFileDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE + "addFile", productFileDTO); // namespace에 productDTO를 파라미터로 보냄
 
 	}
 

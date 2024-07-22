@@ -10,8 +10,10 @@
   		<typeAlias type="com.seonhui.app.records.RecordDTO" alias="RecordDTO"/>
   		<typeAlias type="com.seonhui.app.accounts.ListOption" alias="ListOption"/>
   		<typeAlias type="com.seonhui.app.product.ProductDTO" alias="ProductDTO"/>
+  		<typeAlias type="com.seonhui.app.product.ProductFileDTO" alias="ProductFileDTO"/>
   		<typeAlias type="com.seonhui.app.boards.notices.NoticeDTO" alias="NoticeDTO"/>
   		<typeAlias type="com.seonhui.app.boards.BoardDTO" alias="BoardDTO"/>
+  		<typeAlias type="com.seonhui.app.boards.BoardFileDTO" alias="BoardFileDTO"/>
   		<typeAlias type="com.seonhui.app.boards.qnas.QnaDTO" alias="QnaDTO"/>
   		<typeAlias type="com.seonhui.app.files.FileDTO" alias="FileDTO"/>
   		

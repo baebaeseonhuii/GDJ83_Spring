@@ -20,7 +20,7 @@
                 
                 <!-- Page content-->
                 <div class="container-fluid col-6 justify-contents-center">
-                    <h1 class="mt-4">공지사항</h1>
+                    <h1 class="mt-4">${board}</h1>
 
                     <table class="table mt-4">
                     <thead>
@@ -47,6 +47,11 @@
                         </tr>
                     </tbody>
                   </table>
+                  <div>
+					<c:forEach items="${detail.boardFileDTO}" var="f">
+						<a href="/resources/upload/${board}/${f.fileName}">${f.oriName}</a>
+					</c:forEach>
+				  </div>
                   <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                     <input type="button" class="btn btn-secondary" value="목록" onclick="history.back();" />
                     <c:if test="${member.id eq detail.boardWriter}">

@@ -26,7 +26,7 @@
           </c:if>
           <c:if test="${member.id eq 'seon'}">
             <a class="btn btn-secondary" href="./update?p_code=${detail.p_code}" role="button">수정</a>
-            <a class="btn btn-secondary" href="./delete?p_code=${detail.p_code}" role="button">삭제</a>
+            <a class="btn btn-secondary" href="./delete?index_Of_Lists=${detail.index_Of_Lists}" role="button">삭제</a>
           </c:if>
         </div>
         <table class="table mt-4">
@@ -53,7 +53,11 @@
             </tr>
           </tbody>
         </table>
-
+	<div>
+		<c:forEach items="${detail.productFileDTO}" var="f">
+			<a href="/resources/upload/products/${f.fileName}">${f.oriName}</a>
+		</c:forEach>
+	</div>
       </div>
     </div>
   </div>

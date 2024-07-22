@@ -5,9 +5,28 @@
   
   <!-- namespace는 꼭 들어가야될 속성, 다른 매퍼랑 구분하기 위해 씀 -->
   <mapper namespace="com.seonhui.app.product.ProductDAO">
-  	<select id="getDetail" resultType="ProductDTO" parameterType="Pager">
-  		SELECT * FROM PRODUCTS WHERE P_CODE = #{p_code}
+  	<select id="getDetail" resultMap="productResult" parameterType="Pager">
+  		SELECT P1.*, P2.*
+			FROM PRODUCTS P1
+			LEFT JOIN 
+			RPODUCTFILES P2
+			ON P1.P_CODE = P2.P_CODE 
+		WHERE P1.P_CODE = #{p_code}
   	</select>
+  	
+  	<resultMap type="ProductDTO" id="productResult">
+  		<id column="P_CODE" property="p_code"/>
+  		<result column="P_NAME" property="p_name"/>
+		<result column="INTEREST" property="interest"/>
+		<result column="SCRIPT" property="script"/>
+		<result column="INDEX_OF_LISTS" property="index_Of_Lists"/>
+  	
+  		<collection property="productFileDTO" javaType="java.util.List" ofType="ProductFileDTO">
+  			<id column="FILENUM" property="fileNum"/>
+  			<result column="FILENAME" property="fileName"/>
+			<result column="ORINAME" property="oriName"/>
+  		</collection>
+  	</resultMap>
   	
   	<select id="getList" resultType="ProductDTO" parameterType="Pager">
   		SELECT * FROM 
@@ -57,8 +76,18 @@
 		</where> 
   	</select>
   	
+  	<select id="getNum" resultType="Long">
+  		SELECT PRODUCTS_SEQ.NEXTVAL FROM DUAL
+  	</select>
+  	
   	<insert id="add" parameterType="ProductDTO">
-  		INSERT INTO PRODUCTS (P_CODE, P_NAME, INTEREST, SCRIPT, INDEX_OF_LISTS) VALUES (#{p_code}, #{p_name}, #{interest}, #{script}, PRODUCTS_SEQ.NEXTVAL)
+  		INSERT INTO PRODUCTS (P_CODE, P_NAME, INTEREST, SCRIPT, INDEX_OF_LISTS) 
+  		VALUES (#{index_Of_Lists}, #{p_name}, #{interest}, #{script}, PRODUCTS_SEQ.NEXTVAL)
+  	</insert>
+  	
+  	<insert id="addFile" parameterType="ProductFileDTO">
+  		INSERT INTO RPODUCTFILES (FileNum, P_CODE, FileName, OriName)
+		VALUES (FILE_SEQ.NEXTVAL, #{p_code}, #{fileName}, #{oriName} )
   	</insert>
   	
   	<update id="update" parameterType="ProductDTO">

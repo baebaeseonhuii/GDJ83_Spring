@@ -20,7 +20,7 @@
                 
                 <!-- Page content-->
                 <div class="container-fluid col-6 justify-contents-center">
-                    <form method="post">
+                    <form method="post" enctype="multipart/form-data">
                     <input type="hidden" style="border-width:0;" name="boardWriter" value="${member.id}">
                     <table class="table mt-4">
 
@@ -45,7 +45,10 @@
                         </tr>
                       </tbody>
                   </table>
-                  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                  <button class="btn btn-secondary me-md-2" id="fileBtn" type="button">파일추가</button>
+                  <div id="fileDiv">
+                  </div>
+                  <div class="d-grid gap-2 d-md-flex mt-5">
                     <button class="btn btn-secondary me-md-2" type="submit">등록</button>
                   </div>
                   </form>
@@ -53,5 +56,9 @@
             </div>
         </div>
       <c:import url="../template/footer.jsp"></c:import>
+      <script src="/resources/js/commons/files.js"></script>
+      <script>
+        setMax(5);
+      </script>
     </body>
 </html>

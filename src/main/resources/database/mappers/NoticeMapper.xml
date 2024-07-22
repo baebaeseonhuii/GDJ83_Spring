@@ -55,9 +55,38 @@
 		<include refid="searchSql"></include>
 	</select>
 
-	<select id="getDetail" resultType="NoticeDTO"
-		parameterType="Pager">
-		SELECT * FROM NOTICE WHERE "BoardNum" = #{boardNum}
+	<select id="getDetail" resultMap="noticeResult" parameterType="Pager">
+		SELECT N.*, NF.*
+			FROM NOTICE N 
+			LEFT JOIN 
+			NOTICEFILES NF
+			ON N."BoardNum" = NF.BOARDNUM
+		WHERE N."BoardNum" = #{boardNum}
+	</select>
+	
+	<resultMap type="NoticeDTO" id="noticeResult">
+  		<id column="BOARDNUM" property="boardNum"/>
+  		<result column="BOARDWRITER" property="boardWriter"/>
+		<result column="CREATEDATE" property="createDate"/>
+		<result column="BOARDTITLE" property="boardTitle"/>
+		<result column="BOARDCONTENTS" property="boardContents"/>
+		<result column="BOARDCATEGORY" property="boardCategory"/>
+		<result column="UPDATEDATE" property="updateDate"/>
+		<result column="BOARDHIT" property="boardHit"/>
+		<result column="REF" property="ref"/>
+		<result column="STEP" property="step"/>
+		<result column="DEPTH" property="depth"/>
+		<result column="DEL" property="del"/>
+  	
+  		<collection property="boardFileDTO" javaType="java.util.List" ofType="BoardFileDTO">
+  			<id column="FILENUM" property="fileNum"/>
+  			<result column="FILENAME" property="fileName"/>
+			<result column="ORINAME" property="oriName"/>
+  		</collection>
+  	</resultMap>
+	
+	<select id="getNum" resultType="Long">
+		SELECT BOARD_SEQ.NEXTVAL FROM DUAL
 	</select>
 
 	<insert id="add" parameterType="NoticeDTO">
@@ -65,8 +94,13 @@
 		("BoardNum", "BoardWriter", "CreateDate", "BoardTitle", "BoardContents",
 		"BoardCategory", "UpdateDate", "BoardHit")
 		VALUES
-		(BOARD_SEQ.NEXTVAL, #{boardWriter}, SYSDATE, #{boardTitle}, #{boardContents}, NULL, NULL,
+		(#{boardNum}, #{boardWriter}, SYSDATE, #{boardTitle}, #{boardContents}, 'N', NULL,
 		0)
+	</insert>
+	
+	<insert id="addFile" parameterType="BoardFileDTO">
+		INSERT INTO NOTICEFILES (FileNum, BoardNum, FileName, OriName)
+		VALUES (BOARD_SEQ.NEXTVAL, #{boardNum}, #{fileName}, #{oriName} )
 	</insert>
 
 	<update id="update" parameterType="NoticeDTO">
