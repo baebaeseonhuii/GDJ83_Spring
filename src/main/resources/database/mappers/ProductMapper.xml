@@ -11,7 +11,7 @@
   	</insert>
   	
   	<select id="getWishList" parameterType="java.lang.String" resultType="ProductDTO">
-  		SELECT P.P_NAME, P.INTEREST
+  		SELECT P.*
 			FROM WISHLISTS W
 			LEFT JOIN 
 			PRODUCTS P

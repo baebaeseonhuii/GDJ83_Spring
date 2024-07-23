@@ -25,26 +25,34 @@
                     <table class="table mt-4">
                     <thead>
                       <tr>
+                      	<th>
+                      		<input type="checkbox">
+                      	</th>
                         <th scope="col" colspan="2">상품명</th>
                         <th scope="col">이자율</th>
+                        <th>삭제</th>
                       </tr>
                     </thead>
                     <tbody class="table-group-divider">
-                      <c:forEach items="${list}" var="list">
+                      <c:forEach items="${list}" var="dto">
                         <tr>
-                          <th colspan="2">${list.p_name}</th>
-                       	  <td>${list.interest}</td>
+                          <td>
+                          	<input type="checkbox">
+                          </td>
+                          <th colspan="2">${dto.p_name}</th>
+                       	  <td>${dto.interest}</td>
+                       	  <td><button type="button" class="btn btn-secondary wishDelete" data-wish-id="${dto.p_code}">X</button></td>
                         </tr>
                       </c:forEach>
                     </tbody>
                   </table>
                   <nav aria-label="Page navigation example">
                     <ul class="pagination justify-content-md-center">
-                      <li class="page-item"><a class="page-link ${pager.pre ? '' : 'disabled'}"  href="./list?page=${pager.startNum - 1}&kind=${pager.kind}&search=${pager.search}">Previous</a></li>
+                      <li class="page-item"><a class="page-link ${pager.pre ? '' : 'disabled'}"  href="./wishList?page=${pager.startNum - 1}&kind=${pager.kind}&search=${pager.search}">Previous</a></li>
                       <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-                        <li class="page-item"><a class="page-link ${pager.page eq i ? 'active' : ''}" href="./list?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>                      
+                        <li class="page-item"><a class="page-link ${pager.page eq i ? 'active' : ''}" href="./wishList?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>                      
                       </c:forEach>
-                      <li class="page-item"><a class="page-link ${pager.next ? '' : 'disabled'}"  href="./list?page=${pager.lastNum + 1}&kind=${pager.kind}&search=${pager.search}">Next</a></li>
+                      <li class="page-item"><a class="page-link ${pager.next ? '' : 'disabled'}"  href="./wishList?page=${pager.lastNum + 1}&kind=${pager.kind}&search=${pager.search}">Next</a></li>
                     </ul>
                     
                     
@@ -53,5 +61,6 @@
             </div>
         </div>
       <c:import url="../template/footer.jsp"></c:import>
+      <script type="text/javascript" src="/resources/js/product/wishDelete.js"></script>
     </body>
 </html>
