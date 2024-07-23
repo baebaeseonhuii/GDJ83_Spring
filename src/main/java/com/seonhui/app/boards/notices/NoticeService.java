@@ -21,7 +21,7 @@ import com.seonhui.app.util.Pager;
 public class NoticeService implements BoardService {
 
 	@Autowired
-	@Qualifier("noticeDAO")
+	@Qualifier("noticeDAO") // 빈의 이름이 noticeDAO인걸 찾아서 boardDAO에 넣어달라
 	private BoardDAO boardDAO;
 
 	@Autowired

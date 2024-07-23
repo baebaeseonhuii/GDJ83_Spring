@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.seonhui.app.boards.BoardDTO;
 import com.seonhui.app.boards.BoardFileDTO;
 import com.seonhui.app.boards.BoardService;
+import com.seonhui.app.files.FileDTO;
 import com.seonhui.app.files.FileManager;
 import com.seonhui.app.util.Pager;
 
@@ -59,6 +60,11 @@ public class QnaService implements BoardService {
 		}
 
 		return result;
+	}
+
+	@Override
+	public FileDTO fileDetail(FileDTO fileDTO) throws Exception {
+		return qnaDAO.fileDetail(fileDTO);
 	}
 
 	@Override

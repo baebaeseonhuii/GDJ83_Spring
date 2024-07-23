@@ -49,9 +49,10 @@
                   </table>
                   <div>
 					<c:forEach items="${detail.boardFileDTO}" var="f">
-						<a href="/resources/upload/${board}/${f.fileName}">${f.oriName}</a>
+						<a href="./fileDown?fileNum=${f.fileNum}">${f.oriName}</a><!-- 어느폴더에서 어떤파일? -->
 					</c:forEach>
 				  </div>
+				  
                   <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                     <input type="button" class="btn btn-secondary" value="목록" onclick="history.back();" />
                     <c:if test="${member.id eq detail.boardWriter}">

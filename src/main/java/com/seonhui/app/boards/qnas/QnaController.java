@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.seonhui.app.boards.BoardDTO;
+import com.seonhui.app.files.FileDTO;
 import com.seonhui.app.members.MemberDTO;
 import com.seonhui.app.util.Pager;
 
@@ -90,6 +91,13 @@ public class QnaController {
 		qnaDTO.setBoardWriter(memberDTO.getId());
 		int result = qnaService.reply(qnaDTO, files, session);
 		return "redirect:./list";
+	}
+
+	@GetMapping("fileDown") // 리턴값이 없으면 자동으로 fileDown.jsp로 감
+	public String fileDown(FileDTO fileDTO, Model model) throws Exception {
+		fileDTO = qnaService.fileDetail(fileDTO);
+		model.addAttribute("file", fileDTO);
+		return "fileDown";
 	}
 
 }

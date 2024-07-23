@@ -2,6 +2,7 @@ package com.seonhui.app.boards;
 
 import java.util.List;
 
+import com.seonhui.app.files.FileDTO;
 import com.seonhui.app.util.Pager;
 
 public interface BoardDAO {
@@ -27,5 +28,8 @@ public interface BoardDAO {
 
 	// getDetail
 	BoardDTO getDetail(BoardDTO boardDTO) throws Exception;
+
+	// fileDetail
+	FileDTO fileDetail(FileDTO fileDTO) throws Exception;
 
 }

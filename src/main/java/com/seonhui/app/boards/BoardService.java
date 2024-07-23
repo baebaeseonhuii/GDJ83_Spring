@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.seonhui.app.files.FileDTO;
 import com.seonhui.app.util.Pager;
 
 public interface BoardService {
@@ -24,5 +25,8 @@ public interface BoardService {
 
 	// getDetail
 	public BoardDTO getDetail(BoardDTO boardDTO) throws Exception;
+
+	// fileDetail
+	FileDTO fileDetail(FileDTO fileDTO) throws Exception;
 
 }

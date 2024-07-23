@@ -9,10 +9,16 @@ import org.springframework.stereotype.Repository;
 import com.seonhui.app.boards.BoardDAO;
 import com.seonhui.app.boards.BoardDTO;
 import com.seonhui.app.boards.BoardFileDTO;
+import com.seonhui.app.files.FileDTO;
 import com.seonhui.app.util.Pager;
 
 @Repository
 public class QnaDAO implements BoardDAO {
+	@Override
+	public FileDTO fileDetail(FileDTO fileDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "fileDetail", fileDTO);
+	}
+
 	@Autowired
 	private SqlSession sqlSession;
 
