@@ -33,6 +33,7 @@ public class QnaController {
 
 	@GetMapping("list")
 	public ModelAndView getList(ModelAndView mv, Pager pager) throws Exception {
+
 		List<BoardDTO> ar = qnaService.getList(pager);
 		mv.addObject("list", ar);
 		mv.addObject("pager", pager);
@@ -93,7 +94,7 @@ public class QnaController {
 		return "redirect:./list";
 	}
 
-	@GetMapping("fileDown") // 리턴값이 없으면 자동으로 fileDown.jsp로 감
+	@GetMapping("fileDown") // fileDown주소가 들어왔을때 fileDown 클래스로 감, 리턴값이 없으면 자동으로 fileDown.jsp로 감
 	public String fileDown(FileDTO fileDTO, Model model) throws Exception {
 		fileDTO = qnaService.fileDetail(fileDTO);
 		model.addAttribute("file", fileDTO);

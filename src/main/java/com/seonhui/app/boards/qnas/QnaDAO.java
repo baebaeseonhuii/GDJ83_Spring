@@ -14,10 +14,6 @@ import com.seonhui.app.util.Pager;
 
 @Repository
 public class QnaDAO implements BoardDAO {
-	@Override
-	public FileDTO fileDetail(FileDTO fileDTO) throws Exception {
-		return sqlSession.selectOne(NAMESPACE + "fileDetail", fileDTO);
-	}
 
 	@Autowired
 	private SqlSession sqlSession;
@@ -42,6 +38,11 @@ public class QnaDAO implements BoardDAO {
 	@Override
 	public int addFile(BoardFileDTO boardFileDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE + "addFile", boardFileDTO);
+	}
+
+	@Override
+	public FileDTO fileDetail(FileDTO fileDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "fileDetail", fileDTO);
 	}
 
 	@Override

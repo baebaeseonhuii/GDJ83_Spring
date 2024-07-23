@@ -28,6 +28,7 @@
             <a class="btn btn-secondary" href="./update?p_code=${detail.p_code}" role="button">수정</a>
             <a class="btn btn-secondary" href="./delete?index_Of_Lists=${detail.index_Of_Lists}" role="button">삭제</a>
           </c:if>
+          	<button class="btn btn-secondary" type="button" data-product-id="${detail.p_code}" data-user-id="${member.id}" id="addWish">관심목록추가</button>
         </div>
         <table class="table mt-4">
           <thead>
@@ -53,6 +54,9 @@
             </tr>
           </tbody>
         </table>
+        <div id="wishResult">
+
+        </div>
 	<div>
 		<c:forEach items="${detail.productFileDTO}" var="f">
 			<a href="/resources/upload/products/${f.fileName}">${f.oriName}</a>
@@ -62,5 +66,6 @@
     </div>
   </div>
   <c:import url="../template/footer.jsp"></c:import>
+  <script type="text/javascript" src="/resources/js/product/wish.js"></script>
 </body>
 </html>

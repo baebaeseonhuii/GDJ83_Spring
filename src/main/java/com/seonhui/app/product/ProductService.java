@@ -1,6 +1,8 @@
 package com.seonhui.app.product;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
@@ -20,6 +22,17 @@ public class ProductService {
 
 	@Autowired
 	private FileManager fileManager;
+
+	public int addWish(String p_code, String id) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("p_code", p_code);
+		map.put("id", id);
+		return productDAO.addWish(map);
+	}
+
+	public List<ProductDTO> getWishList(String id) throws Exception {
+		return productDAO.getWishList(id);
+	}
 
 	public List<ProductDTO> getList(Pager pager) throws Exception {
 		// page = 1 2 3 4
