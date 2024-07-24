@@ -26,6 +26,10 @@ public class ProductDAO {
 		return sqlSession.selectList(NAMESPACE + "getWishList", id);
 	}
 
+	public int deleteWishList(Map<String, String> map) throws Exception {
+		return sqlSession.delete(NAMESPACE + "deleteWishList", map);
+	}
+
 	public Long getTotalCount(Pager pager) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + "getTotalCount", pager);
 	}

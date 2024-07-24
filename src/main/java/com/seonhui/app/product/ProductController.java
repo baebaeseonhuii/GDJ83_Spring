@@ -99,6 +99,14 @@ public class ProductController {
 		return path;
 	}
 
+	@GetMapping("deleteWishList")
+	public String deleteWishList(String p_code, HttpSession session, Model model) throws Exception {
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		int result = productService.deleteWishList(p_code, memberDTO.getId());
+		model.addAttribute("msg", result);
+		return "commons/result";
+	}
+
 	@RequestMapping(value = "update", method = RequestMethod.GET)
 	public String update(ProductDTO productDTO, Model model) throws Exception {
 		productDTO = productService.getDetail(productDTO);

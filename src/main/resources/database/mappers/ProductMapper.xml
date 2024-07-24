@@ -18,6 +18,10 @@
 			ON W.P_CODE = P.P_CODE
 		WHERE W.ID=#{id}
   	</select>
+  	
+  	<delete id="deleteWishList" parameterType="Map">
+  		DELETE FROM WISHLISTS WHERE P_CODE = #{p_code} AND ID = #{id} 
+  	</delete>
   
   	<select id="getDetail" resultMap="productResult" parameterType="Pager">
   		SELECT P1.*, P2.*

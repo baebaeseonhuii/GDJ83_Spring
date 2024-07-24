@@ -26,7 +26,7 @@
                     <thead>
                       <tr>
                       	<th>
-                      		<input type="checkbox">
+                      		<input type="checkbox" name="check" id="allCheck">
                       	</th>
                         <th scope="col" colspan="2">상품명</th>
                         <th scope="col">이자율</th>
@@ -34,14 +34,14 @@
                       </tr>
                     </thead>
                     <tbody class="table-group-divider">
-                      <c:forEach items="${list}" var="dto">
-                        <tr>
+                      <c:forEach items="${list}" var="dto" varStatus="i">
+                        <tr id="w${i.index}">
                           <td>
-                          	<input type="checkbox">
+                          	<input type="checkbox" class="check" name="check">
                           </td>
                           <th colspan="2">${dto.p_name}</th>
                        	  <td>${dto.interest}</td>
-                       	  <td><button type="button" class="btn btn-secondary wishDelete" data-wish-id="${dto.p_code}">X</button></td>
+                       	  <td><button type="button" class="btn btn-secondary wishDelete" data-del-id="w${i.index}" data-wish-id="${dto.p_code}">X</button></td>
                         </tr>
                       </c:forEach>
                     </tbody>

@@ -30,6 +30,13 @@ public class ProductService {
 		return productDAO.addWish(map);
 	}
 
+	public int deleteWishList(String p_code, String id) throws Exception {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("p_code", p_code);
+		map.put("id", id);
+		return productDAO.deleteWishList(map);
+	}
+
 	public List<ProductDTO> getWishList(String id) throws Exception {
 		return productDAO.getWishList(id);
 	}
