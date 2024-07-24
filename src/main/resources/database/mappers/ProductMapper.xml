@@ -20,8 +20,15 @@
   	</select>
   	
   	<delete id="deleteWishList" parameterType="Map">
-  		DELETE FROM WISHLISTS WHERE P_CODE = #{p_code} AND ID = #{id} 
+  		DELETE FROM WISHLISTS WHERE ID = #{id} AND 
+  		P_CODE IN
+  		<foreach collection="ids" item="item" open="(" separator="," close=")">
+  			#{item}
+  		</foreach>  
+  		
   	</delete>
+  	
+  	
   
   	<select id="getDetail" resultMap="productResult" parameterType="Pager">
   		SELECT P1.*, P2.*

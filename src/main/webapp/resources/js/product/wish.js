@@ -24,7 +24,7 @@ addWish.addEventListener("click", (e)=>{
                         location.href="./wishList?id=" + userID;
                     }
                 } else {
-                    alert("관심등록 실패");
+                    alert("이미 있는 상품");
                 }
             })
             .catch(()=>{

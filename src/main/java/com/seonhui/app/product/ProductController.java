@@ -100,7 +100,11 @@ public class ProductController {
 	}
 
 	@GetMapping("deleteWishList")
-	public String deleteWishList(String p_code, HttpSession session, Model model) throws Exception {
+	public String deleteWishList(String[] p_code, HttpSession session, Model model) throws Exception {
+		for (String pc : p_code) {
+			System.out.println(pc);
+		}
+
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
 		int result = productService.deleteWishList(p_code, memberDTO.getId());
 		model.addAttribute("msg", result);

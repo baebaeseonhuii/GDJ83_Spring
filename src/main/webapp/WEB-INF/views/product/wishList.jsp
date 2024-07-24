@@ -20,12 +20,15 @@
                 
                 <!-- Page content-->
                 <div class="container-fluid col-6 justify-contents-center">
-                    <h1 class="mt-4">관심목록</h1>
-
+                    <h1 class="mt-4 mb-4">관심목록</h1>
+					<div>
+						<button type="button" class="btn btn-outline-danger" id="delAll">선택 삭제</button>
+					</div>
                     <table class="table mt-4">
                     <thead>
                       <tr>
                       	<th>
+                      	<label>전체 선택</label>
                       		<input type="checkbox" name="check" id="allCheck">
                       	</th>
                         <th scope="col" colspan="2">상품명</th>
@@ -36,9 +39,7 @@
                     <tbody class="table-group-divider">
                       <c:forEach items="${list}" var="dto" varStatus="i">
                         <tr id="w${i.index}">
-                          <td>
-                          	<input type="checkbox" class="check" name="check">
-                          </td>
+                          <td><input type="checkbox" class="check" data-del-id="w${i.index}" name="check" data-wish-id="${dto.p_code}"></td>
                           <th colspan="2">${dto.p_name}</th>
                        	  <td>${dto.interest}</td>
                        	  <td><button type="button" class="btn btn-secondary wishDelete" data-del-id="w${i.index}" data-wish-id="${dto.p_code}">X</button></td>

@@ -2,6 +2,7 @@
 const wishDelete = document.getElementsByClassName("wishDelete");
 const allCheck = document.getElementById("allCheck");
 const check = document.getElementsByClassName("check");
+const delAll = document.getElementById("delAll");
 
 for(let w of wishDelete) {
     w.addEventListener("click", ()=>{
@@ -18,7 +19,7 @@ for(let w of wishDelete) {
             r=r.trim();//공백제거
             if(r>0) {
                 let del = w.getAttribute("data-del-id");
-                document.getElementById(del).remove()
+                document.getElementById(del).remove();
 
             } else {
                 alert("삭제 실패");
@@ -31,7 +32,41 @@ for(let w of wishDelete) {
     });
 }
 
+delAll.addEventListener("click", ()=>{
+    let url = "deleteWishList?";
+    const e = [];
+    for(let c of check) {
+        if(c.checked) {
+            let p_code = c.getAttribute("data-wish-id");
+            url = url + "p_code=" + p_code + "&";
+            e.push(c.getAttribute("data-del-id"));
+        }
+    }
+    url = url.substring(0, url.length-1);
+    console.log(url);
+    // fetch("") //fetch는 한번만
+    fetch(url, {
+        method: "GET",
 
+    }).then(r=>r.text())
+    .then(r=>{
+        r=r.trim();
+        if(r>0) {
+            for(let ele of e) {
+                document.getElementById(ele).remove();
+               // ele.parentNode.parentNode.remove();
+            }
+            // for(let c of check) {
+            //     if(c.checked){
+            //         c.parentNode.parentNode.remove();
+            //     }
+            // }
+        }else {
+            alert("삭제되지 않았습니다.");
+        }
+    })
+    .catch(()=>{alert("오류 발생")});
+})
 
 
 allCheck.addEventListener("click", ()=> {
@@ -50,7 +85,6 @@ allCheck.addEventListener("click", ()=> {
             }
             allCheck.checked = flag;
         })
-    }
-
-    
+    }   
 })
+

@@ -30,11 +30,19 @@ public class ProductService {
 		return productDAO.addWish(map);
 	}
 
-	public int deleteWishList(String p_code, String id) throws Exception {
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("p_code", p_code);
+	public int deleteWishList(String[] p_code, String id) throws Exception {
+		int result = 0;
+		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id", id);
-		return productDAO.deleteWishList(map);
+		map.put("ids", p_code);
+		result = productDAO.deleteWishList(map);
+//		for (String pc : p_code) {
+//			Map<String, String> map = new HashMap<String, String>();
+//			map.put("p_code", pc);
+//			map.put("id", id);
+//			result = productDAO.deleteWishList(map);
+//		}
+		return result;
 	}
 
 	public List<ProductDTO> getWishList(String id) throws Exception {
