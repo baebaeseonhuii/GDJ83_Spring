@@ -24,7 +24,7 @@
             <tbody class="table-group-divider">
               <tr>
                 <td>ID</td>
-                <th><input type="text" name="id"></th>
+                <th><input type="text" name="id" id="idCheck"></th>
                 <td>PW</td>
                 <th><input type="password" name="pw"></th>
               </tr>

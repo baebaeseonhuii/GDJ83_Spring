@@ -8,6 +8,20 @@ const join = document.getElementById("join");
 const sm = document.getElementById("sm");
 const pwChk = document.getElementById("pwChk");
 const inputs = document.getElementsByTagName("input");
+const idCheck = document.getElementById("idCheck");
+
+idCheck.addEventListener("change", ()=>{
+    let id = idCheck.value;
+    console.log(id);
+    fetch("./idDuplicationcheck?id=" + id, {
+        method: "GET"
+    }).then((r)=>{return r.text()})
+      .then((r)=>{
+        if(r == id) {
+            
+        }
+      })
+})
 
 inputs[1].addEventListener("change", function() {
     pwChk.innerHTML = "비밀번호가 일치합니다";

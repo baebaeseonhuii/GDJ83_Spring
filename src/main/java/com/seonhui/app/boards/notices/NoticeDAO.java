@@ -9,9 +9,10 @@ import org.springframework.stereotype.Repository;
 import com.seonhui.app.boards.BoardDAO;
 import com.seonhui.app.boards.BoardDTO;
 import com.seonhui.app.boards.BoardFileDTO;
+import com.seonhui.app.files.FileDTO;
 import com.seonhui.app.util.Pager;
 
-@Repository()
+@Repository
 public class NoticeDAO implements BoardDAO {
 	@Autowired
 	private SqlSession sqlSession;
@@ -21,6 +22,12 @@ public class NoticeDAO implements BoardDAO {
 	@Override
 	public Long getTotalCount(Pager pager) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + "getTotalCount", pager);
+	}
+
+	@Override
+	public FileDTO fileDetail(FileDTO fileDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override

@@ -14,6 +14,7 @@ import com.seonhui.app.boards.BoardDAO;
 import com.seonhui.app.boards.BoardDTO;
 import com.seonhui.app.boards.BoardFileDTO;
 import com.seonhui.app.boards.BoardService;
+import com.seonhui.app.files.FileDTO;
 import com.seonhui.app.files.FileManager;
 import com.seonhui.app.util.Pager;
 
@@ -36,6 +37,12 @@ public class NoticeService implements BoardService {
 
 		return boardDAO.getList(pager);
 
+	}
+
+	@Override
+	public FileDTO fileDetail(FileDTO fileDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
