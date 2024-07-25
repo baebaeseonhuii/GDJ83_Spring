@@ -90,7 +90,7 @@
 			  </div>
 			</div>
 		<!-- 댓글 목록 -->
-		<div id="commentList" class="pn">
+		<div id="commentList">
 		
 		</div>
 	</div>	

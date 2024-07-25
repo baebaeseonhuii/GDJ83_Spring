@@ -15,8 +15,8 @@
                       	<c:if test="${comment.boardWriter eq member.id}">
                       	<button class="btn btn-danger delBtn" data-del-btn="${comment.boardNum}">댓글 삭제</button>
                       	</c:if>
+                        <hr>
                       </div>
-                      <hr>
                       </c:forEach>
                     </tbody>
                   </table>
@@ -25,7 +25,7 @@
                     <ul class="pagination justify-content-md-center">
                       <li class="page-item"><a class="pn page-link ${pager.pre ? '' : 'disabled'}" data-page-num="${pager.startNum - 1}" href="#">Previous</a></li>
                       <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-                        <li class="page-item"><a class="pn page-link ${pager.page eq i ? 'active' : ''}" data-page-num="${i}" href="#">${i}</a></li>                      
+                        <li class="page-item"><a class="pn page-link ${pager.page eq i ? 'active' : ''}" data-page-num="${i}">${i}</a></li>                      
                       </c:forEach>
                       <li class="page-item"><a class="pn page-link ${pager.next ? '' : 'disabled'}" data-page-num="${pager.lastNum + 1}" href="#">Next</a></li>
                     </ul>

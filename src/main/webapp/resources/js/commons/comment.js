@@ -28,28 +28,33 @@ commentList.addEventListener("click", (e)=>{
     let delId = 0;
     if(e.target.classList.contains("delBtn")) {
         delId = e.target.getAttribute("data-del-btn");
+        fetch("./commentDelete", {
+            method: "POST",
+            headers:{
+                "Content-type":"application/x-www-form-urlencoded"
+            },
+            body: "boardNum=" + delId 
+        })
+        .then((r)=>{return r.text()})
+        .then((r)=>{
+            r.trim;
+            if(r>0) {
+                location.href="./detail?p_code=" + productId;
+            } else {
+                
+            }
+        })
+        .catch(()=>{
+            alert("오류");
+        })
     }
 
-    fetch("./commentDelete", {
-        method: "POST",
-        headers:{
-            "Content-type":"application/x-www-form-urlencoded"
-        },
-        body: "boardNum=" + delId 
-    })
-    .then((r)=>{return r.text()})
-    .then((r)=>{
-        r.trim;
-        if(r>0) {
-            location.href="./detail?p_code=" + productId;
-        } else {
-            
-        }
-    })
-    .catch(()=>{
-        alert("오류");
-    })
 })
+
+// commentList.addEventListener("click", (e)=>{
+//     let productId = commentButton.getAttribute("data-product-id");
+
+// })
 
 
 
