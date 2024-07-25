@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.seonhui.app.files.FileManager;
 import com.seonhui.app.util.Pager;
+import com.seonhui.app.util.ProductCommentPager;
 
 @Service
 public class ProductService {
@@ -22,6 +23,20 @@ public class ProductService {
 
 	@Autowired
 	private FileManager fileManager;
+
+	public int commentDelete(ProductCommentDTO productCommentDTO) throws Exception {
+		return productDAO.commentDelete(productCommentDTO);
+	}
+
+	public List<ProductCommentDTO> commentList(ProductCommentPager productCommentPager) throws Exception {
+		productCommentPager.makeRow();
+		productCommentPager.makeNum(productDAO.commentTotalCount(productCommentPager));
+		return productDAO.commentList(productCommentPager);
+	}
+
+	public int commentAdd(ProductCommentDTO productCommentDTO) throws Exception {
+		return productDAO.commentAdd(productCommentDTO);
+	}
 
 	public int addWish(String p_code, String id) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();

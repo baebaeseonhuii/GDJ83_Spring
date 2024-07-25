@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.seonhui.app.util.Pager;
+import com.seonhui.app.util.ProductCommentPager;
 
 @Repository
 public class ProductDAO {
@@ -17,6 +18,22 @@ public class ProductDAO {
 	private SqlSession sqlSession;
 
 	private final String NAMESPACE = "com.seonhui.app.product.ProductDAO.";
+
+	public int commentDelete(ProductCommentDTO productCommentDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE + "commentDelete", productCommentDTO);
+	}
+
+	public Long commentTotalCount(ProductCommentPager productCommentPager) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "commentTotalCount", productCommentPager);
+	}
+
+	public List<ProductCommentDTO> commentList(ProductCommentPager productCommentPager) throws Exception {
+		return sqlSession.selectList(NAMESPACE + "commentList", productCommentPager);
+	}
+
+	public int commentAdd(ProductCommentDTO productCommentDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE + "commentAdd", productCommentDTO);
+	}
 
 	public int addWish(Map<String, Object> map) throws Exception {
 		return sqlSession.insert(NAMESPACE + "addWish", map);

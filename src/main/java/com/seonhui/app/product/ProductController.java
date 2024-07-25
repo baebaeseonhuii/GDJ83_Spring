@@ -8,12 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.seonhui.app.members.MemberDTO;
 import com.seonhui.app.util.Pager;
+import com.seonhui.app.util.ProductCommentPager;
 
 @Controller
 @RequestMapping("/product/*")
@@ -22,6 +24,32 @@ public class ProductController {
 	// heyyyyyy
 	@Autowired
 	private ProductService productService;
+
+	@PostMapping("commentDelete")
+	public String commentDelete(ProductCommentDTO productCommentDTO, Model model) throws Exception {
+		int result = productService.commentDelete(productCommentDTO);
+		model.addAttribute("msg", result);
+		return "commons/result";
+	}
+
+	@GetMapping("commentList")
+	public void commentList(ProductCommentPager productCommentPager, Model model) throws Exception {
+
+		List<ProductCommentDTO> list = productService.commentList(productCommentPager);
+		model.addAttribute("list", list);
+		model.addAttribute("pager", productCommentPager);
+	}
+
+	@PostMapping("commentAdd")
+	public String commentAdd(ProductCommentDTO productCommentDTO, HttpSession session, Model model) throws Exception {
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		productCommentDTO.setBoardWriter(memberDTO.getId());
+		int result = productService.commentAdd(productCommentDTO);
+
+		model.addAttribute("msg", result);
+
+		return "commons/result";
+	}
 
 	@GetMapping("addWish")
 	public String addWish(String p_code, HttpSession session, Model model) throws Exception {

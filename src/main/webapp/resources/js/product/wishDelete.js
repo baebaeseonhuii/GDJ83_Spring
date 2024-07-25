@@ -46,7 +46,7 @@ delAll.addEventListener("click", ()=>{
     console.log(url);
     // fetch("") //fetch는 한번만
     fetch(url, {
-        method: "GET",
+        method: "GET"
 
     }).then(r=>r.text())
     .then(r=>{

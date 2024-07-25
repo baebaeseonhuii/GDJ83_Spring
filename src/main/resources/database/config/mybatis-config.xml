@@ -16,8 +16,9 @@
   		<typeAlias type="com.seonhui.app.boards.BoardFileDTO" alias="BoardFileDTO"/>
   		<typeAlias type="com.seonhui.app.boards.qnas.QnaDTO" alias="QnaDTO"/>
   		<typeAlias type="com.seonhui.app.files.FileDTO" alias="FileDTO"/>
-  		
+  		<typeAlias type="com.seonhui.app.product.ProductCommentDTO" alias="ProductCommentDTO"/>
   		<typeAlias type="com.seonhui.app.util.Pager" alias="Pager"/>
+  		<typeAlias type="com.seonhui.app.util.ProductCommentPager" alias="ProductCommentPager"/>
   		<typeAlias type="java.util.Map" alias="Map"/>
   	</typeAliases>
   	

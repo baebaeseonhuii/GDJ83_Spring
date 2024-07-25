@@ -9,7 +9,6 @@ const wishResult = document.getElementById("wishResult")
 //()=>{}
 addWish.addEventListener("click", (e)=>{
     let id = addWish.getAttribute("data-product-id");
-    console.log(e.target.getAttribute("data-product-id"));
     let userID = addWish.getAttribute("data-user-id");
     
 

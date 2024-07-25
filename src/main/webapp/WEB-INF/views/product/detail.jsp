@@ -62,10 +62,45 @@
 			<a href="/resources/upload/products/${f.fileName}">${f.oriName}</a>
 		</c:forEach>
 	</div>
+	
+	<!-- 댓글 -->
+	<div>
+		<button type="button" class="btn btn-outline-warning mt-3 mb-5" data-bs-toggle="modal" data-bs-target="#commentModal">
+		  댓글 입력
+		</button>
+		<!-- 댓글 모달 창 -->
+			<div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h1 class="modal-title fs-5" id="exampleModalLabel">댓글</h1>
+			        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			      </div>
+			      <div class="modal-body">
+			       <div class="form-floating">
+					  <textarea class="form-control" placeholder="Leave a comment here" id="commentContents" style="height: 100px"></textarea>
+					  
+					</div>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-secondary" id="commentClose" data-bs-dismiss="modal">닫기</button>
+			        <button type="button" class="btn btn-warning" id="commentButton" data-product-id="${detail.p_code}" data-user-id="${member.id}">댓글 등록</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+		<!-- 댓글 목록 -->
+		<div id="commentList" class="pn">
+		
+		</div>
+	</div>	
+	</div>
+	
       </div>
     </div>
   </div>
   <c:import url="../template/footer.jsp"></c:import>
   <script type="text/javascript" src="/resources/js/product/wish.js"></script>
+  <script type="text/javascript" src="/resources/js/commons/comment.js"></script>
 </body>
 </html>

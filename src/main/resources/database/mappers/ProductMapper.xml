@@ -5,6 +5,33 @@
   
   <!-- namespace는 꼭 들어가야될 속성, 다른 매퍼랑 구분하기 위해 씀 -->
   <mapper namespace="com.seonhui.app.product.ProductDAO">
+  
+  <delete id="commentDelete" parameterType="ProductCommentDTO">
+  	DELETE FROM COMMENTS WHERE BOARDNUM=#{boardNum}
+  </delete>
+  
+  <select id="commentTotalCount" parameterType="ProductCommentPager" resultType="java.lang.Long">
+  		SELECT COUNT(BOARDNUM)FROM COMMENTS
+  		WHERE P_CODE=#{p_code}
+  </select>
+  
+  	<select id="commentList" parameterType="ProductCommentPager" resultType="ProductCommentDTO">
+  		SELECT * FROM
+  		(
+	  		SELECT ROWNUM R, C.* FROM
+	  		(
+	  			SELECT * FROM COMMENTS 
+	  			WHERE P_CODE=#{p_code}
+	  			ORDER BY BOARDNUM DESC
+	  		)C
+  		)
+  		WHERE R BETWEEN #{startRow} AND #{lastRow}
+  	</select>
+  
+  	<insert id="commentAdd" parameterType="ProductCommentDTO">
+  		INSERT INTO COMMENTS VALUES (PRODUCTS_SEQ.NEXTVAL, #{p_code}, #{boardWriter}, #{boardContents}, SYSDATE)
+  	</insert>
+  
   	<insert id="addWish" parameterType="Map">
   		INSERT INTO WISHLISTS
   		VALUES(#{p_code}, #{id})
@@ -25,10 +52,7 @@
   		<foreach collection="ids" item="item" open="(" separator="," close=")">
   			#{item}
   		</foreach>  
-  		
   	</delete>
-  	
-  	
   
   	<select id="getDetail" resultMap="productResult" parameterType="Pager">
   		SELECT P1.*, P2.*

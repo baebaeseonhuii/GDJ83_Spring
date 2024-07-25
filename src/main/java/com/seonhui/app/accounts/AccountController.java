@@ -31,7 +31,7 @@ public class AccountController {
 		int result = accountService.add(accountDTO);
 		String path = "commons/message";
 		model.addAttribute("result", "계좌계설 성공");
-		model.addAttribute("url", "/");
+		model.addAttribute("url", "/product/list");
 		return path;
 	}
 
