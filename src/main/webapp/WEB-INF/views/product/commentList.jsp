@@ -7,13 +7,16 @@
                     <table class="table mt-5">
                     
                     <tbody class="table-group-divider">
-                      <c:forEach items="${list}" var="comment">
+                      <c:forEach items="${list}" var="comment" varStatus="i">
                       <div>
                       	<p style="margin:0; color:grey">${comment.boardWriter}</p>
-                      	<p>${comment.boardContents}</p>
+                      	<p id="con${i.index}">${comment.boardContents}</p>
                       	<p style="font-size: 11px">${comment.createDate}</p>
                       	<c:if test="${comment.boardWriter eq member.id}">
-                      	<button class="btn btn-danger delBtn" data-del-btn="${comment.boardNum}">댓글 삭제</button>
+                      	<button type="button" class="btn btn-danger delBtn" data-del-btn="${comment.boardNum}">댓글 삭제</button>
+                        </c:if>
+                        <c:if test="${comment.boardWriter eq member.id}">
+                      	<button type="button" class="btn btn-warning ups" data-update-con="con${i.index}" data-update-btn="${comment.boardNum}" data-bs-toggle="modal" data-bs-target="#commentModal">댓글 수정</button>
                       	</c:if>
                         <hr>
                       </div>
@@ -30,7 +33,7 @@
                       <li class="page-item"><a class="pn page-link ${pager.next ? '' : 'disabled'}" data-page-num="${pager.lastNum + 1}" href="#">Next</a></li>
                     </ul>
                   </nav>
-               <button class="list">Test</button>
+               
             
       <c:import url="../template/footer.jsp"></c:import>
     

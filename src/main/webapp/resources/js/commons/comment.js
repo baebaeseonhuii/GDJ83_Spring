@@ -2,7 +2,7 @@ const commentContents = document.getElementById("commentContents");
 const commentButton = document.getElementById("commentButton");
 const commentList = document.getElementById("commentList");
 const commentClose = document.getElementById("commentClose");
-const commentDelete = document.getElementById("delBtn");
+const openModal = document.getElementById("openModal");
 
 getCommentList(1);
 
@@ -16,18 +16,21 @@ function getCommentList(page){
     .then(r=>commentList.innerHTML=r)
 }
 
-
-
 commentList.addEventListener("click", (e)=>{
-    let productId = commentButton.getAttribute("data-product-id");
+   
     if(e.target.classList.contains("pn")) {
         let p = e.target.getAttribute("data-page-num");
         getCommentList(p);
         
     }
-    let delId = 0;
+    
+
+})
+
+commentList.addEventListener("click", (e)=>{
+    let productId = commentButton.getAttribute("data-product-id");
     if(e.target.classList.contains("delBtn")) {
-        delId = e.target.getAttribute("data-del-btn");
+        let delId = e.target.getAttribute("data-del-btn");
         fetch("./commentDelete", {
             method: "POST",
             headers:{
@@ -40,6 +43,7 @@ commentList.addEventListener("click", (e)=>{
             r.trim;
             if(r>0) {
                 location.href="./detail?p_code=" + productId;
+                getCommentList(1);
             } else {
                 
             }
@@ -51,26 +55,67 @@ commentList.addEventListener("click", (e)=>{
 
 })
 
-// commentList.addEventListener("click", (e)=>{
-//     let productId = commentButton.getAttribute("data-product-id");
 
-// })
+let flag = true;
+
+//openModal
+openModal.addEventListener("click", ()=>{
+    commentButton.innerHTML = "댓글 등록";
+    commentContents.value = "" ;
+    flag = true;
+})
+
+let bn = "";
+
+//수정
+commentList.addEventListener("click", (e)=>{
+    if(e.target.classList.contains("ups")) {
+        let id = e.target.getAttribute("data-update-btn");
+        bn = id;
+        let c = e.target.getAttribute("data-update-con");
+        c = document.getElementById(c).innerHTML;
+        console.log(c);
+        commentContents.value = c;
+        commentButton.innerHTML="댓글 수정";
+        flag=false;
+    }
+
+})
 
 
-
+//등록, 수정
 commentButton.addEventListener("click", ()=>{
     let productId = commentButton.getAttribute("data-product-id");
     let userId = commentButton.getAttribute("data-user-id");
     commentClose.click();
     let contents = commentContents.value;
-    commentContents.value="";
+    let url = "./commentAdd";
+    let param = "boardContents=" + contents + "&p_code=" + productId + "&boardWriter=" + userId;
+    const form = new FormData(); //form 태그를 만든거임
+    form.append("boardContents", contents); //<input type="text", name="boardContents", value="contents값" />
+    form.append("p_code", commentButton.getAttribute("data-product-id"));
+    form.append("boardNum", bn);
 
-    fetch("./commentAdd", {
+
+
+    if(contents == null || contents == "") {
+        alert("댓글을 입력하세요");
+        return;
+    }
+
+    if(!flag) {
+        url = "./commentUpdate";
+        // param = "boardContents=" + contents + "&boardNum=" +  bn
+        
+    }
+    
+    
+    fetch(url, {
         method: "POST",
-        headers:{
-            "Content-type":"application/x-www-form-urlencoded"
-        },
-        body: "boardContents=" + contents + "&p_code=" + productId + "&boardWriter=" + userId
+        // headers:{
+        //     "Content-type":"application/x-www-form-urlencoded"
+        // },
+        body: form
     })
     .then((r)=>{return r.text()})
     .then((r)=>{
@@ -85,4 +130,5 @@ commentButton.addEventListener("click", ()=>{
     .catch(()=>{
         alert("오류");
     })
+        
 })

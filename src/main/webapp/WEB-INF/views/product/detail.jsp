@@ -65,7 +65,7 @@
 	
 	<!-- 댓글 -->
 	<div>
-		<button type="button" class="btn btn-outline-warning mt-3 mb-5" data-bs-toggle="modal" data-bs-target="#commentModal">
+		<button type="button" id="openModal" class="btn btn-outline-warning mt-3 mb-5" data-bs-toggle="modal" data-bs-target="#commentModal">
 		  댓글 입력
 		</button>
 		<!-- 댓글 모달 창 -->

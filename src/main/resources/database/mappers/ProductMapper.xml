@@ -6,6 +6,10 @@
   <!-- namespace는 꼭 들어가야될 속성, 다른 매퍼랑 구분하기 위해 씀 -->
   <mapper namespace="com.seonhui.app.product.ProductDAO">
   
+  <update id="commentUpdate" parameterType="ProductCommentDTO">
+  	UPDATE COMMENTS SET BOARDCONTENTS = #{boardContents} WHERE BOARDNUM = #{boardNum} 
+  </update>
+  
   <delete id="commentDelete" parameterType="ProductCommentDTO">
   	DELETE FROM COMMENTS WHERE BOARDNUM=#{boardNum}
   </delete>

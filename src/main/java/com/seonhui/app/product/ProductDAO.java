@@ -19,6 +19,10 @@ public class ProductDAO {
 
 	private final String NAMESPACE = "com.seonhui.app.product.ProductDAO.";
 
+	public int commentUpdate(ProductCommentDTO productCommentDTO) throws Exception {
+		return sqlSession.update(NAMESPACE + "commentUpdate", productCommentDTO);
+	}
+
 	public int commentDelete(ProductCommentDTO productCommentDTO) throws Exception {
 		return sqlSession.delete(NAMESPACE + "commentDelete", productCommentDTO);
 	}
