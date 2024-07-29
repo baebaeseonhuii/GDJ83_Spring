@@ -41,7 +41,6 @@ public class ProductController {
 
 	@GetMapping("commentList")
 	public void commentList(ProductCommentPager productCommentPager, Model model) throws Exception {
-
 		List<ProductCommentDTO> list = productService.commentList(productCommentPager);
 		model.addAttribute("list", list);
 		model.addAttribute("pager", productCommentPager);

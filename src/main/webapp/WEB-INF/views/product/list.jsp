@@ -34,7 +34,6 @@
                       <c:forEach items="${list}" var="dto">
                         <tr>
                           <td>${dto.index_Of_Lists}</td>
-                      
                           <th colspan="2"><a href="./detail?p_code=${dto.p_code}" class="list-group-item list-group-item-action list-group-item-light" style="text-decoration: none; color:black;">${dto.p_name} </a></th>
                        
                           <td>${dto.interest}</td>
