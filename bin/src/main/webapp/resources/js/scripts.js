@@ -30,5 +30,3 @@ const pineappleHome = document.getElementById("pineappleHome");
 pineappleHome.addEventListener('click', function(){
 	location.href = '/';
 });
-
-//hi

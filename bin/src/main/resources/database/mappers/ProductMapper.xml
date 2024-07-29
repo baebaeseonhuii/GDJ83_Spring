@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <!-- namespace는 꼭 들어가야될 속성, 다른 매퍼랑 구분하기 위해 씀 -->
+  <mapper namespace="com.seonhui.app.product.ProductDAO">
+  
+  <update id="commentUpdate" parameterType="ProductCommentDTO">
+  	UPDATE COMMENTS SET BOARDCONTENTS = #{boardContents} WHERE BOARDNUM = #{boardNum} 
+  </update>
+  
+  <delete id="commentDelete" parameterType="ProductCommentDTO">
+  	DELETE FROM COMMENTS WHERE BOARDNUM=#{boardNum}
+  </delete>
+  
+  <select id="commentTotalCount" parameterType="ProductCommentPager" resultType="java.lang.Long">
+  		SELECT COUNT(BOARDNUM)FROM COMMENTS
+  		WHERE P_CODE=#{p_code}
+  </select>
+  
+  	<select id="commentList" parameterType="ProductCommentPager" resultType="ProductCommentDTO">
+  		SELECT * FROM
+  		(
+	  		SELECT ROWNUM R, C.* FROM
+	  		(
+	  			SELECT * FROM COMMENTS 
+	  			WHERE P_CODE=#{p_code}
+	  			ORDER BY BOARDNUM DESC
+	  		)C
+  		)
+  		WHERE R BETWEEN #{startRow} AND #{lastRow}
+  	</select>
+  
+  	<insert id="commentAdd" parameterType="ProductCommentDTO">
+  		INSERT INTO COMMENTS VALUES (PRODUCTS_SEQ.NEXTVAL, #{p_code}, #{boardWriter}, #{boardContents}, SYSDATE)
+  	</insert>
+  
+  	<insert id="addWish" parameterType="Map">
+  		INSERT INTO WISHLISTS
+  		VALUES(#{p_code}, #{id})
+  	</insert>
+  	
+  	<select id="getWishList" parameterType="java.lang.String" resultType="ProductDTO">
+  		SELECT P.*
+			FROM WISHLISTS W
+			LEFT JOIN 
+			PRODUCTS P
+			ON W.P_CODE = P.P_CODE
+		WHERE W.ID=#{id}
+  	</select>
+  	
+  	<delete id="deleteWishList" parameterType="Map">
+  		DELETE FROM WISHLISTS WHERE ID = #{id} AND 
+  		P_CODE IN
+  		<foreach collection="ids" item="item" open="(" separator="," close=")">
+  			#{item}
+  		</foreach>  
+  	</delete>
+  
+  	<select id="getDetail" resultMap="productResult" parameterType="Pager">
+  		SELECT P1.*, P2.*
+			FROM PRODUCTS P1
+			LEFT JOIN 
+			RPODUCTFILES P2
+			ON P1.P_CODE = P2.P_CODE 
+		WHERE P1.P_CODE = #{p_code}
+  	</select>
+  	
+  	<resultMap type="ProductDTO" id="productResult">
+  		<id column="P_CODE" property="p_code"/>
+  		<result column="P_NAME" property="p_name"/>
+		<result column="INTEREST" property="interest"/>
+		<result column="SCRIPT" property="script"/>
+		<result column="INDEX_OF_LISTS" property="index_Of_Lists"/>
+  	
+  		<collection property="productFileDTO" javaType="java.util.List" ofType="ProductFileDTO">
+  			<id column="FILENUM" property="fileNum"/>
+  			<result column="FILENAME" property="fileName"/>
+			<result column="ORINAME" property="oriName"/>
+  		</collection>
+  	</resultMap>
+  	
+  	<select id="getList" resultType="ProductDTO" parameterType="Pager">
+  		SELECT * FROM 
+			(
+				SELECT ROWNUM R, P.* FROM 
+				(
+					SELECT * 
+					FROM PRODUCTS
+					<where>
+						INDEX_OF_LISTS > 0
+						
+						<choose>
+							<when test="kind == 'k2'">
+								AND SCRIPT LIKE '%'||#{search}||'%'
+							</when>
+							
+							<otherwise>
+								AND P_NAME LIKE '%'||#{search}||'%'
+							</otherwise>
+							
+						</choose>
+						
+					</where> 
+			 		ORDER BY INDEX_OF_LISTS DESC
+			 	) P
+			 )
+		WHERE R BETWEEN #{startRow} AND #{lastRow}
+  		<![CDATA[]]>
+  	</select>
+  	
+  	<select id="getTotalCount" resultType="java.lang.Long" parameterType="Pager">
+  		SELECT COUNT(ROWNUM) FROM PRODUCTS
+  		<where>
+			INDEX_OF_LISTS > 0
+						
+			<choose>
+				<when test="kind == 'k2'">
+					AND SCRIPT LIKE '%'||#{search}||'%'
+				</when>
+				
+				<otherwise>
+					AND P_NAME LIKE '%'||#{search}||'%'
+				</otherwise>
+							
+			</choose>
+						
+		</where> 
+  	</select>
+  	
+  	<select id="getNum" resultType="Long">
+  		SELECT PRODUCTS_SEQ.NEXTVAL FROM DUAL
+  	</select>
+  	
+  	<insert id="add" parameterType="ProductDTO">
+  		INSERT INTO PRODUCTS (P_CODE, P_NAME, INTEREST, SCRIPT, INDEX_OF_LISTS) 
+  		VALUES (#{index_Of_Lists}, #{p_name}, #{interest}, #{script}, PRODUCTS_SEQ.NEXTVAL)
+  	</insert>
+  	
+  	<insert id="addFile" parameterType="ProductFileDTO">
+  		INSERT INTO RPODUCTFILES (FileNum, P_CODE, FileName, OriName)
+		VALUES (FILE_SEQ.NEXTVAL, #{p_code}, #{fileName}, #{oriName} )
+  	</insert>
+  	
+  	<update id="update" parameterType="ProductDTO">
+  		UPDATE PRODUCTS SET P_CODE=#{p_code}, P_NAME=#{p_name}, INTEREST=#{interest}, SCRIPT=#{script} WHERE INDEX_OF_LISTS=#{index_Of_Lists}
+  	</update>
+  	
+  	<delete id="delete" parameterType="ProductDTO">
+  		DELETE FROM PRODUCTS WHERE INDEX_OF_LISTS=#{index_Of_Lists}
+  	</delete>
+  	
+  	
+  	
+  	
+
+  </mapper>
