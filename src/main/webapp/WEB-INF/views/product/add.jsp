@@ -11,6 +11,7 @@
         <div class="d-flex" id="wrapper">
             <!-- Sidebar-->
             <c:import url="../template/sidebar.jsp"></c:import>
+	        <c:import url="../template/summer.jsp"></c:import>
             
             <!-- Page content wrapper-->
             <div id="page-content-wrapper">
@@ -38,7 +39,7 @@
                         <tr>
                           <td colspan="2">
                             <p>세부정보</p>
-                            <textarea name="script" style="width:100%;"></textarea>
+                            <textarea name="script" style="width:100%;" id="script"></textarea>
                           </td>
                         </tr>
                     </tbody>
@@ -57,6 +58,8 @@
       <script src="/resources/js/commons/files.js"></script>
       <script>
         setMax(5);
+        
+        $("#script").summernote();
       </script>
     </body>
 </html>

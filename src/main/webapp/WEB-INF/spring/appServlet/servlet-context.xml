@@ -9,6 +9,31 @@
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
+	<beans:bean class="com.seonhui.app.interceptors.WriterInterceptor" id="writerInterceptor"></beans:bean>
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/product/*"/> <!-- product로 시작하는 모든 url들 -->
+			<exclude-mapping path="/product/add"/>
+			<beans:ref bean="testInterceptor"/>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/product/*"/>
+			<mapping path="/notice/*"/>
+			<exclude-mapping path="/product/list"/>
+			<exclude-mapping path="/product/detail"/>
+			<exclude-mapping path="/notice/list"/>
+			<exclude-mapping path="/notice/detail"/>
+			<beans:bean class="com.seonhui.app.interceptors.AdminInterceptors"></beans:bean>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/qna/update"/>
+			<beans:ref bean="writerInterceptor"/>
+		</interceptor>
+	</interceptors>
+	
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
 

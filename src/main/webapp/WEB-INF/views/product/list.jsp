@@ -49,11 +49,11 @@
                       </c:forEach>
                       <li class="page-item"><a class="page-link ${pager.next ? '' : 'disabled'}"  href="./list?page=${pager.lastNum + 1}&kind=${pager.kind}&search=${pager.search}">Next</a></li>
                     </ul>
-                    <c:if test="${member.id eq 'seon'}">
+                    <%-- <c:if test="${member.id eq 'seon'}"> --%>
                       <div class="d-md-flex justify-content-md-end">
                         <a class="btn btn-secondary" href="./add" role="button">상품추가</a>
                       </div>
-                    </c:if>
+                    <%-- </c:if> --%>
                     
                   </nav>
                 </div>

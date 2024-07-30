@@ -7,7 +7,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -107,8 +109,8 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public String add(Model model, ProductDTO productDTO, HttpSession session, MultipartFile[] files) throws Exception {
-		int result = productService.add(productDTO, session, files);
+	public String add(Model model, ProductDTO productDTO, HttpSession session, MultipartFile[] attach) throws Exception {
+		int result = productService.add(productDTO, session, attach);
 		String path = "commons/message";
 		if (result > 0) {
 			path = "redirect:./list";
@@ -163,7 +165,7 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public String update(Model model, ProductDTO productDTO) throws Exception {
+	public String update(Model model, @ModelAttribute ProductDTO productDTO) throws Exception {
 		int result = productService.update(productDTO);
 		String path = "commons/message";
 
@@ -175,5 +177,20 @@ public class ProductController {
 		}
 		return path;
 	}
+	
+	@ExceptionHandler(NullPointerException.class)
+	public void exceptionHandler() {
+		
+	}
 
+	@ExceptionHandler(Exception.class)
+	public void exceptionHandler2() {
+		
+	}
+	
+	@ExceptionHandler(Throwable.class) //예외들의 부모
+	public void exceptionHandler3() {
+		
+	}
+	
 }

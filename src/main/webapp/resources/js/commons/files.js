@@ -48,7 +48,7 @@ fileBtn.addEventListener("click", function(){
 
     addFile.setAttribute("type", "file");
     addFile.classList.add("form-control");
-    addFile.name="files";
+    addFile.name="attach";
 
     sp.classList.add("input-group-text");
     sp.innerText = "X";
