@@ -8,6 +8,20 @@ body {
   
 }
 
+.back {
+	background-image:url('/resources/images/index/sunset.jpg');
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+#tama {
+	width: 20%;
+	position: absolute;
+  	top: 50%;
+  	left: 50%;
+ 	margin: -25px 0 0 -25px; 
+}
+
 .game-container {
   background-color: #FFFFFF;
   padding: 2rem;

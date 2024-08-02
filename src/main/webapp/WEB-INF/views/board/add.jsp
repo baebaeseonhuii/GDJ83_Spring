@@ -5,6 +5,18 @@
 <html>
     <head>
         <c:import url="../template/header.jsp"></c:import>
+        <style>
+			.ck.ck-editor{
+	  			 max-width: 1000px;
+  			}
+ 			 .ck-editor__editable {
+   			  min-height: 400px;
+    			 max-height: 600px;
+  			}
+  			.ck-content { 
+				  font-size: 12px; 
+			}
+</style>
         <title>Pineapple</title>
     </head>
     <body>
@@ -40,7 +52,7 @@
                         </tr>
                         <tr>
                           <td colspan="4">
-                            <textarea name="boardContents" style="width:100%;"></textarea>
+                            <textarea id="editor" name="boardContents" style="width:100%;"></textarea>
                           </td>
                         </tr>
                       </tbody>
@@ -57,8 +69,24 @@
         </div>
       <c:import url="../template/footer.jsp"></c:import>
       <script src="/resources/js/commons/files.js"></script>
+      <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+      <script src="/resources/js/commons/ckAdapter.js"></script>
       <script>
         setMax(5);
+        
+        ClassicEditor.create( 
+        		document.getElementById( 'editor' ), {
+        			extraPlugins: [MyCustomUploadAdapterPlugin]
+               },
+        	   
+             )
+        	 .then(editor=>{
+        		window.editor=editor
+        	 })
+        	 
+        	 .catch(error=>{
+        			console.log('error')
+        	 });	
       </script>
     </body>
 </html>
