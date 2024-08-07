@@ -132,3 +132,14 @@ commentButton.addEventListener("click", ()=>{
     })
         
 })
+
+// myPet.addEventListener("click", ()=>{
+//     fetch("./ingameChat", {
+//         method: "GET"
+//     })
+//     .then((r)=>{return r.text()})
+//     .then((r)=>{
+//         r.trim();
+//     })
+    
+// })
